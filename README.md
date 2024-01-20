@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Autostyle
 
-## Getting Started
+## About project
 
-First, run the development server:
+Shop project will be more info later...
+
+## Setup developers
+
+1. For eslint install "eslint" extention in vscode.
+2. For tailwind install "Prettier - Code formatter" & 'Tailwind CSS IntelliSense' extentions in vscode
+3. For Bitbucker install 'Jira and Bitbucket (Atlassian Labs)' extention in vscode
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+### File system
+|-src <br>
+|--|app <br>
+|&nbsp;&nbsp;  |--pages - all pages <br>
+|&nbsp;&nbsp;  |--components - Our components for pages, etc. <br>
+|&nbsp;&nbsp;  |--config - global constants, more later <br>
+|&nbsp;&nbsp;  |--features - section of components = feature  <br>
+|&nbsp;&nbsp;  |--hooks - global hooks <br>
+|&nbsp;&nbsp;  |--|lib - redux library <br>
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  |--store - third party libraries code <br>
+|&nbsp;&nbsp;  |--types - typscript types or interafcees global <br>
+|&nbsp;&nbsp;  |--utlis - our helper for function etc... <br>
+|&nbsp;&nbsp;  |--db - Code for our database ... <br>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##### Later maybe <br>
+|&nbsp;&nbsp;  |--actions for more to read [next js docs](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) or youtube about [actions](https://www.youtube.com/watch?v=dDpZfOQBMaU)
+<br>
+|&nbsp;&nbsp;  |--tests for testing ...<br>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Learn more
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Pure function [WDS video](https://www.youtube.com/watch?v=fYbhD_KMCOg)
+2. Facade patern for lib folder [WDS video](https://www.youtube.com/watch?v=fHPa5xzbpaA)
