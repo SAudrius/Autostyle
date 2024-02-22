@@ -1,7 +1,17 @@
+import { LoginButton } from "@/components/auth/LoginButton";
+import { Button } from "@/components/ui/button";
+
 export default function Home() {
   return (
-    <main className="container flex min-h-screen flex-col items-center justify-between p-24">
-      <h2 className="text-3xl">Home page</h2>
-    </main>
+    <div className="container flex h-screen items-center justify-center text-center text-2xl">
+      <div>
+        <h2 className="mb-4">Welcome to AutoStyle</h2>
+        <LoginButton>
+          <Button variant="secondary" size="default">
+            To login
+          </Button>
+        </LoginButton>
+      </div>
+    </div>
   );
 }
