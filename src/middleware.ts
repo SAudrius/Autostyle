@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 
 import { auth } from "@/lib/auth";
 
-import { apiAuthPrefix, authRoutes, publicRoutes } from "./routes";
+import { authRoutes, publicRoutes } from "./routes";
 
 export const middleware = async (req: NextRequest) => {
   const { nextUrl } = req;
@@ -13,15 +13,20 @@ export const middleware = async (req: NextRequest) => {
 
   const isLoggedIn = await auth(authCookie?.value);
   console.log("isLoggedIn ===", isLoggedIn);
-
-  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  // TODO: FOR Auth google maybe i will need api route
+  // const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
   if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL("/account", nextUrl));
     }
     // TODO: Check email veryfied
+    return;
+  }
+  if (!isLoggedIn && !isPublicRoute) {
+    return Response.redirect(new URL("/auth/login", nextUrl));
   }
   return;
 };

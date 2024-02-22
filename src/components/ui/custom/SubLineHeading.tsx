@@ -1,8 +1,9 @@
 import { Line } from "@components/ui/custom/Line";
 import React from "react";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/config/utils";
+
+import { LogoutButton } from "./LogoutButton";
 
 interface SubLineHeadingProps {
   children: React.ReactNode;
@@ -25,9 +26,7 @@ export const SubLineHeading = ({
       {hasBtn && <div className="flex items-center">{children}</div>}
       {hasBtn && (
         <div className="flex items-center justify-end">
-          <Button variant="outline" size="small" className="rounded">
-            LOG OUT
-          </Button>
+          <LogoutButton />
         </div>
       )}
       <Line className={cn({ "col-span-2": hasBtn })}></Line>

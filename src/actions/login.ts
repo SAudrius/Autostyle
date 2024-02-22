@@ -1,5 +1,6 @@
 "use server";
 import bcrypt from "bcryptjs";
+import { redirect } from "next/navigation";
 import * as z from "zod";
 
 import { authLogin } from "@/lib/auth";
@@ -21,7 +22,8 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
   if (!correctPassword) {
     return { error: "Wrong password or email" };
   }
-
+  // TODO: send email and validate
   await authLogin(email);
-  return { success: "Redirecting" };
+  redirect("/account");
+  return { success: "Email sent" };
 };

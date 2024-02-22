@@ -1,6 +1,7 @@
 "use server";
 import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import { getUserByEmail } from "@/lib/data/users";
 
@@ -30,7 +31,11 @@ export const authLogin = async (email: string) => {
   console.log("authToken ===", authToken);
   cookies().set("auth", authToken);
 };
-export const authLogout = () => {};
+
+export const authLogout = () => {
+  cookies().delete("auth");
+  redirect("/");
+};
 
 export const auth = async (cookie: string | undefined) => {
   const token = cookie;
