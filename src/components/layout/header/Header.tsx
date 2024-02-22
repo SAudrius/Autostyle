@@ -3,8 +3,8 @@ import React from "react";
 
 export const Header = () => {
   return (
-    <div className="container py-4">
-      <ul className="flex gap-6">
+    <div className="container">
+      <ul className="absolute flex gap-6 bg-transparent">
         <li className="text-lg">
           <Link href="/">Home</Link>
         </li>

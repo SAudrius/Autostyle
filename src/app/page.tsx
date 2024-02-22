@@ -1,7 +1,13 @@
+import { LoginButton } from "@/components/auth/LoginButton";
+import { Button } from "@/components/ui/button";
+
 export default function Home() {
   return (
-    <main className="container flex min-h-screen flex-col items-center justify-between p-24">
-      <h2 className="text-3xl">Home page</h2>
-    </main>
+    <div className="container text-center text-2xl">
+      <h2 className="text-red-500">Home page</h2>
+      <LoginButton>
+        <Button size="full">To login</Button>
+      </LoginButton>
+    </div>
   );
 }
