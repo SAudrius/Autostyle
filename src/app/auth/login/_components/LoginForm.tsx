@@ -39,8 +39,8 @@ export const LoginForm = () => {
     console.log("values ===", values);
     startTransition(() => {
       login(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
     // Do something with the form values.
