@@ -27,4 +27,5 @@ export const apiAuthPrefix = "/api/auth";
  * The default redirect path after log in
  * @type {string}
  */
+// eslint-disable-next-line no-unused-vars
 export const DEFAULT_LOGIN_REDIRECT = "/account";

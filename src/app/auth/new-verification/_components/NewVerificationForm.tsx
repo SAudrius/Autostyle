@@ -9,6 +9,7 @@ import { FormError } from "../../../../components/ui/custom/FormError";
 import { FormSuccess } from "../../../../components/ui/custom/FormSuccess";
 
 export const NewVerificationForm = () => {
+  // eslint-disable-next-line no-unused-vars
   const [success, setSuccess] = useState<undefined | string>("");
   const [error, setError] = useState<undefined | string>("");
   const searchParams = useSearchParams();

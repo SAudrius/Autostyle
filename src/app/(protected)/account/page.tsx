@@ -6,6 +6,7 @@ import { AccountInfo } from "./_components/AccountInfo";
 import { OrdersList } from "./_components/OrdersList";
 
 const SettingsPage = async () => {
+  // eslint-disable-next-line no-unused-vars
   async function handleSingout() {
     "use server";
     console.log("TODO: handle singout");
