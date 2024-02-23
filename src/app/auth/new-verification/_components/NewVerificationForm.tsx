@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
@@ -12,8 +12,9 @@ export const NewVerificationForm = () => {
   // eslint-disable-next-line no-unused-vars
   const [success, setSuccess] = useState<undefined | string>("");
   const [error, setError] = useState<undefined | string>("");
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+  // const searchParams = useSearchParams();
+  // const token = searchParams.get("token");
+  const token = "TODO:token";
   const onSubmit = useCallback(() => {
     if (!token) {
       setError("Mising token");
