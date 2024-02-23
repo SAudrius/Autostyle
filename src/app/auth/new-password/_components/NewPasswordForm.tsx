@@ -1,6 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -24,8 +24,9 @@ import { Input } from "@/components/ui/input";
 import { newPasswordSchema } from "@/schemas";
 
 export const NewPasswordForm = () => {
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+  // const searchParams = useSearchParams();
+  // const token = searchParams.get("token");
+  const token = "TODO: token ";
 
   const [loader, setLoader] = useState<boolean>(true);
   // eslint-disable-next-line no-unused-vars

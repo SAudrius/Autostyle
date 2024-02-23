@@ -5,8 +5,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
 // import { newVerification } from "@/actions/new-verification";
-import { FormError } from "../../../../components/ui/custom/FormError";
-import { FormSuccess } from "../../../../components/ui/custom/FormSuccess";
+import { FormError } from "@/components/ui/custom/FormError";
+import { FormSuccess } from "@/components/ui/custom/FormSuccess";
 
 export const NewVerificationForm = () => {
   // eslint-disable-next-line no-unused-vars
