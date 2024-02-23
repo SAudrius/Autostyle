@@ -25,6 +25,7 @@ import { loginSchema } from "@/schemas";
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
+  // eslint-disable-next-line no-unused-vars
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -38,8 +39,8 @@ export const LoginForm = () => {
     console.log("values ===", values);
     startTransition(() => {
       login(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
     // Do something with the form values.

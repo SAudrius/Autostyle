@@ -3,8 +3,8 @@ import React from "react";
 import { FaGoogle } from "react-icons/fa";
 
 import { cn } from "@/config/utils";
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 
+// import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { Button } from "../../../components/ui/button";
 
 interface showSocialsProps {
