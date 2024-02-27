@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        nunito: ['NunitoSans_10pt-Light'],
+      },
       colors: {
         primary: "#7DFFFF",
         "primary-dark": "#4BCCD2",
