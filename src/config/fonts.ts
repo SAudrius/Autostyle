@@ -8,5 +8,5 @@ export const montserrat = Montserrat({
 export const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
