@@ -5,6 +5,12 @@ const config = {
   content: ["./components/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
+    screens: {
+      sm: "555px",
+      md: "768px",
+      lg: "1200px",
+      xl: "1440px",
+    },
     container: {
       center: true,
       padding: {
@@ -14,8 +20,9 @@ const config = {
       },
       screens: {
         sm: "555px",
-        lg: "768px",
-        xl: "1200px",
+        md: "768px",
+        lg: "1200px",
+        xl: "1440px",
       },
     },
     extend: {
