@@ -1,5 +1,7 @@
 import { connect } from "@planetscale/database";
 
+import { googleUser } from "@/config/types";
+
 const config = {
   host: process.env.DATABASE_HOST,
   username: process.env.DATABASE_USERNAME,
@@ -14,7 +16,6 @@ export const getUserById = async (id: string | number) => {
     ]);
     return foundUser;
   } catch (error) {
-    console.log(error);
     return;
   }
 };
@@ -38,7 +39,6 @@ export const getUserByEmail = async (email: string) => {
     );
     return foundUser.rows[0] as newUser;
   } catch (error) {
-    console.log(error);
     return;
   }
 };
@@ -50,10 +50,6 @@ export const createUserByData = async (
   password: string,
 ) => {
   try {
-    console.log("first_name ===", first_name);
-    console.log("last_name ===", last_name);
-    console.log("email ===", email);
-    console.log("password ===", password);
     const valuesToInsert = [first_name, last_name, email, password];
     const newUser = await conn.execute(
       `INSERT INTO users
@@ -62,7 +58,37 @@ export const createUserByData = async (
     );
     return newUser;
   } catch (error) {
-    console.log("error ===", error);
+    return;
+  }
+};
+
+export const createGoogleUserByData = async (
+  first_name: string,
+  last_name: string,
+  email: string,
+  image: string,
+) => {
+  try {
+    const provider = "google";
+    const valuesToInsert = [first_name, last_name, email, image];
+    // creating new user for google without password
+    await conn.execute(
+      `INSERT INTO users
+            ( first_name, last_name, email, image) VALUES (?,?,?,?)`,
+      valuesToInsert,
+    );
+    const createdUser = await getUserByEmail(email);
+    if (!createdUser) {
+      return;
+    }
+    const accountValuesToInsert = [provider, createdUser.id];
+    // creating account for provider
+    await conn.execute(
+      `INSERT INTO account (provider,user_id) VALUES (?,?)`,
+      accountValuesToInsert,
+    );
+    return createdUser as googleUser;
+  } catch (error) {
     return;
   }
 };
