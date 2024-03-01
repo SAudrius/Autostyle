@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import CardWrapper from "../_components/CardWrapper";
 import { GoogleVerify } from "./_component/GoogleVerify";
 
@@ -10,7 +12,9 @@ const GooglePage = () => {
         backButtonText="Back to login"
         backButtonAttribute="/auth/login"
       >
-        <GoogleVerify />
+        <Suspense>
+          <GoogleVerify />
+        </Suspense>
       </CardWrapper>
     </div>
   );
