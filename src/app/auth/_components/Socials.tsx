@@ -2,9 +2,9 @@
 import React from "react";
 import { FaGoogle } from "react-icons/fa";
 
+import { authGoogle } from "@/actions/google";
 import { cn } from "@/config/utils";
 
-// import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { Button } from "../../../components/ui/button";
 
 interface showSocialsProps {
@@ -19,7 +19,9 @@ const Socials = ({
   loading = false,
 }: showSocialsProps) => {
   function handleCLick(provider: "google" | "facebook") {
-    console.log("click", provider);
+    if (provider === "google") {
+      authGoogle();
+    }
   }
   if (!showSocials) return;
   return (

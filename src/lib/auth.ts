@@ -21,14 +21,12 @@ export const authLogin = async (email: string) => {
   }
   const authToken = await new SignJWT({
     userId: user.id,
-    iat: Math.floor(Date.now()),
-    exp: Math.floor(Date.now() / 1000) + 60 * 60,
+    iat: Date.now(),
+    exp: Math.floor(Date.now() / 1000) + 60,
   })
     .setProtectedHeader({ alg: "HS256" }) // Specify the algorithm
     .setIssuedAt() // Set the issued-at time
-    .setExpirationTime("6h")
     .sign(new TextEncoder().encode(getJwtSecretKey()));
-  console.log("authToken ===", authToken);
   cookies().set("auth", authToken);
 };
 
@@ -47,7 +45,12 @@ export const auth = async (cookie: string | undefined) => {
       token,
       new TextEncoder().encode(getJwtSecretKey()),
     );
-    console.log("decoded ===", decoded);
+    if (!decoded || !decoded.payload.exp) {
+      throw new Error("JWT token is not valid");
+    }
+    if (decoded.payload.exp > Math.floor((Date.now() / 1000) * 1000 * 60)) {
+      return false;
+    }
   } catch (err) {
     return false;
   }

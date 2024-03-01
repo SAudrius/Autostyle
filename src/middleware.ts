@@ -6,7 +6,6 @@ import { authRoutes, publicRoutes } from "./routes";
 
 export const middleware = async (req: NextRequest) => {
   const { nextUrl } = req;
-  console.log("nextUrl ===", nextUrl);
 
   const cookies = req.cookies;
   const authCookie = cookies.get("auth");
@@ -33,5 +32,5 @@ export const middleware = async (req: NextRequest) => {
 
 // Optionally, don't invoke Middleware on some paths
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

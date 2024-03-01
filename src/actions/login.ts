@@ -22,7 +22,7 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
   if (!correctPassword) {
     return { error: "Wrong password or email" };
   }
-  // TODO: send email and validate
+  // TODO: send validation to user mail
   await authLogin(email);
   redirect("/account");
   return { success: "Email sent" };
