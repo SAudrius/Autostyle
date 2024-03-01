@@ -6,7 +6,6 @@ import { authRoutes, publicRoutes } from "./routes";
 
 export const middleware = async (req: NextRequest) => {
   const { nextUrl } = req;
-  console.log("nextUrl ===", nextUrl);
 
   const cookies = req.cookies;
   const authCookie = cookies.get("auth");
