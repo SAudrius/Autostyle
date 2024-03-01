@@ -48,7 +48,7 @@ export const auth = async (cookie: string | undefined) => {
     if (!decoded || !decoded.payload.exp) {
       throw new Error("JWT token is not valid");
     }
-    if (decoded.payload.exp > Math.floor((Date.now() / 1000) * 1000)) {
+    if (decoded.payload.exp > Math.floor((Date.now() / 1000) * 1000 * 60)) {
       return false;
     }
   } catch (err) {
