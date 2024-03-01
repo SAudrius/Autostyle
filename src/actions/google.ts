@@ -3,7 +3,7 @@ import { google } from "googleapis";
 import { redirect } from "next/navigation";
 
 import { authLogin } from "@/lib/auth";
-import { createGoogleUserByData } from "@/lib/data/users";
+import { createGoogleUserByData, getUserByEmail } from "@/lib/data/users";
 
 const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_API_CLIENT_ID,
@@ -36,22 +36,28 @@ export const fetchGoogleCode = async (code: string) => {
 
     const serverGoogleUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/google?code=${encodedString}`;
     const result = await fetch(serverGoogleUrl);
+
     if (!result.ok) {
       return { error: "Somethink went wrong with google services" };
     }
     const data = await result.json();
-    // Creating user
-    const newUser = await createGoogleUserByData(
-      data.first_name,
-      data.last_name,
-      data.email,
-      data.image,
-    );
-    if (!newUser?.email) {
-      return { error: "Somethink wrong with server" };
+    const userExist = await getUserByEmail(data.email);
+    if (userExist) {
+      await authLogin(userExist.email);
+    } else {
+      // Creating user and account
+      const newUser = await createGoogleUserByData(
+        data.first_name,
+        data.last_name,
+        data.email,
+        data.image,
+      );
+      if (!newUser?.email) {
+        return { error: "Somethink wrong with server" };
+      }
+      // Creating cookies
+      await authLogin(newUser.email);
     }
-    // Creating cookies
-    await authLogin(newUser.email);
   } catch (err) {
     return { error: "Somethink wrong with server" };
   }
