@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_API_CLIENT_ID,
   process.env.GOOGLE_APU_CLIENT_SECRET,
-  "http://localhost:3000/auth/google",
+  process.env.GOOGLE_REDIRECT_URL,
 );
 
 export async function GET(req: NextRequest) {
