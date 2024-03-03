@@ -1,18 +1,26 @@
-import Image from "next/image"
+import Image from "next/image";
+import Link from "next/link";
 
-import { nunito } from "@/config/fonts"
-import { cn } from "@/config/utils"
+import autoplatePic from "/public/assets/images/footer-logo.png";
+import { nunito } from "@/config/fonts";
+import { cn } from "@/config/utils";
 
 export const SectionLogo = () => {
-    return    <div>
-    <Image
-      src="/assets/images/footer.png"
-      alt="footer image"
-      width={200}
-      height={37.34}
-    />
-    <p className={cn("mt-4 text-sm max-w-sm font-light", nunito.className)}>We specialize in providing a wide range of car styling accessories & components.
-       Discover how we can enhance your vehicles aesthetics and functionality.</p>
-       </div>
-
-}
+  return (
+    <div>
+      <Link href="/" className="cursor-pointer">
+        <Image
+          src={autoplatePic}
+          alt="Autoplate logo"
+          width={200}
+          height={37}
+        />
+      </Link>
+      <p className={cn("mt-4 max-w-sm text-sm font-light", nunito.className)}>
+        We specialize in providing a wide range of car styling accessories &
+        components. Discover how we can enhance your vehicles aesthetics and
+        functionality.
+      </p>
+    </div>
+  );
+};
