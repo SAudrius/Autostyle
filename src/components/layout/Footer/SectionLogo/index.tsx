@@ -7,7 +7,7 @@ import { cn } from "@/config/utils";
 
 export const SectionLogo = () => {
   return (
-    <div>
+    <div className="md:col-span-1">
       <Link href="/" className="cursor-pointer">
         <Image
           src={autoplatePic}
