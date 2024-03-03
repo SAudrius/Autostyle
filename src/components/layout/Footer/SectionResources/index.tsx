@@ -5,7 +5,7 @@ import { cn } from "@/config/utils";
 
 export const SectionResources = () => {
   return (
-    <div className="mt-8 flex flex-col gap-6 ">
+    <div className="flex flex-col gap-6 ">
       <p
         className={cn(
           "font-medium uppercase tracking-widest",
@@ -14,40 +14,37 @@ export const SectionResources = () => {
       >
         resources
       </p>
-      <div className=" justify-between text-sm font-light tracking-wide">
-        <div className={cn("flex flex-row gap-8", nunito.className)}>
-          <Link className="w-40" href="#">
-            Shipping Information
-          </Link>
-          <Link className="w-40" href="#">
-            Returns & Exchanges
-          </Link>
-        </div>
-        <div className={cn("mt-4 flex flex-row gap-8", nunito.className)}>
-          <Link className="w-40" href="#">
-            Privacy Policy
-          </Link>
-          <Link className="w-40" href="#">
-            Terms of Use
-          </Link>
-        </div>
-        <div className={cn("mt-4 flex flex-row gap-8", nunito.className)}>
-          <Link className="w-40" href="#">
-            Copyright Policy
-          </Link>
-          <Link className="w-40" href="#">
-            Conditions of Sale
-          </Link>
-        </div>
-        <div className={cn("mt-4 flex flex-row gap-8", nunito.className)}>
-          <Link className="w-40" href="#">
-            Need Help?
-          </Link>
-          <Link className="w-40" href="#">
-            Contact Us
-          </Link>
-        </div>
-      </div>
+      <ul
+        className={cn(
+          "grid grid-cols-2 justify-between gap-y-4 text-sm font-light tracking-wide",
+          nunito.className,
+        )}
+      >
+        <li>
+          <Link href="#">Shipping Information</Link>
+        </li>
+        <li>
+          <Link href="#">Returns & Exchanges</Link>
+        </li>
+        <li>
+          <Link href="#">Privacy Policy</Link>
+        </li>
+        <li>
+          <Link href="#">Terms of Use</Link>
+        </li>
+        <li>
+          <Link href="#">Copyright Policy</Link>
+        </li>
+        <li>
+          <Link href="#">Conditions of Sale</Link>
+        </li>
+        <li>
+          <Link href="#">Need Help?</Link>
+        </li>
+        <li>
+          <Link href="#">Contact Us</Link>
+        </li>
+      </ul>
     </div>
   );
 };
