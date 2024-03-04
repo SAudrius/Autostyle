@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
-import CardWrapper from "../_components/CardWrapper";
-import { GoogleVerify } from "./_component/GoogleVerify";
+import { CardWrapper } from "@/app/auth/_components";
+import { GoogleVerify } from "@/app/auth/google/_components";
 
 const GooglePage = () => {
   return (

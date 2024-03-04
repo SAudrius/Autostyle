@@ -7,8 +7,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { login } from "@/actions/login";
-// import { login } from "@/actions/login";
-import Socials from "@/app/auth/_components/Socials";
+import { Socials } from "@/app/auth/_components";
 import { Button } from "@/components/ui/button";
 import {
   Form,

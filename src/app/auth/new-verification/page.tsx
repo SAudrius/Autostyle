@@ -1,7 +1,7 @@
 import React from "react";
 
-import CardWrapper from "@/app/auth/_components/CardWrapper";
-import { NewVerificationForm } from "@/app/auth/new-verification/_components/NewVerificationForm";
+import { CardWrapper } from "@/app/auth/_components";
+import { NewVerificationForm } from "@/app/auth/new-verification/_components";
 
 const NewVerificationPage = () => {
   return (

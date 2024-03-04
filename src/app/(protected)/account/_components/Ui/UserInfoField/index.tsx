@@ -31,7 +31,7 @@ export const UserInfoField = ({
     <div>
       <p
         className={cn(
-          "tracking-wide-6 text-lg capitalize leading-6",
+          "text-lg capitalize leading-6 tracking-wide-6",
           montserrat.className,
           { lowercase: isEmail },
           {
@@ -41,7 +41,7 @@ export const UserInfoField = ({
       >
         <span
           className={cn(
-            "tracking-wide-6 font-medium uppercase",
+            "font-medium uppercase tracking-wide-6",
             nunito.className,
           )}
         >
@@ -52,7 +52,7 @@ export const UserInfoField = ({
       {linkLabel && linkHref && (
         <a
           className={cn(
-            "tracking-wide-12 mt-1 inline-block caption-top underline",
+            "mt-1 inline-block caption-top tracking-wide-12 underline",
             montserrat.className,
           )}
           href={linkHref}
@@ -65,7 +65,7 @@ export const UserInfoField = ({
           type="button"
           onClick={() => handleSubmit(infoValues)}
           className={cn(
-            "tracking-wide-12 mt-1 inline-block caption-top cursor-pointer underline",
+            "mt-1 inline-block caption-top cursor-pointer tracking-wide-12 underline",
             montserrat.className,
           )}
         >

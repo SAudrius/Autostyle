@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BackButton } from "@/components/auth/BackButton";
+import { BackButton } from "@/app/auth/_components/BackButton";
 import {
   Card,
   CardContent,
@@ -19,7 +19,7 @@ interface CardWrapperProps {
   backButtonAttribute: string;
 }
 
-const CardWrapper = ({
+export const CardWrapper = ({
   children,
   headerLabel,
   headerDescription,
@@ -27,7 +27,7 @@ const CardWrapper = ({
   backButtonAttribute,
 }: CardWrapperProps) => {
   return (
-    <Card className="bg-neutral-000 box-border w-[600px] border-none drop-shadow-[0px_2px_6px_rgba(0,0,0,0.25)]">
+    <Card className="box-border w-[600px] border-none bg-neutral-000 drop-shadow-[0px_2px_6px_rgba(0,0,0,0.25)]">
       <CardHeader className="p-8">
         <CardTitle
           className={`text-center text-lg font-normal uppercase tracking-[3.6px] drop-shadow-[1px_0px_2px_rgba(0,0,0,0.25)] ,${montserrat.className}`}
@@ -45,5 +45,3 @@ const CardWrapper = ({
     </Card>
   );
 };
-
-export default CardWrapper;
