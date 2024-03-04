@@ -1,10 +1,9 @@
 import React from "react";
 
+import Socials from "@/app/auth/_components/Socials";
 import { Button } from "@/components/ui/button";
 import { LoadingInputField } from "@/components/ui/custom/LoadingInputField";
 import { LoadingLabel } from "@/components/ui/custom/LoadingLabel";
-
-import Socials from "../../../app/auth/_components/Socials";
 
 export const LoadingLogin = () => {
   return (
