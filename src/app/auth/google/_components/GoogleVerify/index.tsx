@@ -5,8 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
 import { fetchGoogleCode } from "@/actions/google";
-import { FormError } from "@/components/ui/custom/FormError";
-import { FormSuccess } from "@/components/ui/custom/FormSuccess";
+import { FormError, FormSuccess } from "@/components/ui/custom";
 
 export const GoogleVerify = () => {
   const [success, setSuccess] = useState<undefined | string>("");
