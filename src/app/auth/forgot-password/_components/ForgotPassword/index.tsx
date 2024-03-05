@@ -8,8 +8,7 @@ import * as z from "zod";
 
 // import { forgotPassword } from "@/actions/forgot-password";
 import { Button } from "@/components/ui/button";
-import { FormError } from "@/components/ui/custom/FormError";
-import { FormSuccess } from "@/components/ui/custom/FormSuccess";
+import { FormError, FormSuccess } from "@/components/ui/custom";
 import {
   Form,
   FormControl,
