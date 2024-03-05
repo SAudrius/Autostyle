@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container } from "@/components/ui/custom/Container";
+import { Container } from "@/components/ui/custom";
 
 import { AccountInfo } from "./_components/AccountInfo";
 import { OrdersList } from "./_components/OrdersList";
@@ -13,7 +13,7 @@ const SettingsPage = async () => {
   }
 
   return (
-    <div className="from-neutral-000 min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] to-neutral-100 text-black">
+    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-000 to-neutral-100 text-black">
       <Container className="grid pb-10 pt-10">
         <OrdersList />
         <AccountInfo />

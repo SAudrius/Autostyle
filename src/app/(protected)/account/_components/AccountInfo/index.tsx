@@ -1,15 +1,14 @@
 import React from "react";
 
+import { UserInfoField } from "@/app/(protected)/account/_components/Ui/UserInfoField";
 import { Line } from "@/components/ui/custom/Line";
 import { SubLineHeading } from "@/components/ui/custom/SubLineHeading";
-
-import { UserInfoField } from "./ui/UserInfoField";
 
 export const AccountInfo = () => {
   return (
     <div className="">
       <SubLineHeading hasBtn className="mt-8">
-        <h2 className="drop-shadow-text tracking-wide-20 text-lg uppercase">
+        <h2 className="text-lg uppercase tracking-wide-20 drop-shadow-text">
           Orders
         </h2>
       </SubLineHeading>

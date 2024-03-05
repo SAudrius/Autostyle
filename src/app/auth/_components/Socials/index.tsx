@@ -3,9 +3,8 @@ import React from "react";
 import { FaGoogle } from "react-icons/fa";
 
 import { authGoogle } from "@/actions/google";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/config/utils";
-
-import { Button } from "../../../components/ui/button";
 
 interface showSocialsProps {
   showSocials?: true | false;
@@ -13,7 +12,7 @@ interface showSocialsProps {
   loading?: boolean;
 }
 
-const Socials = ({
+export const Socials = ({
   showSocials = true,
   disabled = false,
   loading = false,

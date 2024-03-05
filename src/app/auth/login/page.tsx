@@ -1,7 +1,7 @@
 import React from "react";
 
-import CardWrapper from "@/app/auth/_components/CardWrapper";
-import { LoginForm } from "@/app/auth/login/_components/LoginForm";
+import { CardWrapper } from "@/app/auth/_components";
+import { LoginForm } from "@/app/auth/login/_components";
 
 const LoginPage = () => {
   return (
