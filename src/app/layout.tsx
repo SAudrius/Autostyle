@@ -1,12 +1,10 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import React from "react";
 
-import { Footer } from "@/components/layout";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Body } from "@/components/ui/custom/Body";
+import StoreProvider from "@/lib/store/StoreProvidet";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,12 +17,10 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className={`${inter.className}`}>
-        {/* <Header /> */}
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <Body>{children}</Body>
+      </html>
+    </StoreProvider>
   );
 }
