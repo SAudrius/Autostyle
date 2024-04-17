@@ -2,17 +2,14 @@ import React from "react";
 
 import { EmptyOrders } from "@/app/(protected)/account/_components/Ui/EmptyOrders";
 import { SubLineHeading } from "@/components/ui/custom/SubLineHeading";
-import { montserrat, nunito } from "@/config/fonts";
+import { nunito } from "@/config/fonts";
 import { cn } from "@/config/utils";
 
 export const OrdersList = () => {
   return (
     <div>
       <h1
-        className={cn(
-          "text-2xl uppercase tracking-wide-20 drop-shadow-text",
-          montserrat.className,
-        )}
+        className={cn("text-2xl uppercase tracking-wide-20 drop-shadow-text")}
       >
         Settings
       </h1>

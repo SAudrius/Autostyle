@@ -4,15 +4,20 @@ import { cn } from "@/config/utils";
 
 interface LineProps {
   className?: string;
+  primary?: boolean;
 }
 
-export const Line = ({ className }: LineProps) => {
+export const Line = ({ className, primary }: LineProps) => {
+  if (primary) {
+    return (
+      <span
+        className={cn("inline-block h-[1px] w-full bg-primary-dark", className)}
+      ></span>
+    );
+  }
   return (
     <span
-      className={cn(
-        "mt-4 inline-block h-[1px] w-full bg-neutral-500",
-        className,
-      )}
+      className={cn("inline-block h-[1px] w-full bg-neutral-500", className)}
     ></span>
   );
 };

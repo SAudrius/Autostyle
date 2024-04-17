@@ -1,20 +1,27 @@
-import Link from "next/link";
 import React from "react";
 
-export const Header = () => {
+import { Container, Line } from "@/components/ui/custom";
+import { Logo } from "@/components/ui/custom/Logo";
+import { cn } from "@/config/utils";
+
+import { HeaderIcons } from "./HeaderIcons";
+
+interface HeaderProps {
+  transparent?: boolean;
+}
+
+export const Header = ({ transparent }: HeaderProps) => {
   return (
-    <div className="container">
-      <ul className="absolute flex gap-6 bg-transparent">
-        <li className="text-lg">
-          <Link href="/">Home</Link>
-        </li>
-        <li className="text-lg">
-          <Link href="brands">Brands</Link>
-        </li>
-        <li className="text-lg">
-          <Link href="products">Products</Link>
-        </li>
-      </ul>
+    <div
+      className={cn("relative grid", {
+        "bg-white": !transparent,
+      })}
+    >
+      <Container className="flex items-center justify-between gap-4 py-5">
+        <Logo />
+        <HeaderIcons />
+      </Container>
+      <Line primary />
     </div>
   );
 };

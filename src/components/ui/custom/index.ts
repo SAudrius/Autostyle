@@ -1,3 +1,4 @@
+export * from "./CancelIcon/index";
 export * from "./Container/index";
 export * from "./FormError/index";
 export * from "./FormSuccess/index";
