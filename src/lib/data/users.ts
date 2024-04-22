@@ -1,6 +1,7 @@
 import { connect } from "@planetscale/database";
 
 import { googleUser } from "@/config/types";
+import { dbQuery } from "../database/app";
 
 const config = {
   host: process.env.DATABASE_HOST,
@@ -20,24 +21,16 @@ export const getUserById = async (id: string | number) => {
   }
 };
 
-interface newUser {
-  id: number;
-  image: string | null;
-  email: string;
-  last_name: string;
-  first_name: string;
-  name: string | null;
-  account_id: string | null;
-  password: string;
-}
-
 export const getUserByEmail = async (email: string) => {
   try {
-    const foundUser = await conn.execute(
-      `SELECT * FROM users WHERE email = ?`,
-      [email],
-    );
-    return foundUser.rows[0] as newUser;
+    const sql = "SELECT * FROM users WHERE email = ?";
+    const dbParams = [email];
+    const [rows, error] = await dbQuery<User[]>(sql, dbParams);
+    if (error) {
+      throw new Error("somethink went wrong");
+    }
+    console.log(rows);
+    return rows[0];
   } catch (error) {
     return;
   }
