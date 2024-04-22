@@ -40,19 +40,15 @@ export const RegisterForm = () => {
   function onSubmit(values: z.infer<typeof registerSchema>) {
     setError("");
     setSuccess("");
-    console.log("submit");
     console.log(values);
     startTransition(() => {
-      register(values)
-        .then((data) => {
-          setError(data.error);
-          setSuccess(data.success);
-          console.log("data.succes ===", data.success);
-        })
-        .catch(() => setError("Somethink went wrong"));
+      const registerResponse = async () => {
+        const registerActionResponse = await register(values);
+        setError(registerActionResponse?.error);
+        setSuccess(registerActionResponse?.success);
+      };
+      registerResponse();
     });
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
   }
   return (
     <Form {...form}>

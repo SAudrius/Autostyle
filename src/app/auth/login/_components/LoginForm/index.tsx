@@ -6,7 +6,6 @@ import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { login } from "@/actions/login";
 import { Socials } from "@/app/auth/_components";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { loginSchema } from "@/schemas";
+import { login } from "@/actions/login";
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -35,15 +35,17 @@ export const LoginForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
+    setError("");
+    setSuccess("");
     console.log("values ===", values);
     startTransition(() => {
-      login(values).then((data) => {
-        setError(data?.error);
-        setSuccess(data?.success);
-      });
+      const loginResponse = async () => {
+        const loginActionResponse = await login(values);
+        setError(loginActionResponse?.error);
+        setSuccess(loginActionResponse?.success);
+      };
+      loginResponse();
     });
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
   }
   return (
     <div className="">

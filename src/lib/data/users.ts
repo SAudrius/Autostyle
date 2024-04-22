@@ -1,21 +1,16 @@
-import { connect } from "@planetscale/database";
-
 import { googleUser } from "@/config/types";
 import { dbQuery } from "../database/app";
-
-const config = {
-  host: process.env.DATABASE_HOST,
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-};
-const conn = connect(config);
+import { ResultSetHeader } from "mysql2";
 
 export const getUserById = async (id: string | number) => {
   try {
-    const foundUser = await conn.execute(`SELECT * FROM users WHERE id = ?`, [
-      id,
-    ]);
-    return foundUser;
+    const dbParams = [id];
+    const sql = "SELECT * FROM users WHERE id = ?";
+    const [rows, error] = await dbQuery<User>(sql, dbParams);
+    if (error) {
+      throw new Error("somethink went wrong");
+    }
+    console.log(rows);
   } catch (error) {
     return;
   }
@@ -23,8 +18,8 @@ export const getUserById = async (id: string | number) => {
 
 export const getUserByEmail = async (email: string) => {
   try {
-    const sql = "SELECT * FROM users WHERE email = ?";
     const dbParams = [email];
+    const sql = "SELECT * FROM users WHERE email = ?";
     const [rows, error] = await dbQuery<User[]>(sql, dbParams);
     if (error) {
       throw new Error("somethink went wrong");
@@ -43,13 +38,14 @@ export const createUserByData = async (
   password: string,
 ) => {
   try {
-    const valuesToInsert = [first_name, last_name, email, password];
-    const newUser = await conn.execute(
-      `INSERT INTO users
-            ( first_name, last_name, email, password) VALUES (?,?,?,?)`,
-      valuesToInsert,
-    );
-    return newUser;
+    const dbParams = [first_name, last_name, email, password];
+    const sql =
+      "INSERT INTO users ( first_name, last_name, email, password) VALUES (?,?,?,?)";
+    const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
+    if (error) {
+      throw new Error("somethink went wrong");
+    }
+    return rows;
   } catch (error) {
     return;
   }
@@ -63,24 +59,28 @@ export const createGoogleUserByData = async (
 ) => {
   try {
     const provider = "google";
-    const valuesToInsert = [first_name, last_name, email, image];
+    const sql =
+      "INSERT INTO users ( first_name, last_name, email, image) VALUES (?,?,?,?)";
+    const dbParams = [first_name, last_name, email, image];
     // creating new user for google without password
-    await conn.execute(
-      `INSERT INTO users
-            ( first_name, last_name, email, image) VALUES (?,?,?,?)`,
-      valuesToInsert,
-    );
+    const [rows, error] = await dbQuery(sql, dbParams);
+    if (error) {
+      throw new Error("somethink went wrong");
+    }
     const createdUser = await getUserByEmail(email);
     if (!createdUser) {
       return;
     }
-    const accountValuesToInsert = [provider, createdUser.id];
     // creating account for provider
-    await conn.execute(
-      `INSERT INTO account (provider,user_id) VALUES (?,?)`,
-      accountValuesToInsert,
-    );
-    return createdUser as googleUser;
+    const sql2 = "INSERT INTO account (provider,user_id) VALUES (?,?)";
+    const dbParams2 = [provider, createdUser.id];
+    const [rows2, error2] = await dbQuery<ResultSetHeader>(sql2, dbParams2);
+    console.log("rows2 ===", rows2);
+    if (error2) {
+      throw new Error("somethink went wrong");
+    }
+    if (rows2.affectedRows !== 1) return { error: "Somethink went wrong" };
+    return rows2;
   } catch (error) {
     return;
   }
