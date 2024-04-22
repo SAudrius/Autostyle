@@ -8,3 +8,9 @@ interface User {
   account_id: string | null;
   password: string;
 }
+
+export interface GoogleUser {
+  first_name: string;
+  last_name: string;
+  email: string;
+}
