@@ -9,7 +9,7 @@ interface User {
   password: string;
 }
 
-export interface GoogleUser {
+interface GoogleUser {
   first_name: string;
   last_name: string;
   email: string;
