@@ -29,14 +29,12 @@ export const authGoogle = () => {
 
 export const fetchGoogleCode = async (code: string) => {
   if (!code) {
-    return { error: "Not an valid code" };
+    return { error: "Not a valid code" };
   }
   try {
     const encodedString = encodeURIComponent(code);
-
     const serverGoogleUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/google?code=${encodedString}`;
     const result = await fetch(serverGoogleUrl);
-
     if (!result.ok) {
       return { error: "Somethink went wrong with google services" };
     }
@@ -46,26 +44,21 @@ export const fetchGoogleCode = async (code: string) => {
       await authLogin(userExist.email);
     } else {
       // Creating user and account
-      const newUser = await createGoogleUserByData(
+      const resultHeaderResponse = await createGoogleUserByData(
         data.first_name,
         data.last_name,
         data.email,
         data.image,
       );
-      if (!newUser?.email) {
-        return { error: "Somethink wrong with server" };
+      if (!resultHeaderResponse) {
+        return { error: "Somethink went wrong" };
       }
       // Creating cookies
-      await authLogin(newUser.email);
+      await authLogin(data.email);
+      console.log("redirecting");
+      return { success: "Redirecting..." };
     }
   } catch (err) {
     return { error: "Somethink wrong with server" };
   }
-  // Reditecting
-  redirectAfterLogin();
-  return { success: "Redirecting..." };
-};
-
-const redirectAfterLogin = () => {
-  redirect("/account");
 };

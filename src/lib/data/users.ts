@@ -1,4 +1,3 @@
-import { googleUser } from "@/config/types";
 import { dbQuery } from "../database/app";
 import { ResultSetHeader } from "mysql2";
 
@@ -72,14 +71,17 @@ export const createGoogleUserByData = async (
       return;
     }
     // creating account for provider
-    const sql2 = "INSERT INTO account (provider,user_id) VALUES (?,?)";
+    const sql2 = "INSERT INTO accounts (provider,user_id) VALUES (?,?)";
     const dbParams2 = [provider, createdUser.id];
     const [rows2, error2] = await dbQuery<ResultSetHeader>(sql2, dbParams2);
     console.log("rows2 ===", rows2);
     if (error2) {
+      console.log("error2 ===", error2);
       throw new Error("somethink went wrong");
     }
-    if (rows2.affectedRows !== 1) return { error: "Somethink went wrong" };
+    if (rows2.affectedRows !== 1) {
+      return;
+    }
     return rows2;
   } catch (error) {
     return;
