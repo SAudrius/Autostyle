@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
 import * as z from "zod";
 
-import { authLogin } from "@/lib/auth";
+import { authLogin } from "@/lib/auth/auth";
 import { createUserByData, getUserByEmail } from "@/lib/data/users";
 import { registerSchema } from "@/schemas";
 

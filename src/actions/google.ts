@@ -2,7 +2,7 @@
 import { google } from "googleapis";
 import { redirect } from "next/navigation";
 
-import { authLogin } from "@/lib/auth";
+import { authLogin } from "@/lib/auth/auth";
 import { createGoogleUserByData, getUserByEmail } from "@/lib/data/users";
 
 const oauth2Client = new google.auth.OAuth2(

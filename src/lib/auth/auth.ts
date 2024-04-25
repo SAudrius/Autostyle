@@ -4,7 +4,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { getUserByEmail } from "@/lib/data/users";
-import { getJwtSecretKey } from "@/middleware";
+
+import { getJwtSecretKey } from "./authEdge";
 
 export const authLogin = async (email: string) => {
   const user = await getUserByEmail(email);
