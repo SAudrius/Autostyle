@@ -21,7 +21,7 @@ export const dbQuery = async <T>(
         rejectUnauthorized: true,
       },
     });
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     const [res, _fields] = await conn.execute(sql, valuesArr);
     return [res as T, null];
   } catch (err) {

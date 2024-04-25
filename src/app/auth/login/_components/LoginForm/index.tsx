@@ -6,6 +6,7 @@ import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { login } from "@/actions/login";
 import { Socials } from "@/app/auth/_components";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,12 +20,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { loginSchema } from "@/schemas";
-import { login } from "@/actions/login";
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),

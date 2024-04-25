@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
@@ -31,6 +31,7 @@ export const GoogleVerify = () => {
       }
     };
     googleResponse();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code]);
 
   useEffect(() => {

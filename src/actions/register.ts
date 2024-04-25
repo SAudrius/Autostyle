@@ -1,11 +1,11 @@
 "use server";
 import bcrypt from "bcryptjs";
+import { redirect } from "next/navigation";
 import * as z from "zod";
 
+import { authLogin } from "@/lib/auth";
 import { createUserByData, getUserByEmail } from "@/lib/data/users";
 import { registerSchema } from "@/schemas";
-import { authLogin } from "@/lib/auth";
-import { redirect } from "next/navigation";
 
 export const register = async (values: z.infer<typeof registerSchema>) => {
   const validValues = registerSchema.safeParse(values);

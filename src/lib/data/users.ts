@@ -1,5 +1,6 @@
-import { dbQuery } from "../database/app";
 import { ResultSetHeader } from "mysql2";
+
+import { dbQuery } from "../database/app";
 
 export const getUserById = async (id: string | number) => {
   try {
@@ -62,6 +63,7 @@ export const createGoogleUserByData = async (
       "INSERT INTO users ( first_name, last_name, email, image) VALUES (?,?,?,?)";
     const dbParams = [first_name, last_name, email, image];
     // creating new user for google without password
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [rows, error] = await dbQuery(sql, dbParams);
     if (error) {
       throw new Error("somethink went wrong");

@@ -23,7 +23,7 @@ import { registerSchema } from "@/schemas";
 export const RegisterForm = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [error, setError] = useState<string | undefined>("");
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof registerSchema>>({
