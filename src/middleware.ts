@@ -1,8 +1,8 @@
+import { jwtVerify } from "jose";
 import { NextRequest } from "next/server";
 
-import { authRoutes, publicRoutes } from "./routes";
-import { jwtVerify } from "jose";
 import { getJwtSecretKey } from "./lib/auth";
+import { authRoutes, publicRoutes } from "./routes";
 
 export const middleware = async (req: NextRequest) => {
   const { nextUrl } = req;
