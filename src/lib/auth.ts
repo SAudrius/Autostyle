@@ -4,15 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { getUserByEmail } from "@/lib/data/users";
-
-export const getJwtSecretKey = () => {
-  const secret = process.env.JWT_SECRET_TOKEN;
-  if (!secret) {
-    console.error("JWT secret token is missing or invalid.");
-    throw new Error("Enviroment varible is not here");
-  }
-  return secret;
-};
+import { getJwtSecretKey } from "@/middleware";
 
 export const authLogin = async (email: string) => {
   const user = await getUserByEmail(email);

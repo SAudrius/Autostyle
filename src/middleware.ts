@@ -1,7 +1,6 @@
 import { jwtVerify } from "jose";
 import { NextRequest } from "next/server";
 
-import { getJwtSecretKey } from "./lib/auth";
 import { authRoutes, publicRoutes } from "./routes";
 
 export const middleware = async (req: NextRequest) => {
@@ -28,6 +27,15 @@ export const middleware = async (req: NextRequest) => {
     return Response.redirect(new URL("/auth/login", nextUrl));
   }
   return;
+};
+
+export const getJwtSecretKey = () => {
+  const secret = process.env.JWT_SECRET_TOKEN;
+  if (!secret) {
+    console.error("JWT secret token is missing or invalid.");
+    throw new Error("Enviroment varible is not here");
+  }
+  return secret;
 };
 
 export const auth = async (cookie: string | undefined) => {
