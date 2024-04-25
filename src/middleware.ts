@@ -1,8 +1,8 @@
 import { NextRequest } from "next/server";
 
-import { auth } from "@/lib/auth";
-
 import { authRoutes, publicRoutes } from "./routes";
+import { jwtVerify } from "jose";
+import { getJwtSecretKey } from "./lib/auth";
 
 export const middleware = async (req: NextRequest) => {
   const { nextUrl } = req;
@@ -28,6 +28,31 @@ export const middleware = async (req: NextRequest) => {
     return Response.redirect(new URL("/auth/login", nextUrl));
   }
   return;
+};
+
+export const auth = async (cookie: string | undefined) => {
+  const token = cookie;
+  if (!token) {
+    return false;
+  }
+  try {
+    const decoded = await jwtVerify(
+      token,
+      new TextEncoder().encode(getJwtSecretKey()),
+    );
+    console.log("decoded ===", decoded);
+    if (!decoded || !decoded.payload.exp) {
+      throw new Error("JWT token is not valid");
+    }
+    if (decoded.payload.exp > Math.floor((Date.now() / 1000) * 1000 * 60)) {
+      return false;
+    }
+  } catch (err) {
+    return false;
+  }
+  // const authToken
+  // check for auth cookie
+  return true;
 };
 
 // Optionally, don't invoke Middleware on some paths
