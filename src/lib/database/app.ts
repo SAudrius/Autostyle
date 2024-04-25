@@ -12,11 +12,11 @@ export const dbQuery = async <T>(
   let conn;
   try {
     conn = await mysql.createConnection({
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT || "3306"),
-      user: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      host: process.env.TIDB_HOST,
+      port: parseInt(process.env.TIDB_PORT || "3306"),
+      user: process.env.TIDB_USER,
+      password: process.env.TIDB_PASSWORD,
+      database: process.env.TIDB_DATABASE,
       ssl: {
         rejectUnauthorized: true,
       },
