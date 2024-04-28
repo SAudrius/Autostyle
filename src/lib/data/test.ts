@@ -6,11 +6,12 @@ export const testDb = async () => {
   try {
     const sql = "SHOW TABLES";
     const [rows, error] = await dbQuery(sql);
-    if (error) {
-      console.log("error ===", error);
-      throw new Error("somethink went wrong");
-    }
-    console.log(rows);
+    console.log("error ===", error);
+    // if (error) {
+    //   console.log("error ===", error);
+    //   throw new Error("somethink went wrong");
+    // }
+    console.log("rows ===", rows);
     console.log("@TEST END @@ROW");
     return rows;
   } catch (error) {

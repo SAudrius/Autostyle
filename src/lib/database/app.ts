@@ -18,15 +18,14 @@ export const dbQuery = async <T>(
   try {
     conn = await mysql.createConnection({
       host: process.env.TIDB_HOST,
-      port: parseInt(process.env.TIDB_PORT || "4000"),
       user: process.env.TIDB_USER,
       password: process.env.TIDB_PASSWORD,
       database: process.env.TIDB_DATABASE,
+      port: parseInt(process.env.TIDB_PORT || "4000"),
       ssl: {
         rejectUnauthorized: true,
       },
     });
-    console.log("conn ===", conn);
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     const [res, _fields] = await conn.execute(sql, valuesArr);
     return [res as T, null];
