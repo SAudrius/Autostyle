@@ -6,11 +6,12 @@ export const getUserById = async (id: string | number) => {
   try {
     const dbParams = [id];
     const sql = "SELECT * FROM users WHERE id = ?";
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [rows, error] = await dbQuery<User>(sql, dbParams);
     if (error) {
       throw new Error("somethink went wrong");
     }
-    console.log(rows);
+    // console.log(rows);
   } catch (error) {
     return;
   }
@@ -24,7 +25,7 @@ export const getUserByEmail = async (email: string) => {
     if (error) {
       throw new Error("somethink went wrong");
     }
-    console.log(rows);
+    // console.log(rows);
     return rows[0];
   } catch (error) {
     return;
@@ -76,9 +77,9 @@ export const createGoogleUserByData = async (
     const sql2 = "INSERT INTO accounts (provider,user_id) VALUES (?,?)";
     const dbParams2 = [provider, createdUser.id];
     const [rows2, error2] = await dbQuery<ResultSetHeader>(sql2, dbParams2);
-    console.log("rows2 ===", rows2);
+    // console.log("rows2 ===", rows2);
     if (error2) {
-      console.log("error2 ===", error2);
+      // console.log("error2 ===", error2);
       throw new Error("somethink went wrong");
     }
     if (rows2.affectedRows !== 1) {
