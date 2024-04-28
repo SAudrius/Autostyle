@@ -11,6 +11,7 @@ export const testDb = async () => {
     console.log(rows);
     return rows;
   } catch (error) {
+    console.log("error ===", error);
     return "somethink went wrong";
   }
 };
