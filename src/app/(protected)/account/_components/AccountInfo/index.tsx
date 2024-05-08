@@ -26,7 +26,7 @@ export const AccountInfo = () => {
       <UserInfoField
         className="mt-3"
         field="Email"
-        value="autostyle@gmail.com"
+        value="example@gmail.com"
         linkLabel="Change email"
         linkHref="/change-email"
       />
@@ -34,7 +34,7 @@ export const AccountInfo = () => {
       <UserInfoField
         className="mt-3"
         field="Password"
-        value="******"
+        value="********"
         linkLabel="Change password"
         linkHref="/password"
       />
