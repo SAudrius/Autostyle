@@ -7,10 +7,10 @@ import { OrdersList } from "./_components/OrdersList";
 
 const SettingsPage = async () => {
   // eslint-disable-next-line no-unused-vars
-  async function handleSingout() {
-    "use server";
-    console.log("TODO: handle singout");
-  }
+  // async function handleSingout() {
+  //   "use server";
+  //   console.log("TODO: handle singout");
+  // }
 
   return (
     <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-000 to-neutral-100 text-black">

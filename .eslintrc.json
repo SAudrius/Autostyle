@@ -1,13 +1,15 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parserOptions": {
     "sourceType": "module"
   },
+  "parser": "@typescript-eslint/parser",
   "env": { "es6": true },
-  "plugins": ["simple-import-sort", "import"],
+  "plugins": ["simple-import-sort", "import","@typescript-eslint"],
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
