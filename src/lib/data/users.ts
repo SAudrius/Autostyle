@@ -11,7 +11,6 @@ export const getUserById = async (id: string | number) => {
     if (error) {
       throw new Error("somethink went wrong");
     }
-    // console.log(rows);
   } catch (error) {
     return;
   }
