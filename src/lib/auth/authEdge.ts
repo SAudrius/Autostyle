@@ -1,9 +1,5 @@
 "use server";
-import { jwtVerify, SignJWT } from "jose";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-
-import { getUserByEmail } from "@/lib/data/users";
+import { jwtVerify } from "jose";
 
 export const getJwtSecretKey = () => {
   const secret = process.env.JWT_SECRET_TOKEN;
@@ -12,27 +8,6 @@ export const getJwtSecretKey = () => {
     throw new Error("Enviroment varible is not here");
   }
   return secret;
-};
-
-export const authLogin = async (email: string) => {
-  const user = await getUserByEmail(email);
-  if (!user) {
-    return;
-  }
-  const authToken = await new SignJWT({
-    userId: user.id,
-    iat: Date.now(),
-    exp: Math.floor(Date.now() / 1000) + 60,
-  })
-    .setProtectedHeader({ alg: "HS256" }) // Specify the algorithm
-    .setIssuedAt() // Set the issued-at time
-    .sign(new TextEncoder().encode(getJwtSecretKey()));
-  cookies().set("auth", authToken);
-};
-
-export const authLogout = () => {
-  cookies().delete("auth");
-  redirect("/");
 };
 
 export const auth = async (cookie: string | undefined) => {
@@ -45,6 +20,7 @@ export const auth = async (cookie: string | undefined) => {
       token,
       new TextEncoder().encode(getJwtSecretKey()),
     );
+    console.log("decoded ===", decoded);
     if (!decoded || !decoded.payload.exp) {
       throw new Error("JWT token is not valid");
     }
@@ -58,5 +34,3 @@ export const auth = async (cookie: string | undefined) => {
   // check for auth cookie
   return true;
 };
-
-export const generateToken = () => {};

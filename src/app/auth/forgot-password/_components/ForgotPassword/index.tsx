@@ -21,9 +21,13 @@ import { Input } from "@/components/ui/input";
 import { forgotPasswordSchema } from "@/schemas";
 
 export const ForgotPasswordForm = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isPending, startTransition] = useTransition();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loader, setLoader] = useState<boolean>(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [success, setSuccess] = useState<string | undefined>("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string | undefined>("");
 
   const form = useForm<z.infer<typeof forgotPasswordSchema>>({

@@ -27,10 +27,11 @@ export const NewPasswordForm = () => {
   const token = "TODO: token ";
 
   const [loader, setLoader] = useState<boolean>(true);
-  // eslint-disable-next-line no-unused-vars
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [success, setSuccess] = useState<string | undefined>("");
   const [mainError, setMainError] = useState<string | undefined>("");
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string | undefined>("");
 
   const form = useForm<z.infer<typeof newPasswordSchema>>({
