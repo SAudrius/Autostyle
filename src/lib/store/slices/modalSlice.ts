@@ -2,25 +2,34 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface ModalState {
   value: boolean;
+  modalAnimation: boolean;
 }
 
 const initialState: ModalState = {
   value: false,
+  modalAnimation: false,
 };
 
 export const modalSlice = createSlice({
-  name: "counter",
+  name: "modal",
   initialState,
   reducers: {
-    on: (state) => {
+    modalOn: (state) => {
       state.value = true;
     },
-    off: (state) => {
+    modalOff: (state) => {
       state.value = false;
+    },
+    modalAnimateOn: (state) => {
+      state.modalAnimation = true;
+    },
+    modalAnimateOff: (state) => {
+      state.modalAnimation = false;
     },
   },
 });
 
-export const { on, off } = modalSlice.actions;
+export const { modalOn, modalOff, modalAnimateOn, modalAnimateOff } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;

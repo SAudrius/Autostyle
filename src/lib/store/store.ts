@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import counterSlice from "./slices/counterSlice";
+import cartSlice from "./slices/cartSlice";
+import menuSlice from "./slices/menuSlice";
 import modalSlice from "./slices/modalSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      counter: counterSlice,
       modal: modalSlice,
+      cart: cartSlice,
+      menu:menuSlice
     },
   });
 };
