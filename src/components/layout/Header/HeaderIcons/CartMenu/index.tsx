@@ -5,22 +5,25 @@ import { Button } from "@/components/ui/button";
 import { CancelIcon, Line } from "@/components/ui/custom";
 import { nunito } from "@/config/fonts";
 import { cn } from "@/config/utils";
+import { useAppSelector } from "@/lib/hooks";
 
 interface CartMenuProps {
   onClose: () => void;
-  cartOn: boolean;
 }
 
-export const CartMenu = ({ onClose, cartOn }: CartMenuProps) => {
-  console.log("cartOn ===", cartOn);
+export const CartMenu = ({ onClose }: CartMenuProps) => {
+  const cart = useAppSelector((state) => state.cart.value);
+  const cartAnimation = useAppSelector((state) => state.cart.cartAnimation);
   return (
     <div
       className={cn(
         "absolute right-0 top-0 z-10 box-border h-screen w-[350px] translate-x-0 overflow-x-hidden bg-neutral-000 transition duration-300",
-        { "-z-20 translate-x-[350px]": !cartOn },
+        { "-z-20": !cart },
         {
-          "z-40 translate-x-0 opacity-100": cartOn,
+          "z-40": cart,
         },
+        { "z-40 translate-x-0": cartAnimation },
+        { "z-40 translate-x-[350px]": !cartAnimation },
       )}
     >
       <div className="grid h-full grid-rows-[80.5px,1fr,128px]">
@@ -34,7 +37,7 @@ export const CartMenu = ({ onClose, cartOn }: CartMenuProps) => {
             >
               Cart
             </h3>
-            <CancelIcon onClick={onClose} />
+            <CancelIcon className="cursor-pointer" onClick={onClose} />
           </div>
           <Line />
         </div>

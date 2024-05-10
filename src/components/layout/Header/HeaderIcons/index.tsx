@@ -1,56 +1,64 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 import { Cart } from "@/components/layout/Header/HeaderIcons/Cart";
-import { CartMenu } from "@/components/layout/Header/HeaderIcons/Cart/CartMenu";
+import { CartMenu } from "@/components/layout/Header/HeaderIcons/CartMenu";
 import { Menu } from "@/components/layout/Header/HeaderIcons/Menu";
 import { Search } from "@/components/layout/Header/HeaderIcons/Search";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { off, on } from "@/lib/store/slices/modalSlice";
+import { useAppDispatch } from "@/lib/hooks";
+import {
+  cartAnimateOff,
+  cartAnimateOn,
+  cartOff,
+  cartOn,
+} from "@/lib/store/slices/cartSlice";
+import {
+  menuAnimateOff,
+  menuAnimateOn,
+  menuOff,
+  menuOn,
+} from "@/lib/store/slices/menuSlice";
+import {
+  modalAnimateOff,
+  modalAnimateOn,
+  modalOff,
+  modalOn,
+} from "@/lib/store/slices/modalSlice";
 
-import { MenuOpen } from "./Menu/MenuOpne";
+import { MenuOpen } from "./MenuOpen";
 
 export const HeaderIcons = () => {
-  const [cartOn, setCartOn] = useState<boolean>(false);
-  const [menuOpenOn, setMenuOpenOn] = useState<boolean>(false);
-  const modal = useAppSelector((state) => state.modal.value);
   const dispatch = useAppDispatch();
-  // if modal is turn off then cart is off
-  if (!modal && cartOn) {
-    setCartOn(false);
-  }
-  if (!modal && menuOpenOn) {
-    setMenuOpenOn(false);
-  }
 
   const handleMenu = () => {
-    console.log("menu");
-    dispatch(on());
-    setMenuOpenOn(true);
+    dispatch(menuOn());
+    dispatch(modalOn());
+    dispatch(menuAnimateOn());
+    dispatch(modalAnimateOff());
   };
+  const handleCart = () => {
+    dispatch(cartOn());
+    dispatch(modalOn());
+    dispatch(cartAnimateOn());
+    dispatch(modalAnimateOff());
+  };
+
   const handleMenuClose = () => {
-    console.log("menu");
-    dispatch(on());
-    setMenuOpenOn(false);
+    dispatch(menuAnimateOff());
+    dispatch(modalAnimateOff());
+    new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
+      dispatch(modalOff());
+      dispatch(menuOff());
+    });
   };
 
   const handleCartClose = () => {
-    dispatch(off());
-    setCartOn(false);
-  };
-
-  const handleCart = () => {
-    console.log("cartOn ===", cartOn);
-    if (cartOn) {
-      console.log("TRUE");
-      console.log("off");
-      dispatch(off());
-      setCartOn(false);
-    } else {
-      console.log("on");
-      dispatch(on());
-      setCartOn(true);
-    }
+    dispatch(cartAnimateOff());
+    dispatch(modalAnimateOn());
+    new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
+      dispatch(modalOff());
+      dispatch(cartOff());
+    });
   };
 
   return (
@@ -58,8 +66,8 @@ export const HeaderIcons = () => {
       <Search />
       <Cart onClick={handleCart} />
       <Menu onClick={handleMenu} />
-      <CartMenu cartOn={cartOn} onClose={handleCartClose} />
-      <MenuOpen menuOpenOn={menuOpenOn} onClose={handleMenuClose} />
+      <CartMenu onClose={handleCartClose} />
+      <MenuOpen onClose={handleMenuClose} />
     </nav>
   );
 };

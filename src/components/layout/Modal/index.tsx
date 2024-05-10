@@ -1,23 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 import { cn } from "@/config/utils";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { off } from "@/lib/store/slices/modalSlice";
+import { cartAnimateOff, cartOff } from "@/lib/store/slices/cartSlice";
+import { menuAnimateOff, menuOff } from "@/lib/store/slices/menuSlice";
+import { modalAnimateOn, modalOff } from "@/lib/store/slices/modalSlice";
 
 export const Modal = () => {
-  const [opacity, setOpacity] = useState(false);
   const dispatch = useAppDispatch();
   const modal = useAppSelector((state) => state.modal.value);
+  const modalAnimation = useAppSelector((state) => state.modal.modalAnimation);
+
   const handleModal = () => {
-    console.log("click");
-    setOpacity(true);
-    new Promise((resolve) => setTimeout(resolve, 2000)).then(() => {
-      dispatch(off());
+    dispatch(modalAnimateOn());
+    dispatch(menuAnimateOff());
+    dispatch(cartAnimateOff());
+    new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
+      dispatch(modalOff());
+      dispatch(menuOff());
+      dispatch(cartOff());
     });
   };
-  console.log("@RENDER @RENDER @RENDER");
-  console.log("opacity ===", opacity);
   return (
     <div
       onClick={handleModal}
@@ -27,7 +31,7 @@ export const Modal = () => {
           "-z-20": !modal,
           "z-30 opacity-100": modal,
         },
-        { "opacity-0 delay-200 duration-200": opacity },
+        { "opacity-0": modalAnimation },
       )}
     ></div>
   );
