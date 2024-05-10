@@ -27,55 +27,79 @@ export const MenuOpen = ({ onClose }: MenuOpenProps) => {
     >
       <div className="px-4 pt-7">
         <CancelIcon className="cursor-pointer" onClick={onClose} />
-        <ul className="pt-6">
-          <li className="mt-2">
-            <Link className="pt-3 text-[14px] uppercase text-white" href="/">
+        <ul className="pt-5">
+          <Link
+            className="cursor-pointer pt-3 text-[14px] uppercase text-white"
+            href="/"
+          >
+            <li className="pt-4">
               Honda
-            </Link>
-            <Line className="mt-3" />
-          </li>
-          <li className="mt-2">
-            <Link className="pt-3 text-[14px] uppercase text-white" href="/">
+              <Line className="mt-3" />
+            </li>
+          </Link>
+          <Link
+            className="cursor-pointer pt-3 text-[14px] uppercase text-white"
+            href="/"
+          >
+            <li className="pt-4">
               Toyota
-            </Link>
-            <Line className="mt-3" />
-          </li>
-          <li className="mt-2">
-            <Link className="pt-3 text-[14px] uppercase text-white" href="/">
+              <Line className="mt-3" />
+            </li>
+          </Link>
+          <Link
+            className="cursor-pointer pt-3 text-[14px] uppercase text-white"
+            href="/"
+          >
+            <li className="pt-4">
               Bmw
-            </Link>
-            <Line className="mt-3" />
-          </li>
-          <li className="mt-2">
-            <Link className="pt-3 text-[14px] uppercase text-white" href="/">
+              <Line className="mt-3" />
+            </li>
+          </Link>
+          <Link
+            className="cursor-pointer pt-3 text-[14px] uppercase text-white"
+            href="/"
+          >
+            <li className="pt-4">
               Audi
-            </Link>
-            <Line className="mt-3" />
-          </li>
-          <li className="mt-2">
-            <Link className="pt-3 text-[14px] uppercase text-white" href="/">
+              <Line className="mt-3" />
+            </li>
+          </Link>
+          <Link
+            className="cursor-pointer pt-3 text-[14px] uppercase text-white"
+            href="/"
+          >
+            <li className="pt-4">
               Volkswagen
-            </Link>
-            <Line className="mt-3" />
-          </li>
-          <li className="mt-2">
-            <Link className="pt-3 text-[14px] uppercase text-white" href="/">
+              <Line className="mt-3" />
+            </li>
+          </Link>
+          <Link
+            className="cursor-pointer pt-3 text-[14px] uppercase text-white"
+            href="/"
+          >
+            <li className="pt-4">
               Mercedes
-            </Link>
-            <Line className="mt-3" />
-          </li>
-          <li className="mt-2">
-            <Link className="pt-3 text-[14px] uppercase text-white" href="/">
+              <Line className="mt-3" />
+            </li>
+          </Link>
+          <Link
+            className="cursor-pointer pt-3 text-[14px] uppercase text-white"
+            href="/"
+          >
+            <li className="pt-4">
               Nissan
-            </Link>
-            <Line className="mt-3" />
-          </li>
-          <li className="mt-2">
-            <Link className="pt-3 text-[14px] uppercase text-white" href="/">
+              <Line className="mt-3" />
+            </li>
+          </Link>
+          <Link
+            className="cursor-pointer pt-3 text-[14px] uppercase text-white"
+            href="/"
+          >
+            <li className="pt-4">
               Volvo
-            </Link>
-            <Line className="mt-3" />
-          </li>
+              <Line className="mt-3" />
+            </li>
+          </Link>
         </ul>
       </div>
     </div>
