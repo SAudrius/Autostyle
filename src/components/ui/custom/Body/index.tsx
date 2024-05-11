@@ -11,10 +11,7 @@ interface BodyProps {
 }
 
 export const Body = ({ children }: BodyProps) => {
-  console.log("@RERENDE BODY");
   const modal = useAppSelector((state) => state.modal.value);
-  console.log("modal ===", modal);
-
   return (
     <body
       className={cn(`${montserrat.className}`, {

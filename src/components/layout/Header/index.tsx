@@ -22,7 +22,7 @@ export const Header = ({ transparent }: HeaderProps) => {
           "bg-white": !transparent,
         },
         {
-          "overflow-x-hidden": !modal,
+          "overflow-hidden": !modal,
         },
       )}
     >
