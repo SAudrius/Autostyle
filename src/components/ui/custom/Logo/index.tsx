@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 import footerAutoplateImg from "/public/assets/images/footer-logo.png";
@@ -11,15 +12,19 @@ interface LogoProps {
 export const Logo = ({ footer }: LogoProps) => {
   if (footer) {
     return (
-      <Image
-        src={footerAutoplateImg}
-        alt="Autoplate logo"
-        width={200}
-        height={37}
-      />
+      <Link href="/" className="cursor-pointer">
+        <Image
+          src={footerAutoplateImg}
+          alt="Autoplate logo"
+          width={200}
+          height={37}
+        />
+      </Link>
     );
   }
   return (
-    <Image src={autoplateImg} alt="Autoplate logo" width={174} height={31} />
+    <Link href="/" className="cursor-pointer">
+      <Image src={autoplateImg} alt="Autoplate logo" width={174} height={31} />
+    </Link>
   );
 };
