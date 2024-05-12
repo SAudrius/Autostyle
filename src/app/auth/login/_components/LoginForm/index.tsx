@@ -24,7 +24,7 @@ import { loginSchema } from "@/schemas";
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -35,15 +35,16 @@ export const LoginForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
-    console.log("values ===", values);
+    setError("");
+    setSuccess("");
     startTransition(() => {
-      login(values).then((data) => {
-        setError(data?.error);
-        setSuccess(data?.success);
-      });
+      const loginResponse = async () => {
+        const loginActionResponse = await login(values);
+        setError(loginActionResponse?.error);
+        setSuccess(loginActionResponse?.success);
+      };
+      loginResponse();
     });
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
   }
   return (
     <div className="">

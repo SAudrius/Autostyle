@@ -2,7 +2,7 @@
 import React from "react";
 
 import { Button } from "@/components/ui/button";
-import { authLogout } from "@/lib/auth";
+import { authLogout } from "@/lib/auth/auth";
 
 export const LogoutButton = () => {
   return (

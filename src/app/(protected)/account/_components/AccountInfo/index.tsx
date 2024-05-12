@@ -19,22 +19,22 @@ export const AccountInfo = () => {
       <UserInfoField
         className="mt-3"
         field="Address"
-        value="Gariunu, g. 15"
+        value="Example Address"
         infoValues={"values"}
       />
       <Line />
       <UserInfoField
         className="mt-3"
         field="Email"
-        value="autostyle@gmail.com"
+        value="example@gmail.com"
         linkLabel="Change email"
-        linkHref="/change"
+        linkHref="/change-email"
       />
       <Line />
       <UserInfoField
         className="mt-3"
         field="Password"
-        value="******"
+        value="********"
         linkLabel="Change password"
         linkHref="/password"
       />
