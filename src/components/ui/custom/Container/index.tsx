@@ -4,7 +4,7 @@ import { cn } from "@/config/utils";
 
 interface ContainerProps {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }
 
 export const Container = ({ children, className }: ContainerProps) => {
