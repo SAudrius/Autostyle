@@ -3,7 +3,7 @@ import React from "react";
 
 export const Account = () => {
   return (
-    <Link href={"/account"} className="p-1 sm:p-2">
+    <Link href={"/account"} className="px-1 py-2 sm:px-2">
       <svg
         width="24"
         height="24"
