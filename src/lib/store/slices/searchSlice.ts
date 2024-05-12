@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface searchState {
-  value: boolean;
+  value: string;
+  active: boolean;
   searchAnimation: boolean;
 }
 
 const initialState: searchState = {
-  value: false,
+  value: "",
+  active: false,
   searchAnimation: false,
 };
 
@@ -15,10 +17,10 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     searchOn: (state) => {
-      state.value = true;
+      state.active = true;
     },
     searchOff: (state) => {
-      state.value = false;
+      state.active = false;
     },
     searchAnimateOn: (state) => {
       state.searchAnimation = true;
