@@ -15,6 +15,7 @@ export const MenuOpen = ({ onClose }: MenuOpenProps) => {
 
   return (
     <div
+      aria-hidden={menu ? "false" : "true"}
       className={cn(
         "absolute left-0 top-0 z-10 h-screen w-[350px] overflow-x-hidden bg-neutral-800 transition duration-300",
         { "-z-20 ": !menu },
@@ -25,8 +26,13 @@ export const MenuOpen = ({ onClose }: MenuOpenProps) => {
         },
       )}
     >
-      <div className="px-4 pt-7">
-        <CancelIcon className="cursor-pointer" onClick={onClose} />
+      <div className="px-5 pt-7">
+        <CancelIcon
+          light
+          className="cursor-pointer"
+          onClick={onClose}
+          ariaLabel="Close menu"
+        />
         <ul className="pt-5">
           <Link
             className="cursor-pointer pt-3 text-[14px] uppercase text-white"
