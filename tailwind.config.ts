@@ -16,18 +16,19 @@ const config = {
       padding: {
         DEFAULT: "1rem",
         sm: "2rem",
+        md: "4rem",
         xl: "7.5rem",
       },
       screens: {
-        sm: "555px",
-        md: "768px",
+        sm: "768px",
+        md: "1000px",
         lg: "1200px",
         xl: "1440px",
       },
     },
     extend: {
       fontFamily: {
-        nunito: ['NunitoSans_10pt-Light'],
+        nunito: ["NunitoSans_10pt-Light"],
       },
       colors: {
         primary: "#7DFFFF",
