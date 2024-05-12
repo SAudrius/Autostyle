@@ -6,7 +6,11 @@ interface CartProps {
 
 export const Cart = ({ onClick }: CartProps) => {
   return (
-    <div className="p-2" onClick={onClick}>
+    <button
+      className="px-1 py-2 sm:px-2"
+      onClick={onClick}
+      aria-label="Open Cart"
+    >
       <svg
         width="28"
         height="24"
@@ -21,6 +25,6 @@ export const Cart = ({ onClick }: CartProps) => {
           fill="black"
         />
       </svg>
-    </div>
+    </button>
   );
 };

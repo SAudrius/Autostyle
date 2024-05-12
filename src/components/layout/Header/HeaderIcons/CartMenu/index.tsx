@@ -16,6 +16,8 @@ export const CartMenu = ({ onClose }: CartMenuProps) => {
   const cartAnimation = useAppSelector((state) => state.cart.cartAnimation);
   return (
     <div
+      role="region"
+      aria-hidden={cart ? "false" : "true"}
       className={cn(
         "absolute right-0 top-0 z-10 box-border h-screen w-[350px] translate-x-0 overflow-x-hidden bg-neutral-000 transition duration-300",
         { "-z-20": !cart },
@@ -26,9 +28,9 @@ export const CartMenu = ({ onClose }: CartMenuProps) => {
         { "z-40 translate-x-[350px]": !cartAnimation },
       )}
     >
-      <div className="grid h-full grid-rows-[80.5px,1fr,128px]">
+      <div className="grid h-full grid-rows-[80px,1fr,128px]">
         <div className="grid self-start">
-          <div className="flex justify-between px-4 py-[30px]">
+          <div className="flex justify-between px-5 py-[30.25px]">
             <h3
               className={cn(
                 "uppercase leading-[19.5px] tracking-normal ",
@@ -37,7 +39,11 @@ export const CartMenu = ({ onClose }: CartMenuProps) => {
             >
               Cart
             </h3>
-            <CancelIcon className="cursor-pointer" onClick={onClose} />
+            <CancelIcon
+              className="cursor-pointer"
+              onClick={onClose}
+              ariaLabel="Close Cart"
+            />
           </div>
           <Line />
         </div>
