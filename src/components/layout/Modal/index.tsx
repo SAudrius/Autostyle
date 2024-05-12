@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { cartAnimateOff, cartOff } from "@/lib/store/slices/cartSlice";
 import { menuAnimateOff, menuOff } from "@/lib/store/slices/menuSlice";
 import { modalAnimateOn, modalOff } from "@/lib/store/slices/modalSlice";
+import { searchAnimateOff, searchOff } from "@/lib/store/slices/searchSlice";
 
 export const Modal = () => {
   const dispatch = useAppDispatch();
@@ -16,15 +17,19 @@ export const Modal = () => {
     dispatch(modalAnimateOn());
     dispatch(menuAnimateOff());
     dispatch(cartAnimateOff());
+    dispatch(searchAnimateOff());
     new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
       dispatch(modalOff());
       dispatch(menuOff());
       dispatch(cartOff());
+      dispatch(searchOff());
     });
   };
   return (
     <div
+      aria-hidden={modal ? "false" : "true"}
       onClick={handleModal}
+      role="dialog"
       className={cn(
         "absolute -z-20 h-screen w-full bg-neutral-950/35 transition duration-300 ease-in-out",
         {
