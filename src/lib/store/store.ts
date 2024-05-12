@@ -3,13 +3,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import cartSlice from "./slices/cartSlice";
 import menuSlice from "./slices/menuSlice";
 import modalSlice from "./slices/modalSlice";
+import searchSlice from "./slices/searchSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       modal: modalSlice,
       cart: cartSlice,
-      menu:menuSlice
+      menu: menuSlice,
+      search: searchSlice,
     },
   });
 };
