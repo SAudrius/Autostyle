@@ -12,10 +12,10 @@ export const cartSlice = createSlice({
   name: "aurh",
   initialState,
   reducers: {
-    login: (state) => {
+    storeLogin: (state) => {
       state.isLoggedIn = true;
     },
-    logout: (state) => {
+    storeLogout: (state) => {
       state.isLoggedIn = false;
     },
     setIsLoggedIn: (state, action: PayloadAction<boolean>) => {
@@ -24,6 +24,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { login, logout, setIsLoggedIn } = cartSlice.actions;
+export const { storeLogin, storeLogout, setIsLoggedIn } = cartSlice.actions;
 
 export default cartSlice.reducer;

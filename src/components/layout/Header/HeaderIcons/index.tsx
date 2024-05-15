@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState, useTransition } from "react";
 
 import { Cart } from "@/components/layout/Header/HeaderIcons/Cart";
 import { CartMenu } from "@/components/layout/Header/HeaderIcons/CartMenu";
@@ -34,10 +34,23 @@ import {
 import { Account } from "./Account";
 import { MenuOpen } from "./MenuOpen";
 import { SearchMenu } from "./SearchMenu";
+import { isUserLoggedIn } from "@/actions/isLoggedIn";
+import Link from "next/link";
+import { setIsLoggedIn } from "@/lib/store/slices/authSlice";
 
 export const HeaderIcons = () => {
-  const search = useAppSelector((state) => state.search.active);
   const dispatch = useAppDispatch();
+  const search = useAppSelector((state) => state.search.active);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const [isPending, startTransition] = useTransition();
+  useEffect(() => {
+    console.log("useEFFECT");
+    startTransition(() => {
+      isUserLoggedIn().then((isUserLoggedInRespnse) =>
+        dispatch(setIsLoggedIn(isUserLoggedInRespnse)),
+      );
+    });
+  }, []);
 
   const handleMenu = () => {
     if (search) return;
@@ -95,10 +108,20 @@ export const HeaderIcons = () => {
         <SearchMenu onClose={handleSearchClose} />
       </div>
       <div className="flex items-center gap-[6px] sm:gap-2">
-        <Account />
+        {isLoggedIn && <Account />}
         <Cart onClick={handleCart} />
         <CartMenu onClose={handleCartClose} />
         {/* TODO: check if logged in then display account icon */}
+        {!isLoggedIn && (
+          <>
+            <Link href="/auth/login" className="hidden text-sm lg:visible">
+              Login
+            </Link>
+            <Link href="/auth/register" className="hidden text-sm lg:visible">
+              Register
+            </Link>
+          </>
+        )}
         <Menu onClick={handleMenu} />
         <MenuOpen onClose={handleMenuClose} />
       </div>

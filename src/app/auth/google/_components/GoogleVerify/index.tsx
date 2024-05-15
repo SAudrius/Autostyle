@@ -6,9 +6,12 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 import { fetchGoogleCode } from "@/actions/google";
 import { FormError, FormSuccess } from "@/components/ui/custom";
+import { useAppDispatch } from "@/lib/hooks";
+import { storeLogin } from "@/lib/store/slices/authSlice";
 
 export const GoogleVerify = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [success, setSuccess] = useState<undefined | string>("");
   const [error, setError] = useState<undefined | string>("");
   const searchParams = useSearchParams();
@@ -27,6 +30,7 @@ export const GoogleVerify = () => {
       } catch {
         setError("somethink went wrong");
       } finally {
+        dispatch(storeLogin());
         router.push("/account");
       }
     };

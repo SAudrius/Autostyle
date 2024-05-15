@@ -24,6 +24,5 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
   }
   // TODO: send validation to user mail
   await authLogin(email);
-  redirect("/account");
   return { success: "Email sent" };
 };

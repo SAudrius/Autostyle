@@ -7,7 +7,7 @@ interface MenuProps {
 export const Menu = ({ onClick }: MenuProps) => {
   return (
     <button
-      className="px-1 py-2 sm:px-2"
+      className="px-1 py-2 sm:px-2 lg:hidden"
       onClick={onClick}
       aria-label="Open menu"
     >

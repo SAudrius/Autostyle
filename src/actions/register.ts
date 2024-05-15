@@ -14,12 +14,11 @@ export const register = async (values: z.infer<typeof registerSchema>) => {
   }
   const { email, first_name, last_name, password, repeat_password } =
     validValues.data;
-  console.log("email ===", email);
+
   if (password !== repeat_password) {
     return { error: "Password & repeat password do not match" };
   }
   const existingUser = await getUserByEmail(email);
-  console.log("existingUser ===", existingUser);
   // eslint-disable-next-line no-extra-boolean-cast
   if (existingUser) {
     return { error: "This email has already in use" };
@@ -31,12 +30,10 @@ export const register = async (values: z.infer<typeof registerSchema>) => {
     email,
     hashedPassword,
   );
-  console.log("newUser ===", newUser);
   if (!newUser) {
     return { error: "Sometink went wrong" };
   }
   if (newUser?.affectedRows !== 1) return { success: "Somethink went wrong" };
   await authLogin(email);
-  redirect("/account");
   return { success: "User is created" };
 };

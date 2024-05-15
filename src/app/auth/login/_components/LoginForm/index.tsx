@@ -20,8 +20,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { loginSchema } from "@/schemas";
+import { useDispatch } from "react-redux";
+import { storeLogin } from "@/lib/store/slices/authSlice";
+import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -42,6 +47,11 @@ export const LoginForm = () => {
         const loginActionResponse = await login(values);
         setError(loginActionResponse?.error);
         setSuccess(loginActionResponse?.success);
+        if (loginActionResponse?.success) {
+          dispatch(storeLogin());
+          router.push("/account");
+          return;
+        }
       };
       loginResponse();
     });

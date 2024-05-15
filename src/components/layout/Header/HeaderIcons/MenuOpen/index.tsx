@@ -17,7 +17,7 @@ export const MenuOpen = ({ onClose }: MenuOpenProps) => {
     <div
       aria-hidden={menu ? "false" : "true"}
       className={cn(
-        "absolute left-0 top-0 z-10 h-screen w-[350px] overflow-x-hidden bg-neutral-800 transition duration-300",
+        "absolute left-0 top-0 z-10 flex h-screen w-[350px] flex-col justify-between overflow-x-hidden bg-neutral-800 transition duration-300",
         { "-z-20 ": !menu },
         { "z-40 translate-x-[0px]": menuAnimation },
         { "z-40 translate-x-[-350px] ": !menuAnimation },
@@ -107,6 +107,10 @@ export const MenuOpen = ({ onClose }: MenuOpenProps) => {
             </li>
           </Link>
         </ul>
+      </div>
+      <div className="flex justify-between px-5 pb-7 text-lg text-white">
+        <p>Login</p>
+        <p>Register</p>
       </div>
     </div>
   );

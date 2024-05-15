@@ -20,7 +20,6 @@ export const auth = async (cookie: string | undefined) => {
       token,
       new TextEncoder().encode(getJwtSecretKey()),
     );
-    console.log("decoded ===", decoded);
     if (!decoded || !decoded.payload.exp) {
       throw new Error("JWT token is not valid");
     }

@@ -19,8 +19,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { registerSchema } from "@/schemas";
+import { storeLogin } from "@/lib/store/slices/authSlice";
+import { useAppDispatch } from "@/lib/hooks";
+import { useRouter } from "next/navigation";
 
 export const RegisterForm = () => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const [success, setSuccess] = useState<string | undefined>("");
   const [error, setError] = useState<string | undefined>("");
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -45,6 +50,11 @@ export const RegisterForm = () => {
         const registerActionResponse = await register(values);
         setError(registerActionResponse?.error);
         setSuccess(registerActionResponse?.success);
+        if (registerActionResponse?.success) {
+          dispatch(storeLogin());
+          router.push("/account");
+          return;
+        }
       };
       registerResponse();
     });
