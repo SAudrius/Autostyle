@@ -4,10 +4,12 @@ import cartSlice from "./slices/cartSlice";
 import menuSlice from "./slices/menuSlice";
 import modalSlice from "./slices/modalSlice";
 import searchSlice from "./slices/searchSlice";
+import authSlice from "./slices/authSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
+      auth: authSlice,
       modal: modalSlice,
       cart: cartSlice,
       menu: menuSlice,
