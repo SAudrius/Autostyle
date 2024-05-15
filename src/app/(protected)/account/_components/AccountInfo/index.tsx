@@ -22,7 +22,7 @@ export const AccountInfo = () => {
         value="Example Address"
         infoValues={"values"}
       />
-      <Line />
+      <Line className="mb-4 mt-4" />
       <UserInfoField
         className="mt-3"
         field="Email"
@@ -30,7 +30,7 @@ export const AccountInfo = () => {
         linkLabel="Change email"
         linkHref="/change-email"
       />
-      <Line />
+      <Line className="mb-4 mt-4" />
       <UserInfoField
         className="mt-3"
         field="Password"
