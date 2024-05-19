@@ -1,11 +1,14 @@
 "use client";
-import React, { useEffect, useState, useTransition } from "react";
+import Link from "next/link";
+import React, { useEffect, useTransition } from "react";
 
+import { isUserLoggedIn } from "@/actions/isLoggedIn";
 import { Cart } from "@/components/layout/Header/HeaderIcons/Cart";
 import { CartMenu } from "@/components/layout/Header/HeaderIcons/CartMenu";
 import { Menu } from "@/components/layout/Header/HeaderIcons/Menu";
 import { Search } from "@/components/layout/Header/HeaderIcons/Search";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { setIsLoggedIn } from "@/lib/store/slices/authSlice";
 import {
   cartAnimateOff,
   cartAnimateOn,
@@ -34,14 +37,12 @@ import {
 import { Account } from "./Account";
 import { MenuOpen } from "./MenuOpen";
 import { SearchMenu } from "./SearchMenu";
-import { isUserLoggedIn } from "@/actions/isLoggedIn";
-import Link from "next/link";
-import { setIsLoggedIn } from "@/lib/store/slices/authSlice";
 
 export const HeaderIcons = () => {
   const dispatch = useAppDispatch();
   const search = useAppSelector((state) => state.search.active);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isPending, startTransition] = useTransition();
   useEffect(() => {
     console.log("useEFFECT");
