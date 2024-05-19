@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
+import authSlice from "./slices/authSlice";
 import cartSlice from "./slices/cartSlice";
 import menuSlice from "./slices/menuSlice";
 import modalSlice from "./slices/modalSlice";
 import searchSlice from "./slices/searchSlice";
-import authSlice from "./slices/authSlice";
 
 export const makeStore = () => {
   return configureStore({

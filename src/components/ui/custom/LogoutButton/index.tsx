@@ -1,11 +1,11 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import { Button } from "@/components/ui/button";
 import { authLogout } from "@/lib/auth/auth";
-import { useDispatch } from "react-redux";
 import { storeLogout } from "@/lib/store/slices/authSlice";
-import { useRouter } from "next/navigation";
 
 export const LogoutButton = () => {
   const router = useRouter();
