@@ -2,8 +2,10 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import * as z from "zod";
 
 import { login } from "@/actions/login";
@@ -19,10 +21,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { loginSchema } from "@/schemas";
-import { useDispatch } from "react-redux";
 import { storeLogin } from "@/lib/store/slices/authSlice";
-import { useRouter } from "next/navigation";
+import { loginSchema } from "@/schemas";
 
 export const LoginForm = () => {
   const router = useRouter();

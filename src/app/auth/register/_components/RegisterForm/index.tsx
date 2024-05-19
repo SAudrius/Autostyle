@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -18,10 +19,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { registerSchema } from "@/schemas";
-import { storeLogin } from "@/lib/store/slices/authSlice";
 import { useAppDispatch } from "@/lib/hooks";
-import { useRouter } from "next/navigation";
+import { storeLogin } from "@/lib/store/slices/authSlice";
+import { registerSchema } from "@/schemas";
 
 export const RegisterForm = () => {
   const router = useRouter();
