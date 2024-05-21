@@ -9,11 +9,5 @@ export default function StoreProvider({
 }: {
   children: React.ReactNode;
 }) {
-  // const storeRef = useRef<RootState>();
-  // if (!storeRef.current) {
-  //   // Create the store instance the first time this renders
-  //   storeRef.current = store();
-  // }
-
   return <Provider store={store}>{children}</Provider>;
 }
