@@ -1,7 +1,8 @@
 "use server";
 
-import { auth } from "@/lib/auth/authEdge";
 import { cookies } from "next/headers";
+
+import { auth } from "@/lib/auth/authEdge";
 
 export const isUserLoggedIn = async () => {
   const authCookie = cookies().get("auth");
