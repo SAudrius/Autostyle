@@ -15,7 +15,7 @@ export const authLogin = async (email: string) => {
   const authToken = await new SignJWT({
     userId: user.id,
     iat: Date.now(),
-    exp: Math.floor(Date.now() / 1000) + 60,
+    exp: Math.floor(Date.now() / 1000) + 60 * 60,
   })
     .setProtectedHeader({ alg: "HS256" }) // Specify the algorithm
     .setIssuedAt() // Set the issued-at time
