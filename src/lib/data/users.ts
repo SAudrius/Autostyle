@@ -89,3 +89,19 @@ export const createGoogleUserByData = async (
     return;
   }
 };
+
+export const getUserDetailsById = async (id: number | string) => {
+  try {
+    const sql =
+      "SELECT first_name, last_name, email, country ,address FROM users WHERE id = ?";
+    const dbParams = [id];
+    const [rows, error] = await dbQuery<UserDetailsApi[]>(sql, dbParams);
+    console.log("rows ===", rows);
+    if (error) {
+      throw new Error("somethink went wrong");
+    }
+    return rows[0];
+  } catch (error) {
+    return;
+  }
+};
