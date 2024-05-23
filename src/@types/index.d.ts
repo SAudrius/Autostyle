@@ -14,3 +14,20 @@ interface GoogleUser {
   last_name: string;
   email: string;
 }
+
+interface UserDetails {
+  firstName: string;
+  lastName: string;
+  email: string;
+  country: string;
+  city: string;
+  address: string;
+}
+interface UserDetailsApi {
+  first_name: string;
+  last_name: string;
+  email: string;
+  country: string;
+  city: string;
+  address: string;
+}
