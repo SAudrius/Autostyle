@@ -1,6 +1,5 @@
 "use server";
 import bcrypt from "bcryptjs";
-import { redirect } from "next/navigation";
 import * as z from "zod";
 
 import { authLogin } from "@/lib/auth/auth";
