@@ -9,3 +9,7 @@
 .social-icon:hover svg {
   color: black;
 }
+
+.first-letter-uppercase::first-letter {
+  text-transform: uppercase;
+}
