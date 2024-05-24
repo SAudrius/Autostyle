@@ -19,7 +19,7 @@ export const LogoutButton = () => {
     <Button
       variant="outline"
       size="small"
-      className="rounded"
+      className="rounded rounded-b-none border-b-transparent hover:rounded-b hover:border-b"
       onClick={handleLogout}
     >
       LOG OUT
