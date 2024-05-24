@@ -14,7 +14,7 @@ const buttonVariants = cva(
         loading:
           "uppercase text-neutral-900 dark:bg-slate-50 dark:text-slate-900 animate-loading from-8% to-33% bg-gradient-to-l from-primary-dark  via-[#f0f0f0] via-15% to-primary-dark bg-[length:200%_100%]",
         outline:
-          "border text-neutral-600 border-neutral-500 bg-transparent hover:bg-neutral-200 hover:text-neutral-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
+          "border text-neutral-600 border-neutral-500 bg-transparent hover:border-black hover:font-medium hover:text-black dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
         secondary:
           "bg-neutral-900 text-neutral-000 hover:bg-neutral-100 uppercase tracking-wide-6 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80 border-neutral-900 border hover:text-neutral-900",
         ghost:
