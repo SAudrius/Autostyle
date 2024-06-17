@@ -16,7 +16,7 @@ export const AccountInfo = async () => {
     <>
       <SubLineHeading logoutButton className="mt-8">
         <h2 className="text-lg uppercase tracking-wide-20 drop-shadow-text">
-          Orders
+          Account
         </h2>
       </SubLineHeading>
       <UserInfoField
