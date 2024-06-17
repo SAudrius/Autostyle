@@ -1,10 +1,10 @@
+import authSlice from "@lib/store/slices/authSlice";
+import cartSlice from "@lib/store/slices/cartSlice";
+import globalLoadingSlice from "@lib/store/slices/globalLoadingSlice";
+import menuSlice from "@lib/store/slices/menuSlice";
+import modalSlice from "@lib/store/slices/modalSlice";
+import searchSlice from "@lib/store/slices/searchSlice";
 import { configureStore } from "@reduxjs/toolkit";
-
-import authSlice from "./slices/authSlice";
-import cartSlice from "./slices/cartSlice";
-import menuSlice from "./slices/menuSlice";
-import modalSlice from "./slices/modalSlice";
-import searchSlice from "./slices/searchSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,9 +13,10 @@ export const store = configureStore({
     cart: cartSlice,
     menu: menuSlice,
     search: searchSlice,
+    globalLoading: globalLoadingSlice,
   },
 });
-// Infer the type of makeStore
+
+export type AppStore = typeof store
 export type RootState = ReturnType<typeof store.getState>;
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type AppDispatch = typeof store.dispatch;
