@@ -68,7 +68,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        loading: "shine 1.5s linear infinite",
+        loading: "shine 0.75s linear infinite",
       },
     },
   },
