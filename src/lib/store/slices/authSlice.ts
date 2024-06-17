@@ -9,7 +9,7 @@ const initialState: authState = {
 };
 
 export const cartSlice = createSlice({
-  name: "aurh",
+  name: "auth",
   initialState,
   reducers: {
     storeLogin: (state) => {
