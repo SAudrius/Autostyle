@@ -13,10 +13,10 @@ export const OrdersList = () => {
       >
         Settings
       </h1>
-      <p className={cn("mt-6 text-base", nunito.className)}>
-        View all orders and manage your account
+      <p className={cn("mt-5 text-base", nunito.className)}>
+        View your orders and manage your account
       </p>
-      <SubLineHeading className="mt-6">
+      <SubLineHeading className="mt-5">
         <h2 className="text-lg uppercase tracking-wide-20 drop-shadow-text">
           Orders
         </h2>
