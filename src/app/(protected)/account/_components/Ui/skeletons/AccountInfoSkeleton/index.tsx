@@ -5,7 +5,7 @@ import { Line, SubLineHeading } from "@/components/ui/custom";
 export const AccountInfoSkeleton = () => {
   return (
     <>
-      <SubLineHeading hasBtn className="mt-8">
+      <SubLineHeading logoutButton className="mt-8">
         <h2 className="text-lg uppercase tracking-wide-20 drop-shadow-text">
           Orders
         </h2>
