@@ -31,7 +31,7 @@ export const UserInfoField = ({
     <div>
       <p
         className={cn(
-          "text-lg capitalize leading-6 tracking-wide-6",
+          "first-letter-uppercase text-lg leading-6 tracking-wide-6",
           montserrat.className,
           { lowercase: isEmail },
           {
@@ -52,7 +52,7 @@ export const UserInfoField = ({
       {linkLabel && linkHref && (
         <a
           className={cn(
-            "mt-1 inline-block caption-top tracking-wide-12 underline",
+            "mt-1 inline-block caption-top uppercase tracking-wide-12 underline",
             montserrat.className,
           )}
           href={linkHref}
