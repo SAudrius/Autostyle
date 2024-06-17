@@ -15,6 +15,12 @@ interface GoogleUser {
   email: string;
 }
 
+interface JwtData {
+  userId: string;
+  iat: string;
+  exp: string;
+}
+
 interface UserDetails {
   firstName: string;
   lastName: string;
@@ -23,6 +29,7 @@ interface UserDetails {
   city: string;
   address: string;
 }
+
 interface UserDetailsApi {
   first_name: string;
   last_name: string;
