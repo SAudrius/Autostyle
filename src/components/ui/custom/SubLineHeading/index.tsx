@@ -6,28 +6,28 @@ import { cn } from "@/config/utils";
 interface SubLineHeadingProps {
   children: React.ReactNode;
   className?: string;
-  hasBtn?: boolean;
+  logoutButton?: boolean;
 }
 
 export const SubLineHeading = ({
   children,
   className,
-  hasBtn = false,
+  logoutButton = false,
 }: SubLineHeadingProps) => {
   return (
     <div
       className={cn("grid ", className, {
-        "grid-cols-2": hasBtn,
+        "grid-cols-2": logoutButton,
       })}
     >
-      {!hasBtn && children}
-      {hasBtn && <div className="flex items-center">{children}</div>}
-      {hasBtn && (
+      {!logoutButton && children}
+      {logoutButton && <div className="flex items-center">{children}</div>}
+      {logoutButton && (
         <div className="flex items-center justify-end">
           <LogoutButton />
         </div>
       )}
-      <Line className={cn({ "col-span-2": hasBtn })}></Line>
+      <Line className={cn({ "col-span-2": logoutButton })}></Line>
     </div>
   );
 };
