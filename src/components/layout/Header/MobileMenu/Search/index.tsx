@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-import { SearchInput } from "@/components/layout/Header/HeaderIcons/Search/SearchInput";
+import { SearchInput } from "@/components/layout/Header/MobileMenu/Search/SearchInput";
 
 interface SearchProps {
   onClick: () => void;

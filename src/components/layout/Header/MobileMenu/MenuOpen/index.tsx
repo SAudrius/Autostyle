@@ -1,17 +1,31 @@
 import Link from "next/link";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import { CancelIcon, Line } from "@/components/ui/custom";
 import { cn } from "@/config/utils";
 import { useAppSelector } from "@/lib/hooks";
+import { menuAnimateOff, menuOff } from "@/lib/store/slices/menuSlice";
+import { modalAnimateOff, modalOff } from "@/lib/store/slices/modalSlice";
 
 interface MenuOpenProps {
   onClose: () => void;
 }
 
 export const MenuOpen = ({ onClose }: MenuOpenProps) => {
+  const dispatch = useDispatch();
   const menu = useAppSelector((state) => state.menu.value);
   const menuAnimation = useAppSelector((state) => state.menu.menuAnimation);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+
+  const handleMenuOff = () => {
+    dispatch(menuAnimateOff());
+    dispatch(modalAnimateOff());
+    new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
+      dispatch(modalOff());
+      dispatch(menuOff());
+    });
+  };
 
   return (
     <div
@@ -108,10 +122,16 @@ export const MenuOpen = ({ onClose }: MenuOpenProps) => {
           </Link>
         </ul>
       </div>
-      <div className="flex justify-between px-5 pb-7 text-lg text-white">
-        <p>Login</p>
-        <p>Register</p>
-      </div>
+      {!isLoggedIn && (
+        <div className="flex justify-between px-5 pb-7 text-lg text-white">
+          <Link href={"/auth/login"} onClick={handleMenuOff}>
+            Login
+          </Link>
+          <Link href={"/auth/register"} onClick={handleMenuOff}>
+            Register
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

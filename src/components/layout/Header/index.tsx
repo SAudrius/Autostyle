@@ -7,7 +7,7 @@ import { cn } from "@/config/utils";
 import { useAppSelector } from "@/lib/hooks";
 
 import { DesktopMenu } from "./DesktopMenu";
-import { HeaderIcons } from "./HeaderIcons";
+import { MobileMenu } from "./MobileMenu";
 
 interface HeaderProps {
   transparent?: boolean;
@@ -32,7 +32,7 @@ export const Header = ({ transparent }: HeaderProps) => {
     >
       <Container className="flex items-center justify-between gap-4 bg-white py-5 md:gap-12 lg:gap-40">
         <Logo />
-        <HeaderIcons />
+        <MobileMenu />
       </Container>
       <Container>
         <DesktopMenu />

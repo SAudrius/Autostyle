@@ -3,12 +3,12 @@ import Link from "next/link";
 import React, { useEffect, useTransition } from "react";
 
 import { isUserLoggedIn } from "@/actions/isLoggedIn";
-import { Cart } from "@/components/layout/Header/HeaderIcons/Cart";
-import { CartMenu } from "@/components/layout/Header/HeaderIcons/CartMenu";
-import { Menu } from "@/components/layout/Header/HeaderIcons/Menu";
-import { Search } from "@/components/layout/Header/HeaderIcons/Search";
+import { Cart } from "@/components/layout/Header/MobileMenu/Cart";
+import { CartMenu } from "@/components/layout/Header/MobileMenu/CartMenu";
+import { Menu } from "@/components/layout/Header/MobileMenu/Menu";
+import { Search } from "@/components/layout/Header/MobileMenu/Search";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { setIsLoggedIn } from "@/lib/store/slices/authSlice";
+import { storeLogin } from "@/lib/store/slices/authSlice";
 import {
   cartAnimateOff,
   cartAnimateOn,
@@ -38,19 +38,24 @@ import { Account } from "./Account";
 import { MenuOpen } from "./MenuOpen";
 import { SearchMenu } from "./SearchMenu";
 
-export const HeaderIcons = () => {
+export const MobileMenu = () => {
   const dispatch = useAppDispatch();
   const search = useAppSelector((state) => state.search.active);
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isPending, startTransition] = useTransition();
+
   useEffect(() => {
-    console.log("useEFFECT");
     startTransition(() => {
-      isUserLoggedIn().then((isUserLoggedInRespnse) =>
-        dispatch(setIsLoggedIn(isUserLoggedInRespnse)),
-      );
+      const isLoggedInResponse = async () => {
+        if (await isUserLoggedIn()) {
+          dispatch(storeLogin());
+        }
+        return;
+      };
+      isLoggedInResponse();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMenu = () => {
@@ -108,21 +113,23 @@ export const HeaderIcons = () => {
         <Search onClick={handleSearch} />
         <SearchMenu onClose={handleSearchClose} />
       </div>
-      <div className="flex items-center gap-[6px] sm:gap-2">
+      <div className="flex items-center justify-end gap-[6px] sm:gap-2 lg:w-[174px]">
         {isLoggedIn && <Account />}
-        <Cart onClick={handleCart} />
-        <CartMenu onClose={handleCartClose} />
-        {/* TODO: check if logged in then display account icon */}
         {!isLoggedIn && (
-          <>
-            <Link href="/auth/login" className="hidden text-sm lg:visible">
-              Login
-            </Link>
-            <Link href="/auth/register" className="hidden text-sm lg:visible">
-              Register
-            </Link>
-          </>
+          <span className="h-6 w-10 px-1 py-2 sm:px-2 lg:hidden"></span>
         )}
+        <CartMenu onClose={handleCartClose} />
+        {!isLoggedIn && (
+          <Link href="/auth/login" className="hidden text-sm lg:block">
+            Login
+          </Link>
+        )}
+        {!isLoggedIn && (
+          <Link href="/auth/register" className="hidden text-sm lg:block">
+            Register
+          </Link>
+        )}
+        <Cart onClick={handleCart} />
         <Menu onClick={handleMenu} />
         <MenuOpen onClose={handleMenuClose} />
       </div>
