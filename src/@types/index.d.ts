@@ -7,6 +7,7 @@ interface User {
   name: string | null;
   account_id: string | null;
   password: string;
+  email_verified: number;
 }
 
 interface GoogleUser {
@@ -37,4 +38,11 @@ interface UserDetailsApi {
   country: string;
   city: string;
   address: string;
+}
+
+interface VerificationToken {
+  id: number;
+  email: string;
+  token: string;
+  expires:string;
 }
