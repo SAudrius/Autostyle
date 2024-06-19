@@ -15,7 +15,6 @@ interface BodyProps {
 export const Body = ({ children }: BodyProps) => {
   const modal = useAppSelector((state) => state.modal.value);
   const globalLoading = useAppSelector((state) => state.globalLoading.loading);
-  console.log("globalLoading ===", globalLoading);
   return (
     <body
       className={cn(
