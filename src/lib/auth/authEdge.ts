@@ -1,27 +1,36 @@
 "use server";
+
 import { jwtVerify } from "jose";
 
-export const getJwtSecretKey = () => {
+const getJwtSecretKey = async () => {
   const secret = process.env.JWT_SECRET_TOKEN;
   if (!secret) {
     console.error("JWT secret token is missing or invalid.");
-    throw new Error("Enviroment varible is not here");
+    throw new Error("Environment variable is missing or invalid");
   }
-  return secret;
+
+  const encoder = new TextEncoder();
+  const secretKey = await encoder.encode(secret);
+
+  return secretKey;
 };
+
 
 export const auth = async (cookie: string | undefined) => {
   const token = cookie;
   if (!token) {
     return false;
   }
+
   try {
+    const secret = await getJwtSecretKey()
     const decoded = await jwtVerify(
       token,
-      new TextEncoder().encode(getJwtSecretKey()),
+      secret,
     );
+    console.log('decoded ===', decoded);
     if (!decoded || !decoded.payload.exp) {
-      throw new Error("JWT token is not valid");
+      throw new Error("JWT token is not vaxxlid");
     }
     if (decoded.payload.exp > Math.floor((Date.now() / 1000) * 1000 * 60)) {
       return false;
@@ -29,7 +38,5 @@ export const auth = async (cookie: string | undefined) => {
   } catch (err) {
     return false;
   }
-  // const authToken
-  // check for auth cookie
   return true;
 };

@@ -16,6 +16,7 @@ export const getUserById = async (id: string | number) => {
   }
 };
 
+
 export const getUserByEmail = async (email: string) => {
   try {
     const dbParams = [email];
@@ -30,6 +31,24 @@ export const getUserByEmail = async (email: string) => {
     return;
   }
 };
+
+
+export const getUserDetailsById = async (id: number | string) => {
+  try {
+    const sql =
+      "SELECT first_name, last_name, email, country, address FROM users WHERE id = ?";
+    const dbParams = [id];
+    const [rows, error] = await dbQuery<UserDetailsApi[]>(sql, dbParams);
+    console.log("rows ===", rows);
+    if (error) {
+      throw new Error("somethink went wrong");
+    }
+    return rows[0];
+  } catch (error) {
+    return;
+  }
+};
+
 
 export const createUserByData = async (
   first_name: string,
@@ -90,18 +109,17 @@ export const createGoogleUserByData = async (
   }
 };
 
-export const getUserDetailsById = async (id: number | string) => {
+export const updateUserEmailVerifiedById = async (id: number) => {
   try {
     const sql =
-      "SELECT first_name, last_name, email, country ,address FROM users WHERE id = ?";
+      "UPDATE users SET email_verified = 1 WHERE id = ?";
     const dbParams = [id];
-    const [rows, error] = await dbQuery<UserDetailsApi[]>(sql, dbParams);
-    console.log("rows ===", rows);
+    const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
     if (error) {
       throw new Error("somethink went wrong");
     }
-    return rows[0];
+    return rows;
   } catch (error) {
     return;
   }
-};
+}

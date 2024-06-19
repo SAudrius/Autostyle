@@ -1,10 +1,11 @@
 "use server";
+import { createUserByData, getUserByEmail } from "@lib/data/users";
+import { registerSchema } from "@lib/schemas";
 import bcrypt from "bcryptjs";
 import * as z from "zod";
 
-import { authLogin } from "@/lib/auth/auth";
-import { createUserByData, getUserByEmail } from "@/lib/data/users";
-import { registerSchema } from "@/schemas";
+import { generateVerificationToken } from "@/lib/auth/tokens";
+import { sendMail } from "@/lib/mail/mail";
 
 export const register = async (values: z.infer<typeof registerSchema>) => {
   const validValues = registerSchema.safeParse(values);
@@ -22,17 +23,34 @@ export const register = async (values: z.infer<typeof registerSchema>) => {
   if (existingUser) {
     return { error: "This email has already in use" };
   }
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser = await createUserByData(
-    first_name,
-    last_name,
-    email,
-    hashedPassword,
-  );
-  if (!newUser) {
-    return { error: "Sometink went wrong" };
-  }
-  if (newUser?.affectedRows !== 1) return { success: "Somethink went wrong" };
-  await authLogin(email);
-  return { success: "User is created" };
+  try {
+    const newToken = await generateVerificationToken(email);
+
+    if (!newToken) {
+      return { error: 'Something went wrong' }
+    }
+  
+    const {mailError} = await sendMail(newToken,email);
+    
+    if (mailError) {
+      return { error: 'Something went wrong' }
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = await createUserByData(
+      first_name,
+      last_name,
+      email,
+      hashedPassword,
+    );
+    if (!newUser) {
+      return { error: "Someting went wrong" };
+    }
+    if (newUser?.affectedRows !== 1) return { success: "Something went wrong" };
+  
+} catch {
+  return { error: 'Something went wrong' }
+}
+  return { success: "Check your email for a confirmation" };
 };

@@ -1,6 +1,19 @@
 "use client";
 
+import { Button } from "@components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@components/ui/form";
+import { Input } from "@components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "@lib/schemas";
+import { storeLogin } from "@lib/store/slices/authSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
@@ -10,19 +23,6 @@ import * as z from "zod";
 
 import { login } from "@/actions/login";
 import { Socials } from "@/app/auth/_components";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { storeLogin } from "@/lib/store/slices/authSlice";
-import { loginSchema } from "@/schemas";
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -48,9 +48,9 @@ export const LoginForm = () => {
         setError(loginActionResponse?.error);
         setSuccess(loginActionResponse?.success);
         if (loginActionResponse?.success) {
+          console.log("?SUCCESS");
           dispatch(storeLogin());
           router.push("/account");
-          return;
         }
       };
       loginResponse();

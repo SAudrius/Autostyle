@@ -1,14 +1,6 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import React, { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-
-import { register } from "@/actions/register";
-import { Socials } from "@/app/auth/_components";
-import { Button } from "@/components/ui/button";
+import { Button } from "@components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,15 +9,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useAppDispatch } from "@/lib/hooks";
-import { storeLogin } from "@/lib/store/slices/authSlice";
-import { registerSchema } from "@/schemas";
+} from "@components/ui/form";
+import { Input } from "@components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerSchema } from "@lib/schemas";
+import React, { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+import { register } from "@/actions/register";
+import { Socials } from "@/app/auth/_components";
 
 export const RegisterForm = () => {
-  const router = useRouter();
-  const dispatch = useAppDispatch();
   const [success, setSuccess] = useState<string | undefined>("");
   const [error, setError] = useState<string | undefined>("");
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -50,11 +45,6 @@ export const RegisterForm = () => {
         const registerActionResponse = await register(values);
         setError(registerActionResponse?.error);
         setSuccess(registerActionResponse?.success);
-        if (registerActionResponse?.success) {
-          dispatch(storeLogin());
-          router.push("/account");
-          return;
-        }
       };
       registerResponse();
     });

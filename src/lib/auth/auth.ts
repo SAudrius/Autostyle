@@ -4,12 +4,20 @@ import { cookies } from "next/headers";
 
 import { getUserByEmail } from "@/lib/data/users";
 
-import { getJwtSecretKey } from "./authEdge";
+export const getJwtSecretKey = async () => {
+  const secret = process.env.JWT_SECRET_TOKEN;
+  if (!secret) {
+    console.error("JWT secret token is missing or invalid.");
+    throw new Error("Environment variable is missing or invalid");
+  }
 
-const stringToUint8Array = (str: string): Uint8Array =>
-  new TextEncoder().encode(str);
+  const encoder = new TextEncoder();
+  const secretKey = await encoder.encode(secret);
+  return secretKey;
+};
 
 export const authLogin = async (email: string) => {
+  const secretKey = await getJwtSecretKey()
   const user = await getUserByEmail(email);
   if (!user) {
     return;
@@ -21,18 +29,17 @@ export const authLogin = async (email: string) => {
   })
     .setProtectedHeader({ alg: "HS256" }) // Specify the algorithm
     .setIssuedAt() // Set the issued-at time
-    .sign(stringToUint8Array(getJwtSecretKey()));
+    .sign(secretKey);
   cookies().set("auth", authToken);
 };
-
+ 
 export const tokenDataByToken = async (token: string) => {
-  const secret = stringToUint8Array(getJwtSecretKey());
-  console.log("secret ===", secret);
+  const secret = await getJwtSecretKey();
+
   try {
     const { payload } = await jwtVerify<JwtData>(token, secret);
     return payload;
   } catch (err) {
-    // console.error("Invalid token or secret key:", err);
     return;
   }
 };
