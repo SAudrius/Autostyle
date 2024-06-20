@@ -10,7 +10,6 @@ export const createVerificationTokenByEmail = async (email: string,token: string
       if (error) {
         throw new Error("somethink went wrong");
       }
-      console.log('CREATE rows  ===', rows);
 
       return rows;
     } catch (error) {
@@ -27,7 +26,6 @@ export const getVerificationTokenByEmail = async (email: string) => {
         if (error) {
             throw new Error("somethink went wrong");
           }
-        console.log('rows ===', rows);
         return rows[0]
     } catch (error) {
         return;
@@ -36,7 +34,6 @@ export const getVerificationTokenByEmail = async (email: string) => {
 
 export const getEmailByToken = async (token: string) => {
     try {
-        console.log("SQL")
         const sql =
         "SELECT * FROM verification_tokens WHERE token = ?";
         const dbParams = [token];
@@ -44,7 +41,6 @@ export const getEmailByToken = async (token: string) => {
         if (error) {
             throw new Error("somethink went wrong");
           }
-          console.log('@rows ===', rows);
         return rows[0]
     } catch (error) {
         return 
@@ -54,17 +50,14 @@ export const getEmailByToken = async (token: string) => {
 export const deleteVerificationTokenById = async (id: number) => {
     try {
         const sql =
-        "DELETE verification_tokens WHERE id = ? VALUES (?) LIMIT 1";
+        "DELETE FROM verification_tokens WHERE id = ? LIMIT 1";
         const dbParams = [id];
-        const [rows, error] = await dbQuery<ResultSetHeader[]>(sql, dbParams);
+        const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
         if (error) {
             throw new Error("somethink went wrong");
           }
-        console.log('rows ===', rows);
-        return rows[0]
+        return rows
     } catch (error) {
         return;
     }
 }
-
-  
