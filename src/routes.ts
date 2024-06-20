@@ -13,7 +13,7 @@ export const authRoutes = [
   "/auth/register",
   "/auth/verification",
   "/auth/forgot-password",
-  "/auth/new-password",
+  "/auth/change-password",
   "/auth/google",
 ];
 
