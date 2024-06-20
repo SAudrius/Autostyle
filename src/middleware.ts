@@ -15,8 +15,8 @@ export const middleware = async (req: NextRequest) => {
 
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
   if (isAuthRoute) {
-    console.log('isAuthRoute ===', isAuthRoute);
-    console.log('isLoggedIn ===', isLoggedIn);
+    // console.log('isAuthRoute ===', isAuthRoute);
+    // console.log('isLoggedIn ===', isLoggedIn);
     if (isLoggedIn) {
       return Response.redirect(new URL("/account", nextUrl));
     }
