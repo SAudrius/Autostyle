@@ -55,7 +55,6 @@ export const fetchGoogleCode = async (code: string) => {
       }
       // Creating cookies
       await authLogin(data.email);
-      console.log("redirecting");
       return { success: "Redirecting..." };
     }
   } catch (err) {
