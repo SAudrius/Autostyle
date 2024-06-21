@@ -1,11 +1,11 @@
 import { dbQuery } from "@lib/database/app";
 import { ResultSetHeader } from "mysql2";
 
-export const createVerificationTokenByEmail = async (email: string,token: string) => {
+export const createVerificationTokenByEmail = async (email: string, token: string, type: 'password' | 'email') => {
     try {
       const sql =
-        "INSERT INTO verification_tokens (email, token) VALUES (?,?)";
-      const dbParams = [email, token];
+        "INSERT INTO verification_tokens (email, token, type) VALUES (?,?, ?)";
+      const dbParams = [email, token, type];
       const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
       if (error) {
         throw new Error("somethink went wrong");
@@ -17,45 +17,45 @@ export const createVerificationTokenByEmail = async (email: string,token: string
     }
 };
 
-export const getVerificationTokenByEmail = async (email: string) => {
+export const getVerificationTokenByEmail = async (email: string, type: 'password' | 'email') => {
     try {
         const sql =
-        "SELECT verification_tokens WHERE email = ? VALUES (?)";
-        const dbParams = [email];
+        "SELECT verification_tokens WHERE email = ? AND type = ?";
+        const dbParams = [email,type];
         const [rows, error] = await dbQuery<VerificationToken[]>(sql, dbParams);
         if (error) {
-            throw new Error("somethink went wrong");
-          }
+          throw new Error("somethink went wrong");
+        }
         return rows[0]
     } catch (error) {
         return;
     }
 }
 
-export const getEmailByToken = async (token: string) => {
+export const getEmailByToken = async (token: string, type: 'password' | 'password') => {
     try {
         const sql =
-        "SELECT * FROM verification_tokens WHERE token = ?";
-        const dbParams = [token];
+        "SELECT * FROM verification_tokens WHERE token = ? AND type = ?";
+        const dbParams = [token, type];
         const [rows, error] = await dbQuery<VerificationToken[]>(sql, dbParams);
         if (error) {
-            throw new Error("somethink went wrong");
-          }
+          throw new Error("somethink went wrong");
+        }
         return rows[0]
     } catch (error) {
         return 
     }
 }
 
-export const deleteVerificationTokenById = async (id: number) => {
+export const deleteVerificationTokenById = async (id: number, type: 'password' | 'email') => {
     try {
         const sql =
-        "DELETE FROM verification_tokens WHERE id = ? LIMIT 1";
-        const dbParams = [id];
+        "DELETE FROM verification_tokens WHERE id = ? AND type = ?LIMIT 1";
+        const dbParams = [id, type];
         const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
         if (error) {
-            throw new Error("somethink went wrong");
-          }
+          throw new Error("somethink went wrong");
+        }
         return rows
     } catch (error) {
         return;
