@@ -34,7 +34,7 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
       return {error: 'Something went wrong'}
     }
 
-    const {mailError} = await sendMail(newToken,email);
+    const {mailError} = await sendMail(newToken,email,'verification');
     if (mailError) {
       return {error: 'Something went wrong'}
     }
