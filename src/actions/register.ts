@@ -24,7 +24,7 @@ export const register = async (values: z.infer<typeof registerSchema>) => {
     return { error: "This email has already in use" };
   }
   try {
-    const newToken = await generateVerificationToken(email);
+    const newToken = await generateVerificationToken(email,'email');
 
     if (!newToken) {
       return { error: 'Something went wrong' }
