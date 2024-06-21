@@ -45,4 +45,5 @@ interface VerificationToken {
   email: string;
   token: string;
   expires:string;
+  type: 'password' | 'email';
 }
