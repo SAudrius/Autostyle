@@ -1,14 +1,14 @@
 'use server'
 
 import { getUserByEmail, updateUserEmailVerifiedById } from "@lib/data/users"
-import { getEmailByToken } from "@lib/data/verificationTokens"
+import { deleteVerificationTokenById, getEmailByToken } from "@lib/data/verificationTokens"
 
 export const verifyToken = async (token: string) => {
     const currentTime = new Date() 
     const verifyTokenData = await getEmailByToken(token)
 
     if (!verifyTokenData?.email) {
-        return
+       return {error: 'Something went wrong'}
     }
 
     const verifyTokenExpires = new Date(verifyTokenData.expires).getTime();
@@ -28,10 +28,16 @@ export const verifyToken = async (token: string) => {
     if (!userData) {
         return {error: 'Something went wrong'}
     }
-    const rows = await updateUserEmailVerifiedById(userData.id)
-    console.log('rows ===', rows);
-    if (rows?.affectedRows !== 1 ) {
+    const updatedUserRows = await updateUserEmailVerifiedById(userData.id)
+    if (updatedUserRows?.affectedRows !== 1 ) {
         return {error: 'Something went wrong'}
     }   
+
+    const deletedTokenRows = await deleteVerificationTokenById(verifyTokenData.id)
+
+    if (deletedTokenRows?.affectedRows !== 1 ) {
+      return {error: 'Something went wrong'}
+    }  
+
     return {success: 'Email Verified' }
 }
