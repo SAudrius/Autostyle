@@ -29,7 +29,7 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
 
   if (!existingUser.email_verified) {
 
-    const newToken = await generateVerificationToken(existingUser.email);
+    const newToken = await generateVerificationToken(existingUser.email, 'email');
     if (!newToken) {
       return {error: 'Something went wrong'}
     }
