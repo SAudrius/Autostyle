@@ -23,8 +23,7 @@ export const UserInfoField = ({
 }: UserInfoFieldProps) => {
   const isEmail = field.toLowerCase() === "email";
   const handleSubmit = (values: string) => {
-    console.log("Info values");
-    console.log(values);
+    console.log("values ===", values);
   };
 
   return (
@@ -47,12 +46,14 @@ export const UserInfoField = ({
         >
           {field}:{" "}
         </span>
-        {value}
+        <span>
+          <p className="first-letter-uppercase inline-block">{value}</p>
+        </span>
       </p>
       {linkLabel && linkHref && (
         <a
           className={cn(
-            "mt-1 inline-block caption-top uppercase tracking-wide-12 underline",
+            "mt-1 inline-block caption-top tracking-wide-12 underline",
             montserrat.className,
           )}
           href={linkHref}
