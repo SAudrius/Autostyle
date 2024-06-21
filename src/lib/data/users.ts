@@ -25,7 +25,6 @@ export const getUserByEmail = async (email: string) => {
     if (error) {
       throw new Error("somethink went wrong");
     }
-    // console.log(rows);
     return rows[0];
   } catch (error) {
     return;
@@ -39,7 +38,6 @@ export const getUserDetailsById = async (id: number | string) => {
       "SELECT first_name, last_name, email, country, address FROM users WHERE id = ?";
     const dbParams = [id];
     const [rows, error] = await dbQuery<UserDetailsApi[]>(sql, dbParams);
-    console.log("rows ===", rows);
     if (error) {
       throw new Error("somethink went wrong");
     }
@@ -95,9 +93,7 @@ export const createGoogleUserByData = async (
     const sql2 = "INSERT INTO accounts (provider,user_id) VALUES (?,?)";
     const dbParams2 = [provider, createdUser.id];
     const [rows2, error2] = await dbQuery<ResultSetHeader>(sql2, dbParams2);
-    // console.log("rows2 ===", rows2);
     if (error2) {
-      // console.log("error2 ===", error2);
       throw new Error("somethink went wrong");
     }
     if (rows2.affectedRows !== 1) {
@@ -114,6 +110,21 @@ export const updateUserEmailVerifiedById = async (id: number) => {
     const sql =
       "UPDATE users SET email_verified = 1 WHERE id = ?";
     const dbParams = [id];
+    const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
+    if (error) {
+      throw new Error("somethink went wrong");
+    }
+    return rows;
+  } catch (error) {
+    return;
+  }
+}
+
+export const updateUserPasswordById = async (newPassword: string,id:number) => {
+  try {
+    const sql =
+      "UPDATE users SET password = ? WHERE id = ?";
+    const dbParams = [newPassword,id];
     const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
     if (error) {
       throw new Error("somethink went wrong");
