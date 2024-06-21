@@ -13,7 +13,7 @@ export const registerSchema = z
       .string()
       .min(1, { message: "Last name is required" })
       .min(2, { message: "Last Name must be at least 2 letters" }),
-    email: z.string().email({ message: "Must be valid email" }),
+    email: z.string().email({ message: "Email must be valid" }),
     password: z
       .string()
       .min(8, { message: "Password must have at least 8 letters" })
@@ -36,9 +36,18 @@ export const forgotPasswordSchema = z.object({
   email: z.string().email({ message: "Email is invalid" }),
 });
 
-export const newPasswordSchema = z.object({
+export const resetEmailSchema = z.object({
   password: z
     .string()
-    .min(8, { message: "Password must have at least 8 letters" })
-    .regex(passwordRegex, "Password must meet the requirements"),
+    .email({ message: "Email must be valid " }),
+});
+
+export const resetPasswordSchema = z.object({
+  password: z
+  .string()
+  .min(8, { message: "Password must have at least 8 letters" })
+  .regex(passwordRegex, "Password must meet the requirements"),
+repeat_password: z
+  .string()
+  .min(1, { message: "Repeat Password is required" }),
 });
