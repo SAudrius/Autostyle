@@ -28,7 +28,7 @@ export const UserInfoField = ({
 
   return (
     <div>
-      <p
+      <div
         className={cn(
           "first-letter-uppercase text-lg leading-6 tracking-wide-6",
           montserrat.className,
@@ -46,10 +46,8 @@ export const UserInfoField = ({
         >
           {field}:{" "}
         </span>
-        <span>
-          <p className="first-letter-uppercase inline-block">{value}</p>
-        </span>
-      </p>
+        <p className="first-letter-uppercase inline-block">{value}</p>
+      </div>
       {linkLabel && linkHref && (
         <a
           className={cn(
