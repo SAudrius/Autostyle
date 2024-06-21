@@ -9,7 +9,6 @@ const oauth2Client = new google.auth.OAuth2(
 
 export async function GET(req: NextRequest) {
   const authorizationCode = req.nextUrl.searchParams.get("code");
-  console.log("authorizationCode ===", authorizationCode);
   if (!authorizationCode) {
     return Response.json("Authorization code not found", {
       status: 400,

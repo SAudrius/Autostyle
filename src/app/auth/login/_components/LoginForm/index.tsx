@@ -48,7 +48,6 @@ export const LoginForm = () => {
         setError(loginActionResponse?.error);
         setSuccess(loginActionResponse?.success);
         if (loginActionResponse?.success) {
-          console.log("?SUCCESS");
           dispatch(storeLogin());
           router.push("/account");
         }
