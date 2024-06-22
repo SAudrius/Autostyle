@@ -51,7 +51,7 @@ export const AccountInfo = async () => {
         field="Email"
         value={userData.email || "Not provided"}
         linkLabel="Change email"
-        linkHref="/change-email"
+        linkHref="/auth/change-email"
       />
       <Line className="mb-4 mt-4" />
       <UserInfoField
@@ -59,7 +59,7 @@ export const AccountInfo = async () => {
         field="Password"
         value="********"
         linkLabel="Change password"
-        linkHref="/password"
+        linkHref="/auth/change-password"
       />
     </>
   );
