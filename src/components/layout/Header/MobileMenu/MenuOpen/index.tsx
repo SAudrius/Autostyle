@@ -6,7 +6,7 @@ import { CancelIcon, Line } from "@/components/ui/custom";
 import { cn } from "@/config/utils";
 import { useAppSelector } from "@/lib/hooks";
 import { menuAnimateOff, menuOff } from "@/lib/store/slices/menuSlice";
-import { modalAnimateOff, modalOff } from "@/lib/store/slices/modalSlice";
+import { turnModalOff } from "@/lib/store/storeHelpers/storeHelepers";
 
 interface MenuOpenProps {
   onClose: () => void;
@@ -19,12 +19,7 @@ export const MenuOpen = ({ onClose }: MenuOpenProps) => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   const handleMenuOff = () => {
-    dispatch(menuAnimateOff());
-    dispatch(modalAnimateOff());
-    new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
-      dispatch(modalOff());
-      dispatch(menuOff());
-    });
+    turnModalOff(dispatch, [menuAnimateOff], [menuOff]);
   };
 
   return (

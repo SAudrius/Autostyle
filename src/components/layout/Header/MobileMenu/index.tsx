@@ -22,17 +22,15 @@ import {
   menuOn,
 } from "@/lib/store/slices/menuSlice";
 import {
-  modalAnimateOff,
-  modalAnimateOn,
-  modalOff,
-  modalOn,
-} from "@/lib/store/slices/modalSlice";
-import {
   searchAnimateOff,
   searchAnimateOn,
   searchOff,
   searchOn,
 } from "@/lib/store/slices/searchSlice";
+import {
+  turnModalOff,
+  turnModalOn,
+} from "@/lib/store/storeHelpers/storeHelepers";
 
 import { Account } from "./Account";
 import { MenuOpen } from "./MenuOpen";
@@ -60,51 +58,27 @@ export const MobileMenu = () => {
 
   const handleMenu = () => {
     if (search) return;
-    dispatch(menuOn());
-    dispatch(modalOn());
-    dispatch(menuAnimateOn());
-    dispatch(modalAnimateOff());
+    turnModalOn(dispatch, [menuOn, menuAnimateOn]);
   };
   const handleCart = () => {
     if (search) return;
-    dispatch(cartOn());
-    dispatch(modalOn());
-    dispatch(cartAnimateOn());
-    dispatch(modalAnimateOff());
+    turnModalOn(dispatch, [cartOn, cartAnimateOn]);
   };
 
   const handleMenuClose = () => {
-    dispatch(menuAnimateOff());
-    dispatch(modalAnimateOff());
-    new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
-      dispatch(modalOff());
-      dispatch(menuOff());
-    });
+    turnModalOff(dispatch, [menuAnimateOff], [menuOff]);
   };
 
   const handleCartClose = () => {
-    dispatch(cartAnimateOff());
-    dispatch(modalAnimateOn());
-    new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
-      dispatch(modalOff());
-      dispatch(cartOff());
-    });
+    turnModalOff(dispatch, [cartAnimateOff], [cartOff]);
   };
 
   const handleSearch = () => {
-    dispatch(searchOn());
-    dispatch(searchAnimateOn());
-    dispatch(modalOn());
-    dispatch(modalAnimateOff());
+    turnModalOn(dispatch, [searchOn, searchAnimateOn]);
   };
 
   const handleSearchClose = () => {
-    dispatch(searchAnimateOff());
-    dispatch(modalAnimateOn());
-    new Promise((resolve) => setTimeout(resolve, 3000)).then(() => {
-      dispatch(modalOff());
-      dispatch(searchOff());
-    });
+    turnModalOff(dispatch, [searchAnimateOff], [searchOff]);
   };
 
   return (
