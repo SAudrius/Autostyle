@@ -2,6 +2,8 @@
 
 import { Action } from '@reduxjs/toolkit';
 
+import { scrollToTop } from '@/config/helpers';
+
 import { modalAnimateOff, modalAnimateOn, modalOff, modalOn } from "../slices/modalSlice";
 import { AppDispatch } from "../store";
 
@@ -16,7 +18,7 @@ export const turnModalOn =  (dispatch: AppDispatch , dispathReducers?: Array<() 
     }
     dispatch(modalOn());
     dispatch(modalAnimateOn());
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTop()
 }
 
 /**
