@@ -47,3 +47,11 @@ interface VerificationToken {
   expires: string;
   type: 'password' | 'email';
 }
+
+interface VerificationCode {
+  id: number;
+  email: string;
+  code: string;
+  expires: string;
+  type: 'password' | 'email';
+}
