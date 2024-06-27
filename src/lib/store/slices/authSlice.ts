@@ -8,7 +8,7 @@ const initialState: authState = {
   isLoggedIn: false,
 };
 
-export const cartSlice = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
@@ -24,6 +24,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { storeLogin, storeLogout, setIsLoggedIn } = cartSlice.actions;
+export const { storeLogin, storeLogout, setIsLoggedIn } = authSlice.actions;
 
-export default cartSlice.reducer;
+export default authSlice.reducer;
