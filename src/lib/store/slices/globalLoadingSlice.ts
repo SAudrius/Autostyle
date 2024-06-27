@@ -8,7 +8,7 @@ const initialState: globalLoadingState = {
   loading: false,
 };
 
-export const cartSlice = createSlice({
+export const globalLoadingSlice = createSlice({
   name: "globalLoading",
   initialState,
   reducers: {
@@ -21,6 +21,6 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { globalLoadingOff, globalLoadingOn } = cartSlice.actions;
+export const { globalLoadingOff, globalLoadingOn } = globalLoadingSlice.actions;
 
-export default cartSlice.reducer;
+export default globalLoadingSlice.reducer;
