@@ -14,16 +14,16 @@ import { AppDispatch } from "../store";
  * @param dispatchReducers Array of functions that dispatch Redux actions
  * @param delay Delay in milliseconds before executing actions (default: 0)
  */
-export const turnModalOn =  (dispatch: AppDispatch , dispatchReducers?: Array<() => Action>, delay: number = 0) => {
+export const turnModalOn =  ( dispatch: AppDispatch, dispatchReducers?: Array<() => Action>, delay: number = 0 ) => {
     scrollToTop()
 
-    setTimeout(() => {
-        if (dispatchReducers) {
-            dispatchReducers.forEach(func => dispatch(func()));
+    setTimeout( () => {
+        if ( dispatchReducers ) {
+            dispatchReducers.forEach( func => dispatch( func() ) );
         }
-        dispatch(modalOn());
-        dispatch(modalAnimateOn());
-    }, delay);
+        dispatch( modalOn() );
+        dispatch( modalAnimateOn() );
+    }, delay );
 }
 
 /**
@@ -32,17 +32,17 @@ export const turnModalOn =  (dispatch: AppDispatch , dispatchReducers?: Array<()
  * @param dispatchReducers Array of functions that dispatch Redux actions
  * @param dispatchReducersAfterAnimations Array of functions that dispatch Redux after animations
  */
-export const turnModalOff = (dispatch: AppDispatch, dispatchReducers?: Array<() => Action>, dispatchReducersAfterAnimations?: Array<() => Action>) => {
-    dispatch(modalAnimateOff());
-    if (dispatchReducers) {
-        dispatchReducers.forEach(func => dispatch(func()));
+export const turnModalOff = ( dispatch: AppDispatch, dispatchReducers?: Array<() => Action>, dispatchReducersAfterAnimations?: Array<() => Action> ) => {
+    dispatch( modalAnimateOff() );
+    if ( dispatchReducers ) {
+        dispatchReducers.forEach( func => dispatch( func() ) );
     }
-    new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
-      dispatch(modalOff());
-      if (dispatchReducersAfterAnimations) {
-        dispatchReducersAfterAnimations.forEach(func => dispatch(func()));
-      }
-    });
+    new Promise( ( resolve ) => setTimeout( resolve, 300 ) ).then( () => {
+        dispatch( modalOff() );
+        if ( dispatchReducersAfterAnimations ) {
+            dispatchReducersAfterAnimations.forEach( func => dispatch( func() ) );
+        }
+    } );
 }
 
 /**
@@ -51,16 +51,16 @@ export const turnModalOff = (dispatch: AppDispatch, dispatchReducers?: Array<() 
  * @param reactElement Element of popup that is displayed
  * @param delay Delay in milliseconds before executing actions (default: 0)
  */
-export const turnPopupAndModalOn =  (dispatch: AppDispatch , elementKey: string, delay: number = 0) => {
+export const turnPopupAndModalOn =  ( dispatch: AppDispatch, elementKey: string, delay: number = 0 ) => {
     scrollToTop()
 
-    setTimeout(() => {
-        dispatch(popupSetElementKey(elementKey))
-        dispatch(modalOn());
-        dispatch(popupOn());
-        dispatch(modalAnimateOn());
-        dispatch(popupAnimateOn());
-    }, delay);
+    setTimeout( () => {
+        dispatch( popupSetElementKey( elementKey ) )
+        dispatch( modalOn() );
+        dispatch( popupOn() );
+        dispatch( modalAnimateOn() );
+        dispatch( popupAnimateOn() );
+    }, delay );
 }
 
 /**
@@ -69,19 +69,19 @@ export const turnPopupAndModalOn =  (dispatch: AppDispatch , elementKey: string,
  * @param dispatchReducers Array of functions that dispatch Redux actions
  * @param dispatchReducersAfterAnimations Array of functions that dispatch Redux after animations
  */
-export const turnPopupAndModalOff = (dispatch: AppDispatch, dispatchReducers?: Array<() => Action>, dispatchReducersAfterAnimations?: Array<() => Action>) => {
-    dispatch(modalAnimateOff());
-    dispatch(popupAnimateOff());
+export const turnPopupAndModalOff = ( dispatch: AppDispatch, dispatchReducers?: Array<() => Action>, dispatchReducersAfterAnimations?: Array<() => Action> ) => {
+    dispatch( modalAnimateOff() );
+    dispatch( popupAnimateOff() );
 
-    if (dispatchReducers) {
-        dispatchReducers.forEach(func => dispatch(func()));
+    if ( dispatchReducers ) {
+        dispatchReducers.forEach( func => dispatch( func() ) );
     }
-    new Promise((resolve) => setTimeout(resolve, 300)).then(() => {
-      dispatch(modalOff());
-      dispatch(popupOff());
+    new Promise( ( resolve ) => setTimeout( resolve, 300 ) ).then( () => {
+        dispatch( modalOff() );
+        dispatch( popupOff() );
 
-      if (dispatchReducersAfterAnimations) {
-        dispatchReducersAfterAnimations.forEach(func => dispatch(func()));
-      }
-    });
+        if ( dispatchReducersAfterAnimations ) {
+            dispatchReducersAfterAnimations.forEach( func => dispatch( func() ) );
+        }
+    } );
 }
