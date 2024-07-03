@@ -6,42 +6,42 @@ import bcrypt from "bcryptjs";
 import * as z from "zod";
 
 import { generateVerificationToken } from "@/lib/auth/tokens";
-import { sendMail } from "@/lib/mail/mail";
+import { sendMailToken } from "@/lib/mail/mail";
 
-export const login = async (values: z.infer<typeof loginSchema>) => {
+export const login = async ( values: z.infer<typeof loginSchema> ) => {
   
-  const validValues = loginSchema.safeParse(values);
-  if (!validValues.success) {
-    return { error: "Values are not valid" };
-  }
-  const { email, password } = validValues.data;
+    const validValues = loginSchema.safeParse( values );
+    if ( !validValues.success ) {
+        return { error: "Values are not valid" };
+    }
+    const { email, password } = validValues.data;
 
-  const existingUser = await getUserByEmail(email);
+    const existingUser = await getUserByEmail( email );
 
-  if (!existingUser) {
-    return { error: "Wrong password or email" };
-  }
-
-  const correctPassword = bcrypt.compareSync(password, existingUser.password);
-  if (!correctPassword) {
-    return { error: "Wrong password or email" };
-  }
-
-  if (!existingUser.email_verified) {
-
-    const newToken = await generateVerificationToken(existingUser.email, 'email');
-    if (!newToken) {
-      return {error: 'Something went wrong'}
+    if ( !existingUser ) {
+        return { error: "Wrong password or email" };
     }
 
-    const {mailError} = await sendMail(newToken,email,'verification');
-    if (mailError) {
-      return {error: 'Something went wrong'}
+    const correctPassword = bcrypt.compareSync( password, existingUser.password );
+    if ( !correctPassword ) {
+        return { error: "Wrong password or email" };
     }
 
-    return {error: 'Email is not verified. Check your email'}
-  }
+    if ( !existingUser.email_verified ) {
+
+        const newToken = await generateVerificationToken( existingUser.email, 'email' );
+        if ( !newToken ) {
+            return { error: 'Something went wrong' }
+        }
+
+        const { mailError } = await sendMailToken( newToken, email, 'verification' );
+        if ( mailError ) {
+            return { error: 'Something went wrong' }
+        }
+
+        return { error: 'Email is not verified. Check your email' }
+    }
   
-  await authLogin(email);
-  return { success: "Login success" };
+    await authLogin( email );
+    return { success: "Login success" };
 };
