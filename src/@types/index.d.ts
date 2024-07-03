@@ -6,8 +6,11 @@ interface User {
   first_name: string;
   name: string | null;
   account_id: string | null;
-  password: string;
   email_verified: number;
+}
+
+interface UserWithPassword extends User {
+  password: string;
 }
 
 interface GoogleUser {
