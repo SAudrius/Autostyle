@@ -51,3 +51,7 @@ repeat_password: z
   .string()
   .min(1, { message: "Repeat Password is required" }),
 });
+
+export const otpCodeSchema = z.object({
+  otpCode: z.string().min(6).max(6)
+})
