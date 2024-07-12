@@ -2,135 +2,136 @@ import { ResultSetHeader } from "mysql2";
 
 import { dbQuery } from "../database/app";
 
-export const getUserById = async (id: string | number) => {
-  try {
-    const dbParams = [id];
-    const sql = "SELECT * FROM users WHERE id = ?";
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [rows, error] = await dbQuery<User>(sql, dbParams);
-    if (error) {
-      throw new Error("somethink went wrong");
+export const getUserById = async ( id: string | number ) => {
+    try {
+        const dbParams = [ id ];
+        const sql = "SELECT id, name, account_id, image, first_name, last_name, email, country, address, email_verified FROM users WHERE id = ? LIMIT 1";
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const [ rows, error ] = await dbQuery<User[]>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
+        return rows[0]
+    } catch ( error ) {
+        return;
     }
-  } catch (error) {
-    return;
-  }
 };
 
 
-export const getUserByEmail = async (email: string) => {
-  try {
-    const dbParams = [email];
-    const sql = "SELECT * FROM users WHERE email = ?";
-    const [rows, error] = await dbQuery<User[]>(sql, dbParams);
-    if (error) {
-      throw new Error("somethink went wrong");
+export const getUserByEmail = async ( email: string ) => {
+    try {
+        const dbParams = [ email ];
+        const sql = "SELECT * FROM users WHERE email = ?";
+        const [ rows, error ] = await dbQuery<UserWithPassword[]>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
+        return rows[0];
+    } catch ( error ) {
+        return;
     }
-    return rows[0];
-  } catch (error) {
-    return;
-  }
 };
 
 
-export const getUserDetailsById = async (id: number | string) => {
-  try {
-    const sql =
+export const getUserDetailsById = async ( id: number | string ) => {
+    try {
+        const sql =
       "SELECT first_name, last_name, email, country, address FROM users WHERE id = ?";
-    const dbParams = [id];
-    const [rows, error] = await dbQuery<UserDetailsApi[]>(sql, dbParams);
-    if (error) {
-      throw new Error("somethink went wrong");
+        const dbParams = [ id ];
+        const [ rows, error ] = await dbQuery<UserDetailsApi[]>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
+        return rows[0];
+    } catch ( error ) {
+        return;
     }
-    return rows[0];
-  } catch (error) {
-    return;
-  }
 };
 
 
 export const createUserByData = async (
-  first_name: string,
-  last_name: string,
-  email: string,
-  password: string,
+    first_name: string,
+    last_name: string,
+    email: string,
+    password: string,
 ) => {
-  try {
-    const dbParams = [first_name, last_name, email, password];
-    const sql =
+    try {
+        const dbParams = [ first_name, last_name, email, password ];
+        const sql =
       "INSERT INTO users ( first_name, last_name, email, password) VALUES (?,?,?,?)";
-    const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
-    if (error) {
-      throw new Error("somethink went wrong");
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
+        return rows;
+    } catch ( error ) {
+        return;
     }
-    return rows;
-  } catch (error) {
-    return;
-  }
 };
 
 export const createGoogleUserByData = async (
-  first_name: string,
-  last_name: string,
-  email: string,
-  image: string,
+    first_name: string,
+    last_name: string,
+    email: string,
+    image: string,
 ) => {
-  try {
-    const provider = "google";
-    const sql =
+    try {
+        const provider = "google";
+        const sql =
       "INSERT INTO users ( first_name, last_name, email, image) VALUES (?,?,?,?)";
-    const dbParams = [first_name, last_name, email, image];
-    // creating new user for google without password
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [rows, error] = await dbQuery(sql, dbParams);
-    if (error) {
-      throw new Error("somethink went wrong");
+        const dbParams = [ first_name, last_name, email, image ];
+        // creating new user for google without password
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const [ rows, error ] = await dbQuery( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
+        const createdUser = await getUserByEmail( email );
+        if ( !createdUser ) {
+            return;
+        }
+        // creating account for provider
+        const sql2 = "INSERT INTO accounts (provider,user_id) VALUES (?,?)";
+        const dbParams2 = [ provider, createdUser.id ];
+        const [ rows2, error2 ] = await dbQuery<ResultSetHeader>( sql2, dbParams2 );
+        if ( error2 ) {
+            throw new Error( "somethink went wrong" );
+        }
+        if ( rows2.affectedRows !== 1 ) {
+            return;
+        }
+        return rows2;
+    } catch ( error ) {
+        return;
     }
-    const createdUser = await getUserByEmail(email);
-    if (!createdUser) {
-      return;
-    }
-    // creating account for provider
-    const sql2 = "INSERT INTO accounts (provider,user_id) VALUES (?,?)";
-    const dbParams2 = [provider, createdUser.id];
-    const [rows2, error2] = await dbQuery<ResultSetHeader>(sql2, dbParams2);
-    if (error2) {
-      throw new Error("somethink went wrong");
-    }
-    if (rows2.affectedRows !== 1) {
-      return;
-    }
-    return rows2;
-  } catch (error) {
-    return;
-  }
 };
 
-export const updateUserEmailVerifiedById = async (id: number) => {
-  try {
-    const sql =
+export const updateUserEmailVerifiedById = async ( id: number ) => {
+    try {
+        const sql =
       "UPDATE users SET email_verified = 1 WHERE id = ?";
-    const dbParams = [id];
-    const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
-    if (error) {
-      throw new Error("somethink went wrong");
+        const dbParams = [ id ];
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
+        return rows;
+    } catch ( error ) {
+        return;
     }
-    return rows;
-  } catch (error) {
-    return;
-  }
 }
 
-export const updateUserPasswordById = async (newPassword: string,id:number) => {
-  try {
-    const sql =
-      "UPDATE users SET password = ? WHERE id = ?";
-    const dbParams = [newPassword,id];
-    const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
-    if (error) {
-      throw new Error("somethink went wrong");
+export const updateUserPasswordById = async ( newPassword: string, id:number ) => {
+    try {
+        const sql =
+        "UPDATE users SET password = ? WHERE id = ?";
+        const dbParams = [ newPassword, id ];
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
+        return rows;
+    } catch ( error ) {
+        return;
     }
-    return rows;
-  } catch (error) {
-    return;
-  }
 }
