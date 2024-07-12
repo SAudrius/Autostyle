@@ -6,11 +6,14 @@ import modalSlice from "@lib/store/slices/modalSlice";
 import searchSlice from "@lib/store/slices/searchSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
+import popupSlice from "./slices/popupSlice";
+
 export const store = configureStore({
   reducer: {
     auth: authSlice,
-    modal: modalSlice,
     cart: cartSlice,
+    modal: modalSlice,
+    popup: popupSlice,
     menu: menuSlice,
     search: searchSlice,
     globalLoading: globalLoadingSlice,
