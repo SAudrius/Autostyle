@@ -6,7 +6,7 @@ import { CancelIcon, Line } from "@/components/ui/custom";
 import { cn } from "@/config/utils";
 import { useAppSelector } from "@/lib/hooks";
 import { menuAnimateOff, menuOff } from "@/lib/store/slices/menuSlice";
-import { turnModalOff } from "@/lib/store/storeHelpers/storeHelepers";
+import { turnModalOff } from "@/lib/store/storeHelpers/storeHelpers";
 
 interface MenuOpenProps {
   onClose: () => void;
