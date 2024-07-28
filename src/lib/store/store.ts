@@ -8,17 +8,17 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import popupSlice from "./slices/popupSlice";
 
-export const store = configureStore({
-  reducer: {
-    auth: authSlice,
-    cart: cartSlice,
-    modal: modalSlice,
-    popup: popupSlice,
-    menu: menuSlice,
-    search: searchSlice,
-    globalLoading: globalLoadingSlice,
-  },
-});
+export const store = configureStore( {
+    reducer: {
+        auth: authSlice,
+        cart: cartSlice,
+        modal: modalSlice,
+        popup: popupSlice,
+        menu: menuSlice,
+        search: searchSlice,
+        globalLoading: globalLoadingSlice,
+    },
+} );
 
 export type AppStore = typeof store
 export type RootState = ReturnType<typeof store.getState>;
