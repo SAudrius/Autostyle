@@ -1,19 +1,13 @@
 /* eslint-disable @next/next/no-head-element */
-import React from "react";
+import React from 'react'
 
-interface ForgotPasswordTemplateProps {
-  resetPasswordLink: string;
-}
-
-export const ForgotPasswordTemplate = ( {
-    resetPasswordLink,
-}: ForgotPasswordTemplateProps ) => {
+export const SuccessPasswordChangeTemplate = () => {
     return (
         <html lang="en">
             <head>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>Forgot Password</title>
+                <title>Password Changed Successfully</title>
                 <style>
                     {`
             body {
@@ -65,17 +59,15 @@ export const ForgotPasswordTemplate = ( {
             <body>
                 <div className="container">
                     <div className="header">
-                        <h1>Change Your Password</h1>
+                        <h1>Password Changed Successfully</h1>
                     </div>
                     <div className="content">
                         <p>
-              We received a request to change your password. Click the link
-              below to set a new password:
+                            Your password has been updated.
                         </p>
-                        <a href={resetPasswordLink}>Change Password</a>
                     </div>
                 </div>
             </body>
         </html>
     );
-};
+}

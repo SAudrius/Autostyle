@@ -1,21 +1,23 @@
+/* eslint-disable space-in-parens */
+/* eslint-disable indent */
 /* eslint-disable @next/next/no-head-element */
 import React from "react";
 
-interface ForgotPasswordTemplateProps {
-  resetPasswordLink: string;
+interface ChangetPasswordTemplateProps {
+  code: number;
 }
 
-export const ForgotPasswordTemplate = ( {
-    resetPasswordLink,
-}: ForgotPasswordTemplateProps ) => {
-    return (
-        <html lang="en">
-            <head>
-                <meta charSet="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>Forgot Password</title>
-                <style>
-                    {`
+export const ChangetPasswordTemplate = ({
+  code,
+}: ChangetPasswordTemplateProps) => {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Change Password</title>
+        <style>
+          {`
             body {
               font-family: Arial, sans-serif;
               background-color: #f4f4f4;
@@ -59,23 +61,34 @@ export const ForgotPasswordTemplate = ( {
               text-decoration: none;
               border-radius: 5px;
             }
+            .code {
+              font-size: 18px;
+              color: #007bff;
+              background-color: #e7f1ff;
+              padding: 10px 15px;
+              border-radius: 5px;
+              display: inline-block;
+              margin-top: 20px;
+              font-weight: bold;
+              letter-spacing: 2px;
+            }
           `}
-                </style>
-            </head>
-            <body>
-                <div className="container">
-                    <div className="header">
-                        <h1>Change Your Password</h1>
-                    </div>
-                    <div className="content">
-                        <p>
+        </style>
+      </head>
+      <body>
+        <div className="container">
+          <div className="header">
+            <h1>Change Password</h1>
+          </div>
+          <div className="content">
+            <p>
               We received a request to change your password. Click the link
               below to set a new password:
-                        </p>
-                        <a href={resetPasswordLink}>Change Password</a>
-                    </div>
-                </div>
-            </body>
-        </html>
-    );
+            </p>
+            <div className="code">{code}</div>
+          </div>
+        </div>
+      </body>
+    </html>
+  );
 };

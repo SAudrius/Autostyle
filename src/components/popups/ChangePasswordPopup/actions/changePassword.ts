@@ -1,7 +1,9 @@
 'use server'
 import { tokenDataByToken } from "@lib/auth/auth";
-import { getUserById, updateUserPasswordById } from "@lib/data/users";
+import { getUserWithPasswordById, updateUserPasswordById } from "@lib/data/users";
+import { deleteVerificationCodesByUserId, getCountVerificationCodesByUserId } from "@lib/data/verificationCodes";
 import { resetPasswordSchema } from "@lib/schemas";
+import bcrypt from "bcryptjs";
 import { cookies } from "next/headers"
 import * as z from "zod";
 
@@ -9,7 +11,6 @@ import { sendMail } from "@/lib/mail/mail";
 
 
 export const changePassword = async ( values: z.infer<typeof resetPasswordSchema> ) => {
-    console.log( 'change password' );
 
     const authCookie = cookies().get( 'auth' )
     
@@ -32,25 +33,36 @@ export const changePassword = async ( values: z.infer<typeof resetPasswordSchema
         return { error: "Fields are not valid" };
     }
 
-    const rows = await updateUserPasswordById( validValues.data?.password, userId )
-    if ( rows?.affectedRows !== 1 ) {
-        console.log( 'wrong db update password' );
-        return
-    }
-
-    const userData = await getUserById( userId )
+    const userData = await getUserWithPasswordById( userId )
 
     if( !userData ) {
-        return { error: 'Something went wrong' }
+        return { error: 'Something went wrong 1' }
     }
 
-    console.log( 'values ===', values );
-    console.log( 'validValues ===', validValues );
+    const hashedPassword = await bcrypt.hash( validValues.data.password, 10 );
+
+    if ( hashedPassword !== userData.password ){
+
+        const rows = await updateUserPasswordById( hashedPassword, userId )
+        if ( rows?.affectedRows !== 1 ) {
+            return { error: 'Something went wrong' }
+        }
+    }
+
+    const tokenCount = await getCountVerificationCodesByUserId( userId, 'password' )
+    if ( tokenCount ){ 
+
+        const deletedTokenRows = await deleteVerificationCodesByUserId( userData.id, 'password' )
+        if ( deletedTokenRows?.affectedRows !== 1 ) {
+            return { error: 'Something went wrong 2' }
+        }
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { mailError } = await sendMail( userData.email, 'successPassword' )
-
     if ( mailError ) {
-        return { error: 'Something went wrong' }
+        return { error: 'Something went wrong 3' }
     }
-    
+
     return { success: 'Password changed' }
 }
