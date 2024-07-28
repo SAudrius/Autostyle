@@ -6,8 +6,14 @@ interface User {
   first_name: string;
   name: string | null;
   account_id: string | null;
+  country: string | null;
+  city: string | null;
+  address: string | null;
   email_verified: number;
+  previous_email: string | null;
+  email_pre_change: string | null;
 }
+
 
 interface UserWithPassword extends User {
   password: string;
