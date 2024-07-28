@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import * as z from "zod";
 
 import { getUserByEmail, updateUserEmailVerifiedById, updateUserPasswordById } from "@/lib/data/users";
-import { deleteVerificationTokenById, getEmailByToken } from "@/lib/data/verificationTokens";
+import { deleteVerificationTokenById, getVerificationTokenByToken } from "@/lib/data/verificationTokens";
 import { resetPasswordSchema } from "@/lib/schemas";
 
 export const passwordValidate = async ( values: z.infer<typeof resetPasswordSchema>, token:string ) => {
@@ -13,7 +13,7 @@ export const passwordValidate = async ( values: z.infer<typeof resetPasswordSche
     if ( !validValues.success ) {
         return { error: "Values are not valid" };
     }
-    const verifyTokenData = await getEmailByToken( token, 'password' )
+    const verifyTokenData = await getVerificationTokenByToken( token )
 
     if ( !verifyTokenData?.email ) {
         return  { error: 'Token is not valid' }
@@ -43,7 +43,7 @@ export const passwordValidate = async ( values: z.infer<typeof resetPasswordSche
     if ( updatedUserEmailRows?.affectedRows !== 1 ) {
         return { error: 'Something went wrong' }
     }  
-    const deletedTokenRows = await deleteVerificationTokenById( verifyTokenData.id, 'password' )
+    const deletedTokenRows = await deleteVerificationTokenById( verifyTokenData.id )
     if ( deletedTokenRows?.affectedRows !== 1 ) {
         return { error: 'Something went wrong' }
     }  
