@@ -1,43 +1,43 @@
 'use server'
 
 import { getUserByEmail, updateUserEmailVerifiedById } from "@lib/data/users"
-import { deleteVerificationTokenById, getEmailByToken } from "@lib/data/verificationTokens"
+import { deleteVerificationTokenById, getVerificationTokenByToken } from "@lib/data/verificationTokens"
 
-export const verifyToken = async (token: string) => {
+export const verifyToken = async ( token: string ) => {
     const currentTime = new Date() 
-    const verifyTokenData = await getEmailByToken(token)
+    const verifyTokenData = await getVerificationTokenByToken( token  )
 
-    if (!verifyTokenData?.email) {
-       return {error: 'Something went wrong'}
+    if ( !verifyTokenData?.email ) {
+        return { error: 'Something went wrong' }
     }
 
-    const verifyTokenExpires = new Date(verifyTokenData.expires).getTime();
-    const expiredTime = new Date(currentTime.getTime() + (30 * 60000))
+    const verifyTokenExpires = new Date( verifyTokenData.expires ).getTime();
+    const expiredTime = new Date( currentTime.getTime() + ( 30 * 60000 ) )
 
     
-    if (verifyTokenExpires > expiredTime.getTime()) {
-        return {error: 'Token is expired'}
+    if ( verifyTokenExpires > expiredTime.getTime() ) {
+        return { error: 'Token is expired' }
     }
 
-    const userData = await getUserByEmail(verifyTokenData.email)
+    const userData = await getUserByEmail( verifyTokenData.email )
 
-    if (userData?.email_verified === 1) {
-        return {success: 'Email Verified'}
+    if ( userData?.email_verified === 1 ) {
+        return { success: 'Email Verified' }
     }
 
-    if (!userData) {
-        return {error: 'Something went wrong'}
+    if ( !userData ) {
+        return { error: 'Something went wrong' }
     }
-    const updatedUserRows = await updateUserEmailVerifiedById(userData.id)
-    if (updatedUserRows?.affectedRows !== 1 ) {
-        return {error: 'Something went wrong'}
+    const updatedUserRows = await updateUserEmailVerifiedById( userData.id )
+    if ( updatedUserRows?.affectedRows !== 1 ) {
+        return { error: 'Something went wrong' }
     }   
 
-    const deletedTokenRows = await deleteVerificationTokenById(verifyTokenData.id)
+    const deletedTokenRows = await deleteVerificationTokenById( verifyTokenData.id )
 
-    if (deletedTokenRows?.affectedRows !== 1 ) {
-      return {error: 'Something went wrong'}
+    if ( deletedTokenRows?.affectedRows !== 1 ) {
+        return { error: 'Something went wrong' }
     }  
 
-    return {success: 'Email Verified' }
+    return { success: 'Email Verified!' }
 }
