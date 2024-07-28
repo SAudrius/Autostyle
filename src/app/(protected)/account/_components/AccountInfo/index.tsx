@@ -44,7 +44,6 @@ export const AccountInfo = async () => {
                 className="mt-3"
                 field="Address"
                 value={userData.data?.address || "Not provided"}
-                userData={userData}
                 buttonLabel="Change details"
                 haveButton
             />
@@ -61,7 +60,6 @@ export const AccountInfo = async () => {
                 className="mt-3"
                 field="Password"
                 value="********"
-                userData={userData}
                 buttonLabel="Change password"
                 haveButton
             />
