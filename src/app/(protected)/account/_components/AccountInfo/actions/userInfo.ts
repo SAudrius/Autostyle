@@ -1,8 +1,7 @@
 "use server";
+import { tokenDataByToken } from "@lib/auth/auth";
+import { getUserDetailsById } from "@lib/data/users";
 import { cookies } from "next/headers";
-
-import { tokenDataByToken } from "@/lib/auth/auth";
-import { getUserDetailsById } from "@/lib/data/users";
 
 export const userInfo = async () => {
     const userToken = cookies().get( "auth" )?.value;
