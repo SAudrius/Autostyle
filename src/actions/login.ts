@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import * as z from "zod";
 
 import { generateVerificationToken } from "@/lib/auth/tokens";
+import { deleteVerificationTokenByEmail, getVerificationTokenByEmail } from "@/lib/data/verificationTokens";
 import { sendMailToken } from "@/lib/mail/mail";
 
 export const login = async ( values: z.infer<typeof loginSchema> ) => {
@@ -23,11 +24,20 @@ export const login = async ( values: z.infer<typeof loginSchema> ) => {
     }
 
     const correctPassword = bcrypt.compareSync( password, existingUser.password );
-    if ( !correctPassword ) {
+    if ( !correctPassword ) { 
         return { error: "Wrong password or email" };
     }
 
     if ( !existingUser.email_verified ) {
+
+        const oldToken = await getVerificationTokenByEmail( existingUser.email, 'email' )
+        console.log( 'oldToken?.email', oldToken?.email )
+        if ( oldToken?.email ) {
+            const deletedResponse = await deleteVerificationTokenByEmail( existingUser.email, 'email' )
+            if ( deletedResponse?.affectedRows !== 1 ) {
+                return { error: 'Something went wrong' };
+            }
+        }
 
         const newToken = await generateVerificationToken( existingUser.email, 'email' );
         if ( !newToken ) {
