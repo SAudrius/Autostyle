@@ -21,7 +21,7 @@ export const createVerificationCodeByEmail = async ( userId: number, email: stri
     }
 };
 
-export const getVerificationCodeById = async ( userId: number, type: 'password' | 'email' ) => {
+export const getVerificationCodeByUserId = async ( userId: number, type: 'password' | 'email' ) => {
     try {
         const sql =
         "SELECT * FROM verification_codes WHERE user_id = ? AND type = ?";
@@ -38,22 +38,42 @@ export const getVerificationCodeById = async ( userId: number, type: 'password' 
     }
 }
 
-// export const getEmailByToken = async (token: string, type: 'password' | 'password') => {
-//     try {
-//         const sql =
-//         "SELECT * FROM verification_tokens WHERE token = ? AND type = ?";
-//         const dbParams = [token, type];
-//         const [rows, error] = await dbQuery<VerificationToken[]>(sql, dbParams);
-//         if (error) {
-//           throw new Error("somethink went wrong");
-//         }
-//         return rows[0]
-//     } catch (error) {
-//         return 
-//     }
-// }
 
-export const deleteVerificationCodeByEmail = async ( email: number, type: 'password' | 'email' ) => {
+export const deleteVerificationCodesByUserId = async ( id: number, type: 'password' | 'email' ) => {
+    try {
+        const sql =
+        "DELETE FROM verification_codes WHERE user_id = ? AND type = ?";
+        const dbParams = [ id, type ];
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        console.log( 'rows ===', rows );
+        console.log( 'error ===', error );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
+        return rows
+    } catch ( error ) {
+        return;
+    }
+
+}
+export const getCountVerificationCodesByUserId = async ( id: number, type: 'password' | 'email' ) => {
+    try {
+        const sql = "SELECT COUNT(*) as count FROM verification_codes WHERE user_id = ? AND type = ?";
+        const dbParams = [ id, type ];
+        const [ rows, error ] = await dbQuery<{ count: number }[]>( sql, dbParams );
+        
+        if ( error ) {
+            throw new Error( "Something went wrong" );
+        }
+        
+        return rows[0].count;
+    } catch ( error ) {
+        return  
+    }
+};
+
+
+export const deleteVerificationCodeByEmail = async ( email: string, type: 'password' | 'email' ) => {
     try {
         const sql =
         "DELETE FROM verification_codes WHERE email = ? AND type = ? LIMIT 1";
