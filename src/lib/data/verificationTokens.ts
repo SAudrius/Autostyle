@@ -1,63 +1,82 @@
 import { dbQuery } from "@lib/database/app";
 import { ResultSetHeader } from "mysql2";
 
-export const createVerificationTokenByEmail = async (email: string, token: string, type: 'password' | 'email') => {
+export const createVerificationTokenByEmail = async ( email: string, token: string, type: 'password' | 'email' ) => {
     try {
-      const sql =
+        const sql =
         "INSERT INTO verification_tokens (email, token, type) VALUES (?,?, ?)";
-      const dbParams = [email, token, type];
-      const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
-      if (error) {
-        throw new Error("somethink went wrong");
-      }
+        const dbParams = [ email, token, type ];
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
 
-      return rows;
-    } catch (error) {
-      return;
+        return rows;
+    } catch ( error ) {
+        return;
     }
 };
 
-export const getVerificationTokenByEmail = async (email: string, type: 'password' | 'email') => {
+export const getVerificationTokenByEmail = async ( email: string, type: 'password' | 'email' ) => {
     try {
         const sql =
-        "SELECT verification_tokens WHERE email = ? AND type = ?";
-        const dbParams = [email,type];
-        const [rows, error] = await dbQuery<VerificationToken[]>(sql, dbParams);
-        if (error) {
-          throw new Error("somethink went wrong");
+        "SELECT * FROM verification_tokens WHERE email = ? AND type = ?";
+        const dbParams = [ email, type ];
+        console.log( 'email ===', email );
+        console.log( 'type ===', type );
+        const [ rows, error ] = await dbQuery<VerificationToken[]>( sql, dbParams );
+        console.log( 'rows ===', rows );
+        console.log( 'error ===', error );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
         }
         return rows[0]
-    } catch (error) {
+    } catch ( error ) {
         return;
     }
 }
 
-export const getEmailByToken = async (token: string, type: 'password' | 'password') => {
+export const getVerificationTokenByToken = async ( token: string ) => {
     try {
         const sql =
-        "SELECT * FROM verification_tokens WHERE token = ? AND type = ?";
-        const dbParams = [token, type];
-        const [rows, error] = await dbQuery<VerificationToken[]>(sql, dbParams);
-        if (error) {
-          throw new Error("somethink went wrong");
+        "SELECT * FROM verification_tokens WHERE token = ?";
+        const dbParams = [ token ];
+        const [ rows, error ] = await dbQuery<VerificationToken[]>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
         }
         return rows[0]
-    } catch (error) {
+    } catch ( error ) {
         return 
     }
 }
 
-export const deleteVerificationTokenById = async (id: number, type: 'password' | 'email') => {
+export const deleteVerificationTokenById = async ( id: number ) => {
     try {
         const sql =
-        "DELETE FROM verification_tokens WHERE id = ? AND type = ?LIMIT 1";
-        const dbParams = [id, type];
-        const [rows, error] = await dbQuery<ResultSetHeader>(sql, dbParams);
-        if (error) {
-          throw new Error("somethink went wrong");
+        "DELETE FROM verification_tokens WHERE id = ? LIMIT 1";
+        const dbParams = [ id ];
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
         }
         return rows
-    } catch (error) {
+    } catch ( error ) {
+        return;
+    }
+}
+
+export const deleteVerificationTokenByEmail = async ( email: string, type: 'password' | 'email' ) => {
+    try {
+        const sql =
+        "DELETE FROM verification_tokens WHERE email = ? AND type = ?LIMIT 1";
+        const dbParams = [ email, type ];
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        if ( error ) {
+            throw new Error( "somethink went wrong" );
+        }
+        return rows
+    } catch ( error ) {
         return;
     }
 }
