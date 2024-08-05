@@ -2,19 +2,19 @@
  * Routes that are public
  * @type {string}
  */
-export const publicRoutes = ["/"];
+export const publicRoutes = [ "/" ];
 
 /**
  * These routes are used for authentication
  * @type {string}
  */
 export const authRoutes = [
-  "/auth/login",
-  "/auth/register",
-  "/auth/verification",
-  "/auth/forgot-password",
-  "/auth/reset-password",
-  "/auth/google",
+    "/auth/login",
+    "/auth/register",
+    "/auth/verification",
+    "/auth/forgot-password",
+    "/auth/reset-password",
+    "/auth/google",
 ];
 
 /**
@@ -22,7 +22,7 @@ export const authRoutes = [
  * Routes that start with this prefix are used for API authentication purposes
  * @type {string}
  */
-export const apiAuthPrefix = "/api/auth";
+export const apiAuthPrefix = "/api/auth" ;
 
 /**
  * The default redirect path after log in

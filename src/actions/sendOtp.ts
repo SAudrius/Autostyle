@@ -4,10 +4,11 @@ import { createExpiryTime, generateRandomSixNumberCode } from "@config/helpers"
 import { tokenDataByToken } from "@lib/auth/auth"
 import { getUserById } from "@lib/data/users"
 import { createVerificationCodeByEmail, deleteVerificationCodesByUserId, getVerificationCodeByUserId } from "@lib/data/verificationCodes"
-import { sendMailCode } from "@lib/mail/mail"
 import { cookies } from "next/headers"
 
-export const sendOtp = async ( type: 'email' | 'password', template: "changeEmail" | "changePassword" | 'successEmailStepOne' | 'successEmailStepTwo' ) => {
+import { sendEmail } from "@/lib/mail/sendMail"
+
+export const sendOtp = async ( type: 'password' | 'email', templateId: string ) => {
 
     const authCookie = cookies().get( 'auth' )
     if ( !authCookie ) {
@@ -44,10 +45,9 @@ export const sendOtp = async ( type: 'email' | 'password', template: "changeEmai
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { mailError } = await sendMailCode( userData.email, newCode, template )
-    if( mailError ){
+    const responseBoolean = await sendEmail( userData.email, templateId, { code: newCode } );
+    if ( !responseBoolean ) {
         return { error: 'Something went wrong' }
     }
-
     return { success: 'Success!' }
 }

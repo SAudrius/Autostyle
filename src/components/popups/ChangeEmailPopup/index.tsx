@@ -40,7 +40,7 @@ export const ChangeEmailPopup = () => {
         turnPopupAndModalOff( dispatch );
     };
 
-    const handleSendNewCode = ( type: 'password' | 'email', template: 'successEmailStepOne' | 'successEmailStepTwo' ) => {
+    const handleSendNewCode = ( type: 'password' | 'email', template: string ) => {
         setLoading( true );
         setSuccess( false )
         setError( '' )
@@ -62,7 +62,7 @@ export const ChangeEmailPopup = () => {
     const handleProcced = () => {
         setLoading( true );
         const mailResponse = async () => {
-            const mailActionResponse = await sendOtp( 'email', 'successEmailStepOne' );
+            const mailActionResponse = await sendOtp( 'email', 'd-c7fcc41bbaf34d9385c45a30bf2e86bc' );
             if ( mailActionResponse?.error ) {
                 turnPopupAndModalOn( dispatch, 'error' )
                 return
@@ -149,13 +149,13 @@ export const ChangeEmailPopup = () => {
                 <ConfirmSection handleCancel={handleCancel} handleProcced={handleProcced} loading={loading}/>
             )}
             {isProceeded && !isConfirmedCode && (
-                <ConfirmEmailCodeSection handleCancel={handleCancel} handleSubmitCode={handleSubmitCode} handleNewCode={() => handleSendNewCode( "email", "successEmailStepOne" )} otpArr={otpArr} setOtpArr={setOtpArr} loading={loading} error={error} success={success} />
+                <ConfirmEmailCodeSection handleCancel={handleCancel} handleSubmitCode={handleSubmitCode} handleNewCode={() => handleSendNewCode( "email", "d-c7fcc41bbaf34d9385c45a30bf2e86bc" )} otpArr={otpArr} setOtpArr={setOtpArr} loading={loading} error={error} success={success} />
             )}
             {isConfirmedCode && !isConfirmedEmailChange && (
                 <ChangeEmailSection handleSubmit={handleSubmitNewEmail} error={errorEmail} loading={loading} />
             )}
             {isConfirmedEmailChange && !isConfirmedCodeTwo && (
-                <ConfirmEmailCodeTwoSection handleCancel={handleCancel} handleSubmitCode={handleSubmitCodeTwo} handleNewCode={() => handleSendNewCode( "email", "successEmailStepTwo" )} otpArr={otpArr} setOtpArr={setOtpArr} loading={loading} error={error} success={success} />
+                <ConfirmEmailCodeTwoSection handleCancel={handleCancel} handleSubmitCode={handleSubmitCodeTwo} handleNewCode={() => handleSendNewCode( "email", "d-c7fcc41bbaf34d9385c45a30bf2e86bc" )} otpArr={otpArr} setOtpArr={setOtpArr} loading={loading} error={error} success={success} />
             )}
             {isConfirmedCodeTwo && <ChangeEmailSuccess handleComplete={handelComplete}/>}
         </div>

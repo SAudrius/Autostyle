@@ -7,7 +7,7 @@ import * as z from "zod";
 
 import { generateVerificationToken } from "@/lib/auth/tokens";
 import { deleteVerificationTokenByEmail, getVerificationTokenByEmail } from "@/lib/data/verificationTokens";
-import { sendMailToken } from "@/lib/mail/mail";
+import { sendEmail } from "@/lib/mail/sendMail";
 
 export const login = async ( values: z.infer<typeof loginSchema> ) => {
   
@@ -44,8 +44,10 @@ export const login = async ( values: z.infer<typeof loginSchema> ) => {
             return { error: 'Something went wrong' }
         }
 
-        const { mailError } = await sendMailToken( newToken, email, 'verification' );
-        if ( mailError ) {
+        const buttonHref = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/verification?token=${newToken}`
+  
+        const responseBoolean = await sendEmail( email, 'd-d97ea36e69a242c1a84f2da9e4f68b90', { "button_href": buttonHref } );
+        if ( !responseBoolean ) {
             return { error: 'Something went wrong' }
         }
 
@@ -53,5 +55,5 @@ export const login = async ( values: z.infer<typeof loginSchema> ) => {
     }
   
     await authLogin( email );
-    return { success: "Login success" };
+    return { success: "Login success!" };
 };

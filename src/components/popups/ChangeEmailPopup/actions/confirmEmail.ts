@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { tokenDataByToken } from "@/lib/auth/auth";
 import { getUserById, updateEmailByUserId } from "@/lib/data/users";
 import { deleteVerificationCodesByUserId, getVerificationCodeByUserId } from "@/lib/data/verificationCodes";
+import { sendEmail } from "@/lib/mail/sendMail";
 import { otpCodeSchema } from "@/lib/schemas";
 
 export const confirmEmail = async ( otpCode: { otpCode: string }, type: 'email' | 'password' ) => {
@@ -47,6 +48,16 @@ export const confirmEmail = async ( otpCode: { otpCode: string }, type: 'email' 
     const deletedTokenRows = await deleteVerificationCodesByUserId( userId, type )
     if ( deletedTokenRows?.affectedRows !== 1 ) {
         return { error: 'Semething went wrong' }
+    }
+    
+    console.log( 'userData.email_pre_change ===', userData.email_pre_change );
+    const responseBooleanNewEmail = await sendEmail( userData.email_pre_change, 'd-619f97b03d914a70984f793e7a4eb7fb' );
+    if ( !responseBooleanNewEmail ) {
+        return { error: 'Something went wrong' }
+    }
+    const responseBooleanPrevEmail = await sendEmail( userData.email, 'd-c3f3c756171c4337962d1c9b3b2f1b84' );
+    if ( !responseBooleanPrevEmail ) {
+        return { error: 'Something went wrong' }
     }
 
     return { success: 'Code Confirmed' }

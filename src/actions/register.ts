@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import * as z from "zod";
 
 import { generateVerificationToken } from "@/lib/auth/tokens";
-import {  sendMailToken } from "@/lib/mail/mail";
+import { sendEmail } from "@/lib/mail/sendMail";
 
 export const register = async ( values: z.infer<typeof registerSchema> ) => {
     const validValues = registerSchema.safeParse( values );
@@ -29,10 +29,11 @@ export const register = async ( values: z.infer<typeof registerSchema> ) => {
         if ( !newToken ) {
             return { error: 'Something went wrong' }
         }
+
+        const buttonHref = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/verification?token=${newToken}`
   
-        const { mailError } = await sendMailToken( newToken, email, 'verification' );
-    
-        if ( mailError ) {
+        const responseBoolean = await sendEmail( email, 'd-d97ea36e69a242c1a84f2da9e4f68b90', { "button_href": buttonHref } );
+        if ( !responseBoolean ) {
             return { error: 'Something went wrong' }
         }
 

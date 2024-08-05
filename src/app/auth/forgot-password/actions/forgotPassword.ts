@@ -1,8 +1,8 @@
 'use server'
 
-import { generateVerificationToken } from "@/lib/auth/tokens";
-import { getUserByEmail } from "@/lib/data/users";
-import { sendMailToken } from "@/lib/mail/mail";
+import { generateVerificationToken } from "@lib/auth/tokens";
+import { getUserByEmail } from "@lib/data/users";
+import { sendEmail } from "@lib/mail/sendMail";
 
 export const forgotPassword = async ( email: string ) => {
 
@@ -23,8 +23,10 @@ export const forgotPassword = async ( email: string ) => {
         return { error: 'Something went wrong' }
     }
 
-    const { mailError } = await sendMailToken( newToken, email, "forgotPassword" )
-    if ( mailError ) {
+    const buttonHref = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/reset-password?token=${newToken}`
+  
+    const responseBoolean = await sendEmail( email, 'd-676ca8d5a82a4639877b942a1aa20d26', { "button_href": buttonHref } );
+    if ( !responseBoolean ) {
         return { error: 'Something went wrong' }
     }
 

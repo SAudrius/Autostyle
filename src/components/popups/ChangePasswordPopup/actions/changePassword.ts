@@ -7,8 +7,7 @@ import bcrypt from "bcryptjs";
 import { cookies } from "next/headers"
 import * as z from "zod";
 
-import { sendMail } from "@/lib/mail/mail";
-
+import { sendEmail } from "@/lib/mail/sendMail";
 
 export const changePassword = async ( values: z.infer<typeof resetPasswordSchema> ) => {
 
@@ -59,9 +58,9 @@ export const changePassword = async ( values: z.infer<typeof resetPasswordSchema
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { mailError } = await sendMail( userData.email, 'successPassword' )
-    if ( mailError ) {
-        return { error: 'Something went wrong 3' }
+    const responseBoolean = await sendEmail( userData.email, 'd-45b8ff23a204431c938f1e3d1fe7dee5' );
+    if ( !responseBoolean ) {
+        return { error: 'Something went wrong' } 
     }
 
     return { success: 'Password changed' }

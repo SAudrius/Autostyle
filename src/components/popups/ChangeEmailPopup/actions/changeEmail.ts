@@ -3,10 +3,11 @@ import { createExpiryTime, generateRandomSixNumberCode } from "@config/helpers";
 import { tokenDataByToken } from "@lib/auth/auth";
 import { getUserById, getUserCountByEmail, updatePreChangeEmailByUserId } from "@lib/data/users";
 import { createVerificationCodeByEmail, deleteVerificationCodesByUserId, getCountVerificationCodesByUserId } from "@lib/data/verificationCodes";
-import { sendMailCode } from "@lib/mail/mail";
 import { changeEmailSchema } from "@lib/schemas";
 import { cookies } from "next/headers"
 import * as z from "zod";
+
+import { sendEmail } from "@/lib/mail/sendMail";
 
 export const changeEmail = async ( values: z.infer<typeof changeEmailSchema> ) => {
     const authCookie = cookies().get( 'auth' )
@@ -39,7 +40,6 @@ export const changeEmail = async ( values: z.infer<typeof changeEmailSchema> ) =
     }
 
     const emailExistCount = await getUserCountByEmail( validValues.data.email )
-    console.log( 'emailExistCount ===', emailExistCount );
     if ( emailExistCount?.count ) {
         return { error: 'Email already in use' }
     }
@@ -56,13 +56,14 @@ export const changeEmail = async ( values: z.infer<typeof changeEmailSchema> ) =
     const resetPreChangeEmailRows = await updatePreChangeEmailByUserId( userData.id, '' )
     if ( resetPreChangeEmailRows === undefined ) {
         console.log( 'reset' )
-        return { error: 'Something went wrogn' }
+        return { error: 'Something went wrong' }
     }
-
+    
+    console.log( 'validValues.data.email ===', validValues.data.email );
     const preChangeEmailRows = await updatePreChangeEmailByUserId( userData.id, validValues.data.email )
 
     if ( preChangeEmailRows?.affectedRows !== 1 ) {
-        return { error: 'Something went wrogn' }
+        return { error: 'Something went wrong' }
     }
 
     const newCode = generateRandomSixNumberCode()
@@ -75,8 +76,8 @@ export const changeEmail = async ( values: z.infer<typeof changeEmailSchema> ) =
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { mailError } = await sendMailCode( validValues.data.email, newCode, 'successEmailStepTwo' )
-    if ( mailError ) {
+    const responseBoolean = await sendEmail( validValues.data.email, 'd-779fa593b1bf4656b3cca45e16a5ff93', { code: newCode } );
+    if ( !responseBoolean ) {
         return { error: 'Something went wrong' }
     }
     

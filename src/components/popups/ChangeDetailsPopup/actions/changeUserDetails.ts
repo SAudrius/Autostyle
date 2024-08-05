@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import * as z from "zod";
 
 import { tokenDataByToken } from "@/lib/auth/auth";
+import { sendEmail } from "@/lib/mail/sendMail";
 
 export const changeUserDetails = async ( values: z.infer<typeof detailsSchema> ) => {
     const validValues = detailsSchema.safeParse( values );
@@ -46,5 +47,11 @@ export const changeUserDetails = async ( values: z.infer<typeof detailsSchema> )
     if ( updateDetailsRows?.affectedRows !== 1 ) {
         return { error: 'Something went wrong' };
     } 
+
+    const responseBoolean = await sendEmail( userData.email, 'd-f9b6ac575df54299a74f2e8849206b96' );
+    if ( !responseBoolean ) {
+        return { error: 'Something went wrong' }
+    }
+
     return { success: 'Success!' };
 }
