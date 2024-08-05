@@ -65,9 +65,9 @@ export const ChangeEmailSection = ( {  handleSubmit, error, loading }: ChangePas
                         </FormItem>
                     )}
                 />
-                {loading && <FormLoading className=""/>}
+                {loading && <FormLoading className="" />}
                 {error && (
-                    <FormError className="mt-4" size='small' message={error} />
+                    <FormError className="mt-4" size="small" message={error} />
                 )}
                 <Button className="mt-4" type="submit" size="full">
                     Confirm

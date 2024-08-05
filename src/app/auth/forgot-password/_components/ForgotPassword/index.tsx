@@ -57,7 +57,7 @@ export const ForgotPasswordForm = () => {
                         render={( { field } ) => (
                             <FormItem>
                                 <FormLabel className="text-lg text-neutral-800">
-                                  Email
+                                    Email
                                 </FormLabel>
                                 <FormControl>
                                     <Input {...field} />
@@ -67,7 +67,7 @@ export const ForgotPasswordForm = () => {
                         )}
                     />
                     <Button className="mb-4 mt-4" type="submit" size="full">
-                      Submit
+                        Submit
                     </Button>
                 </form>
             )}

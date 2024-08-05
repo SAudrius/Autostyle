@@ -21,7 +21,7 @@ export const ConfirmSection = ( { handleProcced, handleCancel, loading }: Confir
                 Are you sure you want to change your password? If you proceed, you
                 will receive a verification code via email to complete the process.
             </p>
-            {loading && <FormLoading/>}
+            {loading && <FormLoading />}
             <div className="mt-4 grid grid-cols-2 gap-6">
                 <Button
                     type="button"

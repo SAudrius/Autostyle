@@ -109,7 +109,7 @@ export const CodeVerification = ( { setOtpArr, otpArr, handleCancel, handleNewCo
             <p className="mt-2 cursor-pointer text-sm underline" onClick={handleNewCode}>
                 Send new code
             </p>
-            <button type='button' className="mt-2 cursor-pointer text-sm underline" onClick={handleCancel}>Cancel</button>
+            <button type="button" className="mt-2 cursor-pointer text-sm underline" onClick={handleCancel}>Cancel</button>
         </div>
     </>
     )

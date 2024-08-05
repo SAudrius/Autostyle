@@ -4,6 +4,7 @@ import { Footer, Header, Modal, Popup } from "@components/layout";
 import { GlobalLoading } from "@components/layout/GlobalLoading";
 import React from "react";
 
+import { Banner } from "@/components/layout/Banner";
 import { montserrat } from "@/config/fonts";
 import { cn } from "@/config/utils";
 import { useAppSelector } from "@/lib/hooks";
@@ -27,6 +28,7 @@ export const Body = ( { children }: BodyProps ) => {
                 },
             )}
         >
+            <Banner/>
             <Modal />
             <Popup />
             {globalLoading && <GlobalLoading />}

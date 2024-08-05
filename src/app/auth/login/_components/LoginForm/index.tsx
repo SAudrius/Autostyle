@@ -106,7 +106,7 @@ export const LoginForm = () => {
                         </p>
                     )}
                     <Button className="mt-4" type="submit" size="full">
-            Log in
+                        Log in
                     </Button>
                 </form>
             </Form>

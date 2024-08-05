@@ -5,21 +5,21 @@ export interface globalLoadingState {
 }
 
 const initialState: globalLoadingState = {
-  loading: false,
+    loading: false,
 };
 
-export const globalLoadingSlice = createSlice({
-  name: "globalLoading",
-  initialState,
-  reducers: {
-    globalLoadingOff: (state) => {
-      state.loading = false;
+export const globalLoadingSlice = createSlice( {
+    name: "globalLoading",
+    initialState,
+    reducers: {
+        globalLoadingOff: ( state ) => {
+            state.loading = false;
+        },
+        globalLoadingOn: ( state ) => {
+            state.loading = true;
+        },
     },
-    globalLoadingOn: (state) => {
-      state.loading = true;
-    },
-  },
-});
+} );
 
 export const { globalLoadingOff, globalLoadingOn } = globalLoadingSlice.actions;
 

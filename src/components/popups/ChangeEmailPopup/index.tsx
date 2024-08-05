@@ -146,7 +146,7 @@ export const ChangeEmailPopup = () => {
     return (
         <div className={cn( "inline-block w-[400px] rounded bg-neutral-100 p-8", { 'w-[500px]': isConfirmedCode, 'w-[400px]': isConfirmedEmailChange } )}>
             {!isProceeded && (
-                <ConfirmSection handleCancel={handleCancel} handleProcced={handleProcced} loading={loading}/>
+                <ConfirmSection handleCancel={handleCancel} handleProcced={handleProcced} loading={loading} />
             )}
             {isProceeded && !isConfirmedCode && (
                 <ConfirmEmailCodeSection handleCancel={handleCancel} handleSubmitCode={handleSubmitCode} handleNewCode={() => handleSendNewCode( "email", "d-c7fcc41bbaf34d9385c45a30bf2e86bc" )} otpArr={otpArr} setOtpArr={setOtpArr} loading={loading} error={error} success={success} />
@@ -157,7 +157,7 @@ export const ChangeEmailPopup = () => {
             {isConfirmedEmailChange && !isConfirmedCodeTwo && (
                 <ConfirmEmailCodeTwoSection handleCancel={handleCancel} handleSubmitCode={handleSubmitCodeTwo} handleNewCode={() => handleSendNewCode( "email", "d-c7fcc41bbaf34d9385c45a30bf2e86bc" )} otpArr={otpArr} setOtpArr={setOtpArr} loading={loading} error={error} success={success} />
             )}
-            {isConfirmedCodeTwo && <ChangeEmailSuccess handleComplete={handelComplete}/>}
+            {isConfirmedCodeTwo && <ChangeEmailSuccess handleComplete={handelComplete} />}
         </div>
     );
 

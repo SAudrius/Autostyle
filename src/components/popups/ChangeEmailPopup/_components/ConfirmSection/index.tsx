@@ -21,7 +21,7 @@ export const ConfirmSection = ( { handleProcced, handleCancel, loading }: Confir
                 Are you sure you want to change your email address? 
                 You will start the update process and may receive multiple emails with verification codes.
             </p>
-            {loading && <FormLoading/>}
+            {loading && <FormLoading />}
             <div className="mt-4 grid grid-cols-2 gap-6">
                 <Button
                     type="button"

@@ -58,7 +58,7 @@ export const RegisterForm = () => {
                     render={( { field } ) => (
                         <FormItem className="mt-4">
                             <FormLabel className="text-lg text-neutral-800">
-                              First Name
+                                First Name
                             </FormLabel>
                             <FormControl>
                                 <Input {...field} />
@@ -73,7 +73,7 @@ export const RegisterForm = () => {
                     render={( { field } ) => (
                         <FormItem className="mt-4">
                             <FormLabel className="text-lg text-neutral-800">
-                              Last Name
+                                Last Name
                             </FormLabel>
                             <FormControl>
                                 <Input {...field} />
@@ -101,7 +101,7 @@ export const RegisterForm = () => {
                     render={( { field } ) => (
                         <FormItem className="mt-4">
                             <FormLabel className="text-lg text-neutral-800">
-                              Password
+                                Password
                             </FormLabel>
                             <FormControl>
                                 <Input type="password" {...field} />
@@ -120,7 +120,7 @@ export const RegisterForm = () => {
                     render={( { field } ) => (
                         <FormItem className="mt-4">
                             <FormLabel className="text-lg text-neutral-800">
-                              Repeat Password
+                                Repeat Password
                             </FormLabel>
                             <FormControl>
                                 <Input type="password" {...field} />
@@ -141,7 +141,7 @@ export const RegisterForm = () => {
                     </p>
                 )}
                 <Button className="mt-4" type="submit" size="full">
-                  Register
+                    Register
                 </Button>
             </form>
         </Form>

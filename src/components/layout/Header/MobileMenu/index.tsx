@@ -95,12 +95,12 @@ export const MobileMenu = () => {
                 <CartMenu onClose={handleCartClose} />
                 {!isLoggedIn && (
                     <Link href="/auth/login" className="hidden text-sm lg:block">
-                      Login
+                        Login
                     </Link>
                 )}
                 {!isLoggedIn && (
                     <Link href="/auth/register" className="hidden text-sm lg:block">
-                      Register
+                        Register
                     </Link>
                 )}
                 <Cart onClick={handleCart} />

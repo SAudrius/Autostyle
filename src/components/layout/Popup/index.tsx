@@ -33,7 +33,7 @@ export const Popup = () => {
                 {popupElementKey === "changePassword" && <ChangePasswordPopup />}
                 {popupElementKey === "changeEmail" && <ChangeEmailPopup />}
                 {popupElementKey === "changeDetails" && <ChangeDetailsPopup />}
-                {popupElementKey === 'error' && <ErrorPopup/>}
+                {popupElementKey === 'error' && <ErrorPopup />}
             </div>
         </div>
     );

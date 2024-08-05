@@ -80,7 +80,7 @@ export const ChangeDetailsFormSection = ( { setChangeDetailsSuccess }:ChangeDeta
     return (
         <>
             <h3 className={"text-center text-xl tracking-wide-12"}>
-              Your details
+                Your details
             </h3>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit( onSubmit )}>
@@ -90,7 +90,7 @@ export const ChangeDetailsFormSection = ( { setChangeDetailsSuccess }:ChangeDeta
                         render={( { field } ) => (
                             <FormItem className="mt-4">
                                 <FormLabel className="text-base font-normal text-neutral-900">
-                                  First Name
+                                    First Name
                                 </FormLabel>
                                 <FormControl>
                                     <Input className="mt-0 h-[36px]" type="text" {...field} />
@@ -105,7 +105,7 @@ export const ChangeDetailsFormSection = ( { setChangeDetailsSuccess }:ChangeDeta
                         render={( { field } ) => (
                             <FormItem className="mt-4">
                                 <FormLabel className="text-base font-normal text-neutral-900">
-                                  Last Name
+                                    Last Name
                                 </FormLabel>
                                 <FormControl>
                                     <Input className="h-[36px]" type="text" {...field} />
@@ -120,7 +120,7 @@ export const ChangeDetailsFormSection = ( { setChangeDetailsSuccess }:ChangeDeta
                         render={( { field } ) => (
                             <FormItem className="mt-4">
                                 <FormLabel className="text-base font-normal text-neutral-900">
-                                  Country
+                                    Country
                                 </FormLabel>
                                 <FormControl>
                                     <Input className="h-[36px]" type="text" {...field} />
@@ -135,7 +135,7 @@ export const ChangeDetailsFormSection = ( { setChangeDetailsSuccess }:ChangeDeta
                         render={( { field } ) => (
                             <FormItem className="mt-4">
                                 <FormLabel className="text-base font-normal text-neutral-900">
-                                  City
+                                    City
                                 </FormLabel>
                                 <FormControl>
                                     <Input className="h-[36px]" type="text" {...field} />
@@ -150,7 +150,7 @@ export const ChangeDetailsFormSection = ( { setChangeDetailsSuccess }:ChangeDeta
                         render={( { field } ) => (
                             <FormItem className="mt-4">
                                 <FormLabel className="text-base font-normal text-neutral-900">
-                                  Address
+                                    Address
                                 </FormLabel>
                                 <FormControl>
                                     <Input className="h-[36px]" type="text" {...field} />
@@ -175,7 +175,7 @@ export const ChangeDetailsFormSection = ( { setChangeDetailsSuccess }:ChangeDeta
                         </p>
                     )}
                     <Button className="mt-6" type="submit" size="full" >
-                      Change Details
+                        Change Details
                     </Button>
                 </form>
             </Form>

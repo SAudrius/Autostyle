@@ -11,14 +11,14 @@ export const OrdersList = () => {
             <h1
                 className={cn( "text-2xl uppercase tracking-wide-20 drop-shadow-text" )}
             >
-              Settings
+                Settings
             </h1>
             <p className={cn( "mt-5 text-base", nunito.className )}>
-              View your orders and manage your account
+                View your orders and manage your account
             </p>
             <SubLineHeading className="mt-5">
                 <h2 className="text-lg uppercase tracking-wide-20 drop-shadow-text">
-                  Orders
+                    Orders
                 </h2>
             </SubLineHeading>
             <EmptyOrders />

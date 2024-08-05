@@ -23,8 +23,8 @@ export const ChangeDetailsPopup = () => {
 
     return (
         <div className="inline-block w-[400px] rounded bg-neutral-100 p-8">
-            {!changeDetailsSuccess && <ChangeDetailsFormSection setChangeDetailsSuccess={setChangeDetailsSuccess}/>}
-            {changeDetailsSuccess && <ChangeDetailsSuccessSection handleComplete={handelComplete}/>}
+            {!changeDetailsSuccess && <ChangeDetailsFormSection setChangeDetailsSuccess={setChangeDetailsSuccess} />}
+            {changeDetailsSuccess && <ChangeDetailsSuccessSection handleComplete={handelComplete} />}
         </div>
     );
 };

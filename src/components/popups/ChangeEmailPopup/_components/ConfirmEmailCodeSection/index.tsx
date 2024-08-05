@@ -35,10 +35,10 @@ export const ConfirmEmailCodeSection = ( {
             <p className={cn( "mt-4 text-center", nunito.className )}>
                 You will receive a verification code via email to confirm that email is your
             </p>
-            <CodeVerification handleCancel={handleCancel} otpArr={otpArr} setOtpArr={setOtpArr} handleNewCode={handleNewCode}/>
-            {loading && !success && !error && <FormLoading/>}
-            {error && !loading && <FormError size='small' className='mt-3' message={error}/>}
-            {success && !loading && <FormSuccess size='small' className='mt-3' message='Email send!'/>}
+            <CodeVerification handleCancel={handleCancel} otpArr={otpArr} setOtpArr={setOtpArr} handleNewCode={handleNewCode} />
+            {loading && !success && !error && <FormLoading />}
+            {error && !loading && <FormError size="small" className="mt-3" message={error} />}
+            {success && !loading && <FormSuccess size="small" className="mt-3" message="Email send!" />}
             <Button
                 onClick={handleSubmitCode}
                 className="mt-2"

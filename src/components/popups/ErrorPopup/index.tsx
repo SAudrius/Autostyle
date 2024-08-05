@@ -9,7 +9,7 @@ export const ErrorPopup = () => {
                 Procced password change
             </h3>
             <p className={cn( "mt-4 text-center", nunito.className )}>
-              An unexpected error has occurred. Please try again later.
+                An unexpected error has occurred. Please try again later.
             </p>
         </div>
     )

@@ -86,7 +86,7 @@ export const ResetPasswordForm = () => {
                             render={( { field } ) => (
                                 <FormItem className="mt-4">
                                     <FormLabel className="text-lg text-neutral-800">
-                                      Password
+                                        Password
                                     </FormLabel>
                                     <FormMessage />
                                     <FormControl>
@@ -101,15 +101,15 @@ export const ResetPasswordForm = () => {
                             render={( { field } ) => (
                                 <FormItem className="mt-4">
                                     <FormLabel className="text-lg text-neutral-800">
-                                      Repeat Password
+                                        Repeat Password
                                     </FormLabel>
                                     <FormControl>
                                         <Input type="password" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                     <FormDescription>
-                                      Password must contain at least one uppercase letter, one
-                                      lowercase letter, one digit, and one special character
+                                        Password must contain at least one uppercase letter, one
+                                        lowercase letter, one digit, and one special character
                                     </FormDescription>
                                 </FormItem>
                             )}
@@ -125,7 +125,7 @@ export const ResetPasswordForm = () => {
                             </p>
                         )}
                         <Button className="mt-4" type="submit" size="full">
-                          Submit
+                            Submit
                         </Button>
                     </form>
                 </Form>
@@ -134,7 +134,7 @@ export const ResetPasswordForm = () => {
                 <p className=" w-full rounded bg-red-300/50 px-4 py-2 text-center text-red-500">
                     {tokenError}
                     <Link className="mt-1 underline " href="/auth/forgot-password">
-                      Forgot password
+                        Forgot password
                     </Link>
                 </p>
             )}

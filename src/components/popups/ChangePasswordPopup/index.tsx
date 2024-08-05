@@ -90,7 +90,7 @@ export const ChangePasswordPopup = () => {
     return (
         <div className={cn( "inline-block w-[400px] rounded bg-neutral-100 p-8", { 'w-[500px]': isConfirmedCode } )}>
             {!isConfirmedPasswordChange && (
-                <ConfirmSection handleCancel={handleCancel} handleProcced={handleProcced} loading={loading}/>
+                <ConfirmSection handleCancel={handleCancel} handleProcced={handleProcced} loading={loading} />
             )}
             {isConfirmedPasswordChange && !isConfirmedCode && (
                 <ConfirmCodeSection handleCancel={handleCancel} handleSubmitCode={handleSubmitCode} handleSendNewCode={() => handleSendNewCode( 'password', 'd-17cd4ccfc9bb4d5085f33502da0242c7' )} otpArr={otpArr} setOtpArr={setOtpArr} loading={loading} error={error} success={success} />

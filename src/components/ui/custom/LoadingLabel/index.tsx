@@ -7,14 +7,14 @@ interface LoadingLabelProps {
   className?: string;
 }
 
-export const LoadingLabel = ({ children, className }: LoadingLabelProps) => {
-  return (
-    <p
-      className={cn(
-        `text-lg font-medium text-neutral-800 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${className}`,
-      )}
-    >
-      {children}
-    </p>
-  );
+export const LoadingLabel = ( { children, className }: LoadingLabelProps ) => {
+    return (
+        <p
+            className={cn(
+                `text-lg font-medium text-neutral-800 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${className}`,
+            )}
+        >
+            {children}
+        </p>
+    );
 };

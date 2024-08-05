@@ -98,16 +98,16 @@ export const ChangePasswordSection = ( { handleClose }: ChangePasswordSectionPro
                         </FormItem>
                     )}
                 />
-                {loading && <FormLoading/>}
+                {loading && <FormLoading />}
                 {success && (
-                    <FormSuccess className="mt-2" size="small" message={success}/>
+                    <FormSuccess className="mt-2" size="small" message={success} />
                 )}
                 {error && (
                     <p className="mt-4 w-full rounded h-[36px] bg-red-300/50 px-4 pt-2 pb-[9px] text-base text-center text-red-500">
                         {error}
                     </p>
                 )}
-                {success && !error && !loading && <Button className="mt-4 " type="button" size='full' variant='outline' onClick={handleClose}>Done!</Button>}
+                {success && !error && !loading && <Button className="mt-4 " type="button" size="full" variant="outline" onClick={handleClose}>Done!</Button>}
                 {!success && <Button className="mt-4" type="submit" size="full">
                     Change Password
                 </Button>}

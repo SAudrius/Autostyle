@@ -10,7 +10,7 @@ export default function Home() {
                     <h2 className="mb-4">Welcome to AutoStyle</h2>
                     <LoginButton>
                         <Button variant="secondary" size="default">
-                          To login
+                            To login
                         </Button>
                     </LoginButton>
                 </div>

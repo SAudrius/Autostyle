@@ -5,24 +5,24 @@ export interface authState {
 }
 
 const initialState: authState = {
-  isLoggedIn: false,
+    isLoggedIn: false,
 };
 
-export const authSlice = createSlice({
-  name: "auth",
-  initialState,
-  reducers: {
-    storeLogin: (state) => {
-      state.isLoggedIn = true;
+export const authSlice = createSlice( {
+    name: "auth",
+    initialState,
+    reducers: {
+        storeLogin: ( state ) => {
+            state.isLoggedIn = true;
+        },
+        storeLogout: ( state ) => {
+            state.isLoggedIn = false;
+        },
+        setIsLoggedIn: ( state, action: PayloadAction<boolean> ) => {
+            state.isLoggedIn = action.payload;
+        },
     },
-    storeLogout: (state) => {
-      state.isLoggedIn = false;
-    },
-    setIsLoggedIn: (state, action: PayloadAction<boolean>) => {
-      state.isLoggedIn = action.payload;
-    },
-  },
-});
+} );
 
 export const { storeLogin, storeLogout, setIsLoggedIn } = authSlice.actions;
 
