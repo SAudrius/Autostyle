@@ -24,12 +24,10 @@ interface ChangeDetailsFormSectionProps {
     setChangeDetailsSuccess: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-
 export const ChangeDetailsFormSection = ( { setChangeDetailsSuccess }:ChangeDetailsFormSectionProps ) => {
     const [ error, setError ] = useState<string | undefined>( "" );
     const [ loading, setLoading ] = useState( false )
     const [ success, setSuccess ] = useState<string | undefined>( "" );
-
     
     const form = useForm<z.infer<typeof detailsSchema>>( {
         resolver: zodResolver( detailsSchema ),
