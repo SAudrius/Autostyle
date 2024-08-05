@@ -37,7 +37,7 @@ export const ConfirmEmailCodeTwoSection = ( {
             <CodeVerification handleCancel={handleCancel} otpArr={otpArr} setOtpArr={setOtpArr} handleNewCode={handleNewCode}/>
             {loading && !success && !error && <FormLoading/>}
             {error && !loading && <FormError size='small' className='mt-3' message={error}/>}
-            {success && !loading && <FormSuccess size='small' message='Mail send!' className='mt-3'/>}
+            {success && !loading && <FormSuccess size='small' message='Email send!' className='mt-3'/>}
             <Button
                 onClick={handleSubmitCode}
                 className="mt-2"
