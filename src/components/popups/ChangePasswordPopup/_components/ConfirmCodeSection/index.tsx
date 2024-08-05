@@ -2,7 +2,7 @@ import { Button } from '@components/ui/button';
 import { nunito } from '@config/fonts';
 import { cn } from '@config/utils'
 
-import { FormError } from '@/components/ui/custom';
+import { FormError, FormSuccess } from '@/components/ui/custom';
 import { CodeVerification } from '@/components/ui/custom/CodeVerification';
 import { FormLoading } from '@/components/ui/custom/FormLoading';
 
@@ -11,6 +11,8 @@ interface ConfirmCodeSectionProps {
     setOtpArr: React.Dispatch<React.SetStateAction<string[]>>
     handleCancel: () => void,
     handleSubmitCode: () => void,
+    handleSendNewCode: () => void,
+    success: boolean;
     loading:boolean;
     error: string;
 }
@@ -20,6 +22,8 @@ export const ConfirmCodeSection = ( {
     setOtpArr,
     handleCancel,
     handleSubmitCode,
+    handleSendNewCode,
+    success,
     loading,
     error,
 }: ConfirmCodeSectionProps ) => {
@@ -31,9 +35,10 @@ export const ConfirmCodeSection = ( {
             <p className={cn( "mt-4 text-center", nunito.className )}>
                 You will receive a verification code via email to confirm that email is your
             </p>
-            <CodeVerification handleCancel={handleCancel} otpArr={otpArr} setOtpArr={setOtpArr}/>
-            {loading && <FormLoading/>}
-            {error &&  <FormError className='mt-2 max-h-[36px]'  message={error}/>}
+            <CodeVerification handleCancel={handleCancel} otpArr={otpArr} setOtpArr={setOtpArr} handleNewCode={handleSendNewCode} />
+            {loading && !success && !error && <FormLoading/>}
+            {error && !loading && <FormError size='small' className='mt-3' message={error}/>}
+            {success && !loading && <FormSuccess size='small' className='mt-3' message='Email send!'/>}
             <Button
                 onClick={handleSubmitCode}
                 className="mt-2"
