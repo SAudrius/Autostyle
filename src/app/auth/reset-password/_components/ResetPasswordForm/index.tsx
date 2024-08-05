@@ -24,10 +24,13 @@ import { passwordValidate } from "../../actions/passwordValidate";
 export const ResetPasswordForm = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
+
     const token = searchParams.get( "token" );
-    const [ error, setError ] = useState<string | undefined>( "" );
     const [ tokenError, setTokenError ] = useState<string | undefined>( "" );
+
+    const [ error, setError ] = useState<string | undefined>( "" );
     const [ success, setSuccess ] = useState<string | undefined>( "" );
+
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     const [ isPending, startTransition ] = useTransition();
     const form = useForm<z.infer<typeof resetPasswordSchema>>( {
@@ -131,7 +134,7 @@ export const ResetPasswordForm = () => {
                 <p className=" w-full rounded bg-red-300/50 px-4 py-2 text-center text-red-500">
                     {tokenError}
                     <Link className="mt-1 underline " href="/auth/forgot-password">
-                      forgot password
+                      Forgot password
                     </Link>
                 </p>
             )}
