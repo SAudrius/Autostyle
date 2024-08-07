@@ -78,7 +78,7 @@ export const MenuOpen = ( { onClose }: MenuOpenProps ) => {
                             Audi
                             <Line className="mt-3" />
                         </li>
-                    </Link>`
+                    </Link>
                     <Link
                         className="cursor-pointer pt-3 text-[14px] uppercase text-white"
                         href="/"
@@ -101,9 +101,9 @@ export const MenuOpen = ( { onClose }: MenuOpenProps ) => {
                         className="cursor-pointer pt-3 text-[14px] uppercase text-white"
                         href="/"
                     >
-                        <li className="pt-4">`
+                        <li className="pt-4">
                             Nissan
-                        <Line className="mt-3" />
+                            <Line className="mt-3" />
                         </li>
                     </Link>
                     <Link
