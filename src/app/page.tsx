@@ -1,4 +1,5 @@
 "use client";
+
 import { LoginButton } from "@/app/auth/_components/LoginButton";
 import { Button } from "@/components/ui/button";
 
