@@ -5,7 +5,7 @@ import { dbQuery } from "../database/app";
 export const getUserById = async ( id: string | number ) => {
     try {
         const dbParams = [ id ];
-        const sql = "SELECT id, name, account_id, image, first_name, last_name, email, country, city, address, email_verified, email_pre_change, previous_email FROM users WHERE id = ? LIMIT 1";
+        const sql = "SELECT id, name, account_id, image, first_name, last_name, email, country, city, address, email_verified, email_pre_change, previous_email, email_user_limit, email_limit_time FROM users WHERE id = ? LIMIT 1";
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const [ rows, error ] = await dbQuery<User[]>( sql, dbParams );
         if ( error ) {
@@ -19,7 +19,7 @@ export const getUserById = async ( id: string | number ) => {
 export const getUserWithPasswordById = async ( id: string | number ) => {
     try {
         const dbParams = [ id ];
-        const sql = "SELECT id, name, account_id, image, first_name, last_name, email, country, city, address, email_verified, email_pre_change, previous_email, password FROM users WHERE id = ? LIMIT 1";
+        const sql = "SELECT id, name, account_id, image, first_name, last_name, email, country, city, address, email_verified, email_pre_change, previous_email, email_user_limit, email_limit_time, password FROM users WHERE id = ? LIMIT 1";
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const [ rows, error ] = await dbQuery<UserWithPassword[]>( sql, dbParams );
         if ( error ) {
@@ -210,3 +210,54 @@ export const updateUserDetailsById = async ( userId:number, first_name:string, l
         return;
     }
 } 
+
+export const updateUserEmailExpireTimeById = async ( userId: number, expireTime: number ) => {
+    try {
+        const sql =
+        "UPDATE users SET email_limit_time = ? WHERE id = ?";
+        const dbParams = [ expireTime, userId ];
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        console.log( 'rows ===', rows );
+        console.log( 'error ===', error );
+        if ( error ) {
+            throw new Error( "Something went wrong" );
+        }
+        return rows;
+    } catch ( error ) {
+        return;
+    }
+}
+
+export const updateUserEmailExpireLimitById = async ( userId: number, limit: number ) => {
+    try {
+        const sql =
+        "UPDATE users SET email_user_limit = ? WHERE id = ?";
+        const dbParams = [ limit, userId ];
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        console.log( 'rows ===', rows );
+        console.log( 'error ===', error );
+        if ( error ) {
+            throw new Error( "Something went wrong" );
+        }
+        return rows;
+    } catch ( error ) {
+        return;
+    }
+}
+
+export const updateUserEmailExpireTimeAndEmailLimitById = async ( userId: number, expireTime: number, emailLimit: number ) => {
+    try {
+        const sql =
+        "UPDATE users SET email_limit_time = ?, email_user_limit = ? WHERE id = ?";
+        const dbParams = [ expireTime, emailLimit, userId ];
+        const [ rows, error ] = await dbQuery<ResultSetHeader>( sql, dbParams );
+        console.log( 'rows ===', rows );
+        console.log( 'error ===', error );
+        if ( error ) {
+            throw new Error( "Something went wrong" );
+        }
+        return rows;
+    } catch ( error ) {
+        return;
+    }
+}

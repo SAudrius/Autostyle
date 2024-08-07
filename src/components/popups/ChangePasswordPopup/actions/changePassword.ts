@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs";
 import { cookies } from "next/headers"
 import * as z from "zod";
 
+import { checkUserEmailLimit } from "@/config/helpers";
 import { sendEmail } from "@/lib/mail/sendMail";
 
 export const changePassword = async ( values: z.infer<typeof resetPasswordSchema> ) => {
@@ -55,6 +56,11 @@ export const changePassword = async ( values: z.infer<typeof resetPasswordSchema
         if ( deletedTokenRows?.affectedRows !== 1 ) {
             return { error: 'Something went wrong 2' }
         }
+    }
+
+    const { error: expiredError } = await checkUserEmailLimit( userData )
+    if ( expiredError ) {
+        return { error:expiredError }
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

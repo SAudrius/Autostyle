@@ -1,6 +1,6 @@
 'use server'
 
-import { createExpiryTime, generateRandomSixNumberCode } from "@config/helpers"
+import { checkUserEmailLimit, createExpiryTime, generateRandomSixNumberCode } from "@config/helpers"
 import { tokenDataByToken } from "@lib/auth/auth"
 import { getUserById } from "@lib/data/users"
 import { createVerificationCodeByEmail, deleteVerificationCodesByUserId, getVerificationCodeByUserId } from "@lib/data/verificationCodes"
@@ -42,6 +42,11 @@ export const sendOtp = async ( type: 'password' | 'email', templateId: string ) 
     const newCodeRows = await createVerificationCodeByEmail( userData.id, userData.email, newCode, type, expiresAt )
     if ( newCodeRows?.affectedRows !== 1 ) {
         return { error: 'Something went wrong' }
+    }
+
+    const { error: expiredError } = await checkUserEmailLimit( userData )
+    if ( expiredError ) {
+        return { error:expiredError }
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -10,6 +10,7 @@ import * as z from "zod";
 
 import { sendOtp } from "@/actions/sendOtp";
 import { validateOtp } from "@/actions/validateOtp";
+import { popupSetErrorMessage } from "@/lib/store/slices";
 
 import { ChangeEmailSection } from "./_components/ChangeEmailSection";
 import { ChangeEmailSuccess } from "./_components/ChangeEmailSuccess";
@@ -49,6 +50,7 @@ export const ChangeEmailPopup = () => {
             const mailActionResponse = await sendOtp( type, template );
             if ( mailActionResponse?.error ) {
                 turnPopupAndModalOn( dispatch, 'error' )
+                dispatch( popupSetErrorMessage( error ) )
                 return
             }
             if ( mailActionResponse?.success )  {
@@ -65,6 +67,7 @@ export const ChangeEmailPopup = () => {
             const mailActionResponse = await sendOtp( 'email', 'd-c7fcc41bbaf34d9385c45a30bf2e86bc' );
             if ( mailActionResponse?.error ) {
                 turnPopupAndModalOn( dispatch, 'error' )
+                dispatch( popupSetErrorMessage( error ) )
                 return
             }
             setIsProceeded( true );

@@ -5,6 +5,7 @@ import { detailsSchema } from "@lib/schemas";
 import { cookies } from "next/headers";
 import * as z from "zod";
 
+import { checkUserEmailLimit } from "@/config/helpers";
 import { tokenDataByToken } from "@/lib/auth/auth";
 import { sendEmail } from "@/lib/mail/sendMail";
 
@@ -33,6 +34,11 @@ export const changeUserDetails = async ( values: z.infer<typeof detailsSchema> )
         return { error: 'Something went wrong' };
     }
 
+    const { error: expiredError } = await checkUserEmailLimit( userData )
+    if ( expiredError ) {
+        return { error:expiredError }
+    }
+
     if (
         userData.first_name === first_name &&
         userData.last_name === last_name &&
@@ -44,7 +50,7 @@ export const changeUserDetails = async ( values: z.infer<typeof detailsSchema> )
     }
 
     const updateDetailsRows = await updateUserDetailsById( userId, first_name, last_name, country, city, address )
-    if ( updateDetailsRows?.affectedRows !== 1 ) {
+    if ( updateDetailsRows?.affectedRows !== 1  || !updateDetailsRows ) {
         return { error: 'Something went wrong' };
     } 
 

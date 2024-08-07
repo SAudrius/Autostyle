@@ -1,5 +1,5 @@
 'use server'
-import { createExpiryTime, generateRandomSixNumberCode } from "@config/helpers";
+import { checkUserEmailLimit, createExpiryTime, generateRandomSixNumberCode } from "@config/helpers";
 import { tokenDataByToken } from "@lib/auth/auth";
 import { getUserById, getUserCountByEmail, updatePreChangeEmailByUserId } from "@lib/data/users";
 import { createVerificationCodeByEmail, deleteVerificationCodesByUserId, getCountVerificationCodesByUserId } from "@lib/data/verificationCodes";
@@ -74,6 +74,12 @@ export const changeEmail = async ( values: z.infer<typeof changeEmailSchema> ) =
     if ( rows?.affectedRows !== 1 ) {
         return { error: 'Something went wrong' }
     }
+
+    const { error: expiredError } = await checkUserEmailLimit( userData )
+    if ( expiredError ) {
+        return { error:expiredError }
+    }
+
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const responseBoolean = await sendEmail( validValues.data.email, 'd-779fa593b1bf4656b3cca45e16a5ff93', { code: newCode } );

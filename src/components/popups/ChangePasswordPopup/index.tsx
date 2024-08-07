@@ -7,6 +7,7 @@ import { sendOtp } from "@/actions/sendOtp";
 import { validateOtp } from "@/actions/validateOtp";
 import { cn } from "@/config/utils";
 import { useAppDispatch } from "@/lib/hooks";
+import { popupSetErrorMessage } from "@/lib/store/slices";
 import { turnPopupAndModalOff, turnPopupAndModalOn } from "@/lib/store/storeHelpers/storeHelpers";
 
 import { ChangePasswordSection } from "./_components/ChangePasswordSection";
@@ -43,6 +44,8 @@ export const ChangePasswordPopup = () => {
             const mailActionResponse = await sendOtp( type, template );
             if ( mailActionResponse?.error ) {
                 turnPopupAndModalOn( dispatch, 'error' )
+                dispatch( popupSetErrorMessage( mailActionResponse.error ) )
+
                 return
             }
             if ( mailActionResponse?.success )  {
@@ -58,7 +61,9 @@ export const ChangePasswordPopup = () => {
         const mailResponse = async () => {
             const mailActionResponse = await sendOtp( 'password', 'd-17cd4ccfc9bb4d5085f33502da0242c7' );
             if ( mailActionResponse?.error ) {
+                console.log( 'mailActionResponse ===', mailActionResponse );
                 turnPopupAndModalOn( dispatch, 'error' )
+                dispatch( popupSetErrorMessage( mailActionResponse?.error ) )
             }
             if ( mailActionResponse?.success ) {
                 setIsConfirmedPasswordChange( true );

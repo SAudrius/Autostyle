@@ -4,12 +4,14 @@ export interface PopupState {
   value: boolean;
   popupAnimation: boolean;
   popupElementKey: string | null;
+  message: string;
 }
 
 const initialState: PopupState = {
     value: false,
     popupAnimation: false,
     popupElementKey: null,
+    message: ''
 };
 
 export const popupSlice = createSlice( {
@@ -31,9 +33,12 @@ export const popupSlice = createSlice( {
         popupSetElementKey: ( state, action: PayloadAction<string> ) => {
             state.popupElementKey = action.payload;
         },
+        popupSetErrorMessage: ( state, action: PayloadAction<string> ) => {
+            state.message = action.payload
+        }
     },
 } );
 
-export const { popupOn, popupOff, popupAnimateOn, popupAnimateOff, popupSetElementKey } = popupSlice.actions;
+export const { popupOn, popupOff, popupAnimateOn, popupAnimateOff, popupSetElementKey, popupSetErrorMessage } = popupSlice.actions;
 
 export default popupSlice.reducer;

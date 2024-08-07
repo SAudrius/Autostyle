@@ -12,6 +12,8 @@ interface User {
   email_verified: number;
   previous_email: string | null;
   email_pre_change: string | null;
+  email_user_limit: number;
+  email_limit_time: number | null;
 }
 
 

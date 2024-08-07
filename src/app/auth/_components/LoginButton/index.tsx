@@ -19,8 +19,8 @@ export const LoginButton = ( {
         return <span className="text-white">TODO:implement modal</span>;
     }
     return (
-        <button onClick={handleClick} onKeyDown={( e ) => e.key === 'Enter' && handleClick()} className="inline-block cursor-pointer">
+        <span onClick={handleClick} onKeyDown={( e ) => e.key === 'Enter' && handleClick()} className="inline-block cursor-pointer">
             {children}
-        </button>
+        </span>
     );
 };

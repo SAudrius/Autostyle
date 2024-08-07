@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 
+import { checkUserEmailLimit } from "@/config/helpers";
 import { tokenDataByToken } from "@/lib/auth/auth";
 import { getUserById, updateEmailByUserId } from "@/lib/data/users";
 import { deleteVerificationCodesByUserId, getVerificationCodeByUserId } from "@/lib/data/verificationCodes";
@@ -49,8 +50,12 @@ export const confirmEmail = async ( otpCode: { otpCode: string }, type: 'email' 
     if ( deletedTokenRows?.affectedRows !== 1 ) {
         return { error: 'Semething went wrong' }
     }
+
+    const { error: expiredError } = await checkUserEmailLimit( userData )
+    if ( expiredError ) {
+        return { error:expiredError }
+    }
     
-    console.log( 'userData.email_pre_change ===', userData.email_pre_change );
     const responseBooleanNewEmail = await sendEmail( userData.email_pre_change, 'd-619f97b03d914a70984f793e7a4eb7fb' );
     if ( !responseBooleanNewEmail ) {
         return { error: 'Something went wrong' }
