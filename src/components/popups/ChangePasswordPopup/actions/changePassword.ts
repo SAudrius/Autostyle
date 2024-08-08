@@ -28,9 +28,12 @@ export const changePassword = async ( values: z.infer<typeof resetPasswordSchema
     const userId = parseInt( jwtTokenData?.userId )
 
     const validValues = resetPasswordSchema.safeParse( values );
-
     if ( !validValues.success ) {
         return { error: "Fields are not valid" };
+    }
+
+    if ( values.password !== values.repeat_password ) {
+        return { error: "Password and repeat password do not match" };
     }
 
     const userData = await getUserWithPasswordById( userId )
