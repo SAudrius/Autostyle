@@ -9,22 +9,22 @@ interface LogoProps {
   footer?: boolean;
 }
 
-export const Logo = ({ footer }: LogoProps) => {
-  if (footer) {
+export const Logo = ( { footer }: LogoProps ) => {
+    if ( footer ) {
+        return (
+            <Link href="/" className="cursor-pointer">
+                <Image
+                    src={footerAutoplateImg}
+                    alt="Autoplate logo"
+                    width={200}
+                    height={37}
+                />
+            </Link>
+        );
+    }
     return (
-      <Link href="/" className="cursor-pointer">
-        <Image
-          src={footerAutoplateImg}
-          alt="Autoplate logo"
-          width={200}
-          height={37}
-        />
-      </Link>
+        <Link href="/" className="cursor-pointer">
+            <Image src={autoplateImg} alt="Autoplate logo" width={174} height={31} />
+        </Link>
     );
-  }
-  return (
-    <Link href="/" className="cursor-pointer">
-      <Image src={autoplateImg} alt="Autoplate logo" width={174} height={31} />
-    </Link>
-  );
 };

@@ -7,20 +7,20 @@ interface LoginButtonProps {
   mode?: "redirect" | "modal";
 }
 
-export const LoginButton = ({
-  children,
-  mode = "redirect",
-}: LoginButtonProps) => {
-  const router = useRouter();
-  const handleClick = () => {
-    router.push("/auth/login");
-  };
-  if (mode === "modal") {
-    return <span className="text-white">TODO:implement modal</span>;
-  }
-  return (
-    <span onClick={handleClick} className="inline-block cursor-pointer">
-      {children}
-    </span>
-  );
+export const LoginButton = ( {
+    children,
+    mode = "redirect",
+}: LoginButtonProps ) => {
+    const router = useRouter();
+    const handleClick = () => {
+        router.push( "/auth/login" );
+    };
+    if ( mode === "modal" ) {
+        return <span className="text-white">TODO:implement modal</span>;
+    }
+    return (
+        <span onClick={handleClick} onKeyDown={( e ) => e.key === 'Enter' && handleClick()} className="inline-block cursor-pointer">
+            {children}
+        </span>
+    );
 };
