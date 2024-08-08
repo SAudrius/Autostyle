@@ -9,3 +9,19 @@
 .social-icon:hover svg {
   color: black;
 }
+
+.first-letter-uppercase::first-letter {
+  text-transform: uppercase;
+}
+
+.custom-selection::selection {
+  color: inherit;
+  text-decoration: underline;
+  background-color: inherit;
+}
+
+.custom-selection:focus {
+  color: inherit;
+  text-decoration: underline;
+  background-color: #fff;
+}

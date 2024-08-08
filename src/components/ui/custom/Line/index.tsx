@@ -7,17 +7,17 @@ interface LineProps {
   primary?: boolean;
 }
 
-export const Line = ({ className, primary }: LineProps) => {
-  if (primary) {
+export const Line = ( { className, primary }: LineProps ) => {
+    if ( primary ) {
+        return (
+            <span
+                className={cn( "block h-[1px] w-full bg-primary-dark", className )}
+            ></span>
+        );
+    }
     return (
-      <span
-        className={cn("block h-[1px] w-full bg-primary-dark", className)}
-      ></span>
+        <span
+            className={cn( "block h-[1px] w-full bg-neutral-500", className )}
+        ></span>
     );
-  }
-  return (
-    <span
-      className={cn("block h-[1px] w-full bg-neutral-500", className)}
-    ></span>
-  );
 };

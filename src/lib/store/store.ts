@@ -1,23 +1,25 @@
+import authSlice from "@lib/store/slices/authSlice";
+import cartSlice from "@lib/store/slices/cartSlice";
+import globalLoadingSlice from "@lib/store/slices/globalLoadingSlice";
+import menuSlice from "@lib/store/slices/menuSlice";
+import modalSlice from "@lib/store/slices/modalSlice";
+import searchSlice from "@lib/store/slices/searchSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
-import cartSlice from "./slices/cartSlice";
-import menuSlice from "./slices/menuSlice";
-import modalSlice from "./slices/modalSlice";
-import searchSlice from "./slices/searchSlice";
+import popupSlice from "./slices/popupSlice";
 
-export const makeStore = () => {
-  return configureStore({
+export const store = configureStore( {
     reducer: {
-      modal: modalSlice,
-      cart: cartSlice,
-      menu: menuSlice,
-      search: searchSlice,
+        auth: authSlice,
+        cart: cartSlice,
+        modal: modalSlice,
+        popup: popupSlice,
+        menu: menuSlice,
+        search: searchSlice,
+        globalLoading: globalLoadingSlice,
     },
-  });
-};
+} );
 
-// Infer the type of makeStore
-export type AppStore = ReturnType<typeof makeStore>;
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<AppStore["getState"]>;
-export type AppDispatch = AppStore["dispatch"];
+export type AppStore = typeof store
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
