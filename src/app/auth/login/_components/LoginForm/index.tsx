@@ -21,14 +21,17 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import * as z from "zod";
 
-import { login } from "@/actions/login";
 import { Socials } from "@/app/auth/_components";
+import { FormLoading } from "@/components/ui/custom/FormLoading";
+
+import { login } from "../../_actions/login";
 
 export const LoginForm = () => {
     const router = useRouter();
     const dispatch = useDispatch();
     const [ error, setError ] = useState<string | undefined>( "" );
     const [ success, setSuccess ] = useState<string | undefined>( "" );
+    const [ loading, setLoading ] = useState<boolean>( false );
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     const [ isPending, startTransition ] = useTransition();
     const form = useForm<z.infer<typeof loginSchema>>( {
@@ -40,6 +43,7 @@ export const LoginForm = () => {
     } );
 
     function onSubmit( values: z.infer<typeof loginSchema> ) {
+        setLoading( true )
         setError( "" );
         setSuccess( "" );
         startTransition( () => {
@@ -53,6 +57,7 @@ export const LoginForm = () => {
                 }
             };
             loginResponse();
+            setLoading( false )
         } );
     }
     return (
@@ -105,6 +110,7 @@ export const LoginForm = () => {
                             {error}
                         </p>
                     )}
+                    {loading && ( <FormLoading className="mt-3" /> )}
                     <Button className="mt-4" type="submit" size="full">
                         Log in
                     </Button>
