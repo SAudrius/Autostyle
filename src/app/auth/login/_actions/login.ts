@@ -10,7 +10,6 @@ import { deleteVerificationTokenByEmail, getVerificationTokenByEmail } from "@/l
 import { sendEmail } from "@/lib/mail/sendMail";
 
 export const login = async ( values: z.infer<typeof loginSchema> ) => {
-  
     const validValues = loginSchema.safeParse( values );
     if ( !validValues.success ) {
         return { error: "Values are not valid" };
