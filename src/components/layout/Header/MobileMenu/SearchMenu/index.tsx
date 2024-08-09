@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 
-import { CancelIcon, Line } from "@/components/ui/custom";
-import { cn } from "@/config/utils";
-import { useAppSelector } from "@/lib/hooks";
+import { CancelIcon, Line } from "@/components";
+import { cn } from "@/config";
+import { useAppSelector } from "@/lib";
 
 import { SearchInput } from "../Search/SearchInput";
 

@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 
-import { auth } from "@/lib/auth/authEdge";
+import { auth } from "@/lib"
 
 export const isUserLoggedIn = async () => {
     const authCookie = cookies().get( "auth" );

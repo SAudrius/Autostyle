@@ -1,13 +1,22 @@
 'use server'
-import { checkUserEmailLimit, createExpiryTime, generateRandomSixNumberCode } from "@config/helpers";
-import { tokenDataByToken } from "@lib/auth/auth";
-import { getUserById, getUserCountByEmail, updatePreChangeEmailByUserId } from "@lib/data/users";
-import { createVerificationCodeByEmail, deleteVerificationCodesByUserId, getCountVerificationCodesByUserId } from "@lib/data/verificationCodes";
-import { changeEmailSchema } from "@lib/schemas";
 import { cookies } from "next/headers"
 import * as z from "zod";
 
-import { sendEmail } from "@/lib/mail/sendMail";
+import { 
+    checkUserEmailLimit,
+    createExpiryTime,
+    generateRandomSixNumberCode 
+} from "@/config/helpers";
+import {
+    changeEmailSchema,
+    createVerificationCodeByEmail,
+    deleteVerificationCodesByUserId,
+    getCountVerificationCodesByUserId,
+    getUserById, getUserCountByEmail,
+    sendEmail,
+    tokenDataByToken,
+    updatePreChangeEmailByUserId
+} from "@/lib";
 
 export const changeEmail = async ( values: z.infer<typeof changeEmailSchema> ) => {
     const authCookie = cookies().get( 'auth' )

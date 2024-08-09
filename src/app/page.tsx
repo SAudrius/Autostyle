@@ -1,7 +1,7 @@
 "use client";
 
-import { LoginButton } from "@/app/auth/_components/LoginButton";
-import { Button } from "@/components/ui/button";
+import { LoginButton } from "@/app/auth/_components";
+import { Button } from "@/components";
 
 export default function Home() {
     return (

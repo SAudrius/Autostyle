@@ -1,3 +1,4 @@
+'use client'
 import React, { KeyboardEvent, useEffect, useRef } from 'react'
 
 interface CodeVerificationProps {

@@ -1,9 +1,8 @@
 import React from "react";
 
 import { EmptyOrders } from "@/app/(protected)/account/_components/Ui/EmptyOrders";
-import { SubLineHeading } from "@/components/ui/custom/SubLineHeading";
-import { nunito } from "@/config/fonts";
-import { cn } from "@/config/utils";
+import { SubLineHeading } from "@/components";
+import { cn, nunito } from "@/config";
 
 export const OrdersList = () => {
     return (

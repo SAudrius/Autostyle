@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import { Container } from "@/components/ui/custom";
+import { Container } from "@/components";
 
 import { AccountInfo } from "./_components/AccountInfo";
 import { OrdersList } from "./_components/OrdersList";

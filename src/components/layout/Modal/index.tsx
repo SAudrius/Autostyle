@@ -1,6 +1,7 @@
 "use client";
-import { cn } from "@config/utils";
-import { useAppDispatch, useAppSelector } from "@lib/hooks";
+import React from "react";
+
+import { cn } from "@/config";
 import {
     cartAnimateOff,
     cartOff,
@@ -12,8 +13,9 @@ import {
     popupOff,
     searchAnimateOff,
     searchOff,
-} from "@lib/store/slices";
-import React from "react";
+    useAppDispatch, 
+    useAppSelector 
+} from "@/lib";
 
 export const Modal = () => {
     const dispatch = useAppDispatch();

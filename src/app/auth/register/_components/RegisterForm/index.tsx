@@ -1,28 +1,31 @@
 "use client";
 
-import { Button } from "@components/ui/button";
-import {
+import { zodResolver } from "@hookform/resolvers/zod";
+import React, { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+import { Socials } from "@/app/auth/_components";
+import { 
+    Button,
     Form,
     FormControl,
     FormDescription,
     FormField,
     FormItem,
     FormLabel,
+    FormLoading,
     FormMessage,
-} from "@components/ui/form";
-import { Input } from "@components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "@lib/schemas";
-import React, { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+    Input 
+} from "@/components";
+import { registerSchema } from "@/lib";
 
-import { register } from "@/actions/register";
-import { Socials } from "@/app/auth/_components";
+import { register } from "../../_actions/register";
 
 export const RegisterForm = () => {
     const [ success, setSuccess ] = useState<string | undefined>( "" );
     const [ error, setError ] = useState<string | undefined>( "" );
+    const [ loading, setLoading ] = useState<boolean>( false );
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     const [ isPending, startTransition ] = useTransition();
 
@@ -40,6 +43,7 @@ export const RegisterForm = () => {
     function onSubmit( values: z.infer<typeof registerSchema> ) {
         setError( "" );
         setSuccess( "" );
+        setLoading( true );
         startTransition( () => {
             const registerResponse = async () => {
                 const registerActionResponse = await register( values );
@@ -47,6 +51,7 @@ export const RegisterForm = () => {
                 setSuccess( registerActionResponse?.success );
             };
             registerResponse();
+            setLoading( false );
         } );
     }
     return (
@@ -140,6 +145,8 @@ export const RegisterForm = () => {
                         {error}
                     </p>
                 )}
+
+                {loading && <FormLoading className="mt-3" />}
                 <Button className="mt-4" type="submit" size="full">
                     Register
                 </Button>
