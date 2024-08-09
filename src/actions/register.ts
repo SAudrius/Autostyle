@@ -1,14 +1,11 @@
 "use server";
+import { createUserByData, getUserByEmail } from "@lib/data/users";
+import { registerSchema } from "@lib/schemas";
 import bcrypt from "bcryptjs";
 import * as z from "zod";
 
-import { 
-    createUserByData, 
-    generateVerificationToken, 
-    getUserByEmail, 
-    registerSchema, 
-    sendEmail 
-} from "@/lib";
+import { generateVerificationToken } from "@/lib/auth/tokens";
+import { sendEmail } from "@/lib/mail/sendMail";
 
 export const register = async ( values: z.infer<typeof registerSchema> ) => {
     const validValues = registerSchema.safeParse( values );

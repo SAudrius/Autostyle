@@ -2,9 +2,9 @@
 import { jwtVerify, SignJWT } from "jose";
 import { cookies } from "next/headers";
 
-import { getUserByEmail } from "@/lib";
+import { getUserByEmail } from "@/lib/data/users";
 
-const getJwtSecretKey = async () => {
+export const getJwtSecretKey = async () => {
     const secret = process.env.JWT_SECRET_TOKEN;
     if ( !secret ) {
         console.error( "JWT secret token is missing or invalid." );

@@ -2,15 +2,10 @@
 import bcrypt from "bcryptjs";
 import * as z from "zod";
 
-import { 
-    deleteVerificationTokenById, 
-    getUserByEmail, 
-    getVerificationTokenByToken, 
-    resetPasswordSchema, 
-    sendEmail, 
-    updateUserEmailVerifiedById, 
-    updateUserPasswordById 
-} from "@/lib";
+import { getUserByEmail, updateUserEmailVerifiedById, updateUserPasswordById } from "@/lib/data/users";
+import { deleteVerificationTokenById, getVerificationTokenByToken } from "@/lib/data/verificationTokens";
+import { sendEmail } from "@/lib/mail/sendMail";
+import { resetPasswordSchema } from "@/lib/schemas";
 
 export const passwordValidate = async ( values: z.infer<typeof resetPasswordSchema>, token:string ) => {
     const currentTime = new Date() 

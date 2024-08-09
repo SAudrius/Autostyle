@@ -2,14 +2,11 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { CancelIcon, Line } from "@/components";
-import { cn } from "@/config";
-import { 
-    menuAnimateOff, 
-    menuOff, 
-    turnModalOff, 
-    useAppSelector 
-} from "@/lib";
+import { CancelIcon, Line } from "@/components/ui/custom";
+import { cn } from "@/config/utils";
+import { useAppSelector } from "@/lib/hooks";
+import { menuAnimateOff, menuOff } from "@/lib/store/slices/menuSlice";
+import { turnModalOff } from "@/lib/store/storeHelpers/storeHelpers";
 
 interface MenuOpenProps {
   onClose: () => void;

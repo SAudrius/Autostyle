@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import autoplatePic from "/public/assets/images/footer-logo.png";
-import { cn, nunito  } from "@/config";
+import { nunito } from "@/config/fonts";
+import { cn } from "@/config/utils";
 
 export const SectionLogo = () => {
     return (

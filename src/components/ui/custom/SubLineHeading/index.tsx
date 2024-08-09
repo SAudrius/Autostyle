@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Line, LogoutButton } from "@/components";
-import { cn } from "@/config";
+import { Line, LogoutButton } from "@/components/ui/custom";
+import { cn } from "@/config/utils";
 
 interface SubLineHeadingProps {
   children: React.ReactNode;

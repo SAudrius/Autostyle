@@ -1,11 +1,9 @@
 "use client";
+import { montserrat, nunito } from "@config/fonts";
+import { cn } from "@config/utils";
+import { useAppDispatch } from "@lib/hooks";
+import { turnPopupAndModalOn } from "@lib/store/storeHelpers/storeHelpers";
 import React from "react";
-
-import { cn, montserrat, nunito } from "@/config";
-import {
-    turnPopupAndModalOn,
-    useAppDispatch 
-} from "@/lib";
 
 interface UserInfoFieldProps {
   field: string;

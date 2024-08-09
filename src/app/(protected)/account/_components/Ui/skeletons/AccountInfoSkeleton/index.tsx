@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Line, SubLineHeading } from "@/components";
+import { Line, SubLineHeading } from "@/components/ui/custom";
 
 export const AccountInfoSkeleton = () => {
     return (

@@ -1,6 +1,7 @@
 import React from "react";
 
-import { cn, nunito  } from "@/config";
+import { nunito } from "@/config/fonts";
+import { cn } from "@/config/utils";
 
 interface SearchInputProps {
   className?: string;

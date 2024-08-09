@@ -1,11 +1,9 @@
-import { 
-    Button, 
-    CodeVerification, 
-    FormError, 
-    FormLoading, 
-    FormSuccess 
-} from "@/components";
-import { cn, nunito } from '@/config';
+import { Button } from '@components/ui/button';
+import { FormError, FormSuccess } from '@components/ui/custom';
+import { CodeVerification } from '@components/ui/custom/CodeVerification';
+import { FormLoading } from '@components/ui/custom/FormLoading';
+import { nunito } from '@config/fonts';
+import { cn } from '@config/utils'
 
 
 interface ConfirmEmailCodeSectionProps {

@@ -1,13 +1,9 @@
 'use server'
 
-import {
-    deleteVerificationTokenById,
-    getUserByEmail,
-    getVerificationTokenByToken, 
-    sendEmail, 
-    updateUserEmailVerifiedById
-} from "@/lib"
+import { getUserByEmail, updateUserEmailVerifiedById } from "@lib/data/users"
+import { deleteVerificationTokenById, getVerificationTokenByToken } from "@lib/data/verificationTokens"
 
+import { sendEmail } from "@/lib/mail/sendMail"
 
 export const verifyToken = async ( token: string ) => {
     const currentTime = new Date() 

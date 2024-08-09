@@ -2,16 +2,12 @@
 
 import { cookies } from "next/headers";
 
-import { checkUserEmailLimit } from "@/config";
-import { 
-    deleteVerificationCodesByUserId, 
-    getUserById, 
-    getVerificationCodeByUserId, 
-    otpCodeSchema, 
-    sendEmail, 
-    tokenDataByToken,
-    updateEmailByUserId 
-} from "@/lib";
+import { checkUserEmailLimit } from "@/config/helpers";
+import { tokenDataByToken } from "@/lib/auth/auth";
+import { getUserById, updateEmailByUserId } from "@/lib/data/users";
+import { deleteVerificationCodesByUserId, getVerificationCodeByUserId } from "@/lib/data/verificationCodes";
+import { sendEmail } from "@/lib/mail/sendMail";
+import { otpCodeSchema } from "@/lib/schemas";
 
 export const confirmEmail = async ( otpCode: { otpCode: string }, type: 'email' | 'password' ) => {
     const otpValid = otpCodeSchema.safeParse( otpCode );

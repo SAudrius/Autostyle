@@ -1,13 +1,9 @@
 'use server'
 
+import { tokenDataByToken } from "@lib/auth/auth";
+import { deleteVerificationCodesByUserId, getVerificationCodeByUserId } from "@lib/data/verificationCodes";
+import { otpCodeSchema } from "@lib/schemas"
 import { cookies } from "next/headers";
-
-import {
-    deleteVerificationCodesByUserId, 
-    getVerificationCodeByUserId, 
-    otpCodeSchema, 
-    tokenDataByToken 
-} from "@/lib"
 
 export const validateOtp = async ( otpCode: { otpCode: string }, type: 'email' | 'password' ) => {
     const otpValid = otpCodeSchema.safeParse( otpCode );

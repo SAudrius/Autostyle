@@ -4,12 +4,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
-import { fetchGoogleCode } from "@/actions";
-import { FormError, FormSuccess } from "@/components";
-import {
-    storeLogin,
-    useAppDispatch
-} from "@/lib";
+import { fetchGoogleCode } from "@/actions/google";
+import { FormError, FormSuccess } from "@/components/ui/custom";
+import { useAppDispatch } from "@/lib/hooks";
+import { storeLogin } from "@/lib/store/slices/authSlice";
 
 export const GoogleVerify = () => {
     const router = useRouter();

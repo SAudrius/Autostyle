@@ -1,8 +1,8 @@
 'use client'
+import { nunito } from '@config/fonts'
+import { cn } from '@config/utils'
+import { useAppSelector } from '@lib/hooks'
 import React from 'react'
-
-import { cn, nunito  } from '@/config'
-import { useAppSelector } from '@/lib'
 
 export const ErrorPopup = () => {
     const message = useAppSelector( ( state ) => state.popup.message )
