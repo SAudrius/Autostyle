@@ -2,14 +2,9 @@
 import { google } from "googleapis";
 import { redirect } from "next/navigation";
 
-import { 
-    createGoogleUserByData,
-    getUserByEmail, 
-    sendEmail
-} from "@/lib";
 import { authLogin } from "@/lib/auth/auth";
-
-authLogin
+import { createGoogleUserByData, getUserByEmail } from "@/lib/data/users";
+import { sendEmail } from "@/lib/mail/sendMail";
 
 const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_API_CLIENT_ID,

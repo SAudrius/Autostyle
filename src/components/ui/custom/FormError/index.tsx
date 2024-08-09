@@ -1,7 +1,7 @@
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import React from "react";
 
-import { cn } from "@/config";
+import { cn } from "@/config/utils";
 
 interface FormErrorProps {
   message?: string;

@@ -2,9 +2,9 @@
 import React from "react";
 import { FaGoogle } from "react-icons/fa";
 
-import { authGoogle } from "@/actions";
-import { Button } from "@/components"
-import { cn } from "@/config";
+import { authGoogle } from "@/actions/google";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/config/utils";
 
 interface showSocialsProps {
   showSocials?: true | false;

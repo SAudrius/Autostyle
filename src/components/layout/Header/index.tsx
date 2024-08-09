@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
 
-import { Container, Line, Logo } from "@/components";
-import { cn } from "@/config";
-import { useAppSelector } from "@/lib";
+import { Container, Line } from "@/components/ui/custom";
+import { Logo } from "@/components/ui/custom/Logo";
+import { cn } from "@/config/utils";
+import { useAppSelector } from "@/lib/hooks";
 
 import { DesktopMenu } from "./DesktopMenu";
 import { MobileMenu } from "./MobileMenu";

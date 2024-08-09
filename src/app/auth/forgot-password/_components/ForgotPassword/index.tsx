@@ -1,20 +1,23 @@
 /* eslint-disable no-unused-vars */
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-
-import { Button,     Form,
+// import { forgotPassword } from "@/actions/forgot-password";
+import { Button } from "@components/ui/button";
+import { FormError, FormSuccess } from "@components/ui/custom";
+import {
+    Form,
     FormControl,
-    FormError,     FormField,
+    FormField,
     FormItem,
     FormLabel,
     FormMessage,
-    FormSuccess, Input,
-} from "@/components";
-import { forgotPasswordSchema } from "@/lib";
+} from "@components/ui/form";
+import { Input } from "@components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { forgotPasswordSchema } from "@lib/schemas";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 import { forgotPassword } from "../../actions/forgotPassword";
 

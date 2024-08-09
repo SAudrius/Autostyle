@@ -1,6 +1,19 @@
 "use client";
 
+import { Button } from "@components/ui/button";
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@components/ui/form";
+import { Input } from "@components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "@lib/schemas";
+import { storeLogin } from "@lib/store/slices/authSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
@@ -8,32 +21,14 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import * as z from "zod";
 
+import { login } from "@/actions/login";
 import { Socials } from "@/app/auth/_components";
-import { 
-    Button,
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormLoading,
-    FormMessage,
-    Input,
-} from "@/components";
-import { 
-    loginSchema, 
-    storeLogin 
-} from "@/lib";
-
-import { login } from "../../_actions/login";
 
 export const LoginForm = () => {
     const router = useRouter();
     const dispatch = useDispatch();
     const [ error, setError ] = useState<string | undefined>( "" );
     const [ success, setSuccess ] = useState<string | undefined>( "" );
-    const [ loading, setLoading ] = useState<boolean>( false );
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
     const [ isPending, startTransition ] = useTransition();
     const form = useForm<z.infer<typeof loginSchema>>( {
@@ -45,7 +40,6 @@ export const LoginForm = () => {
     } );
 
     function onSubmit( values: z.infer<typeof loginSchema> ) {
-        setLoading( true )
         setError( "" );
         setSuccess( "" );
         startTransition( () => {
@@ -59,7 +53,6 @@ export const LoginForm = () => {
                 }
             };
             loginResponse();
-            setLoading( false )
         } );
     }
     return (
@@ -102,17 +95,16 @@ export const LoginForm = () => {
                         )}
                     />
                     <Socials />
-                    {success && !loading && (
+                    {success && (
                         <p className=" mt-4 w-full rounded bg-emerald-300/50 px-4 py-2 text-center text-emerald-500">
                             {success}
                         </p>
                     )}
-                    {error && !loading && (
+                    {error && (
                         <p className=" mt-4 w-full rounded bg-red-300/50 px-4 py-2 text-center text-red-500">
                             {error}
                         </p>
                     )}
-                    {loading && !success && !error &&  ( <FormLoading className="mt-3" /> )}
                     <Button className="mt-4" type="submit" size="full">
                         Log in
                     </Button>

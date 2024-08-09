@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 
 import { CardWrapper } from "@/app/auth/_components";
 import { NewVerificationForm } from "@/app/auth/verification/_components";
-import { GlobalLoading } from "@/components";
+import { GlobalLoading } from "@/components/layout/GlobalLoading";
 
 const VerificationPage = () => {
     return (

@@ -1,10 +1,8 @@
 'use server'
 
-import { 
-    generateVerificationToken, 
-    getUserByEmail, 
-    sendEmail 
-} from "@/lib";
+import { generateVerificationToken } from "@lib/auth/tokens";
+import { getUserByEmail } from "@lib/data/users";
+import { sendEmail } from "@lib/mail/sendMail";
 
 export const forgotPassword = async ( email: string ) => {
 

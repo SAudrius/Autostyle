@@ -1,7 +1,9 @@
+import { Button } from '@components/ui/button'
+import { nunito } from '@config/fonts'
+import { cn } from '@config/utils'
 import React from 'react'
 
-import { Button, FormLoading } from '@/components'
-import { cn, nunito } from '@/config';
+import { FormLoading } from '@/components/ui/custom/FormLoading';
 
 interface ConfirmSectionProps {
     handleProcced: () => void;

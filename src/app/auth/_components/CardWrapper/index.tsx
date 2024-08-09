@@ -8,8 +8,8 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "@/components";
-import { montserrat } from "@/config";
+} from "@/components/ui/card";
+import { montserrat } from "@/config/fonts";
 
 interface CardWrapperProps {
   children: React.ReactNode;

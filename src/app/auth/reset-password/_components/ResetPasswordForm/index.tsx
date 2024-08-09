@@ -6,8 +6,8 @@ import React, { useCallback, useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { 
-    Button,
+import { Button } from "@/components/ui/button";
+import {
     Form,
     FormControl,
     FormDescription,
@@ -15,9 +15,9 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-    Input 
-} from "@/components";
-import { resetPasswordSchema } from "@/lib";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { resetPasswordSchema } from "@/lib/schemas";
 
 import { passwordValidate } from "../../actions/passwordValidate";
 

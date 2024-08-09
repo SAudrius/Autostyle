@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
 
-import { Button, CancelIcon, Line } from "@/components";
-import { cn, nunito  } from "@/config";
-import { useAppSelector } from "@/lib";
+import { Button } from "@/components/ui/button";
+import { CancelIcon, Line } from "@/components/ui/custom";
+import { nunito } from "@/config/fonts";
+import { cn } from "@/config/utils";
+import { useAppSelector } from "@/lib/hooks";
 
 interface CartMenuProps {
   onClose: () => void;

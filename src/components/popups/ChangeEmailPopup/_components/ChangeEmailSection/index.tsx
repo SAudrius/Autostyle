@@ -1,25 +1,26 @@
 /* eslint-disable no-unused-vars */
 "use client";
 
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@components/ui/form";
+import { Input } from "@components/ui/input";
+import { nunito } from "@config/fonts";
+import { cn } from "@config/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { changeEmailSchema } from "@lib/schemas";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { 
-    Button,
-    Form,
-    FormControl,
-    FormError,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormLoading,
-    FormMessage,
-    Input 
-} from "@/components";
-import { cn, nunito  } from "@/config";
-import { changeEmailSchema } from "@/lib";
+import { Button } from "@/components/ui/button";
+import { FormError } from "@/components/ui/custom";
+import { FormLoading } from "@/components/ui/custom/FormLoading";
 
 
 // import { changeEmail } from "../../actions/changeEmail";

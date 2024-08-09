@@ -1,17 +1,13 @@
 "use client";
 
+import { Footer, Header, Modal, Popup } from "@components/layout";
+import { GlobalLoading } from "@components/layout/GlobalLoading";
 import React from "react";
 
-import { 
-    Banner, 
-    Footer, 
-    GlobalLoading, 
-    Header, 
-    Modal, 
-    Popup
-} from "@/components";
-import { cn, montserrat } from "@/config";
-import { useAppSelector } from "@/lib";
+import { Banner } from "@/components/layout/Banner";
+import { montserrat } from "@/config/fonts";
+import { cn } from "@/config/utils";
+import { useAppSelector } from "@/lib/hooks";
 
 interface BodyProps {
   children: React.ReactNode;

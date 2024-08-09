@@ -1,18 +1,16 @@
 "use client";
+import { cn } from "@config/utils";
+import { useAppDispatch } from "@lib/hooks";
+import { changeEmailSchema } from "@lib/schemas";
+import { turnPopupAndModalOff, turnPopupAndModalOn } from "@lib/store/storeHelpers/storeHelpers";
 import React, {
     useState,
 } from "react";
 import * as z from "zod";
 
-import { sendOtp, validateOtp } from "@/actions";
-import { cn } from "@/config";
-import { 
-    changeEmailSchema, 
-    popupSetErrorMessage, 
-    turnPopupAndModalOff, 
-    turnPopupAndModalOn, 
-    useAppDispatch 
-} from "@/lib";
+import { sendOtp } from "@/actions/sendOtp";
+import { validateOtp } from "@/actions/validateOtp";
+import { popupSetErrorMessage } from "@/lib/store/slices";
 
 import { ChangeEmailSection } from "./_components/ChangeEmailSection";
 import { ChangeEmailSuccess } from "./_components/ChangeEmailSuccess";

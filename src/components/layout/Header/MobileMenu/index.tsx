@@ -2,37 +2,41 @@
 import Link from "next/link";
 import React, { useEffect, useTransition } from "react";
 
-import { isUserLoggedIn } from "@/actions";
+import { isUserLoggedIn } from "@/actions/isLoggedIn";
+import { Cart } from "@/components/layout/Header/MobileMenu/Cart";
+import { CartMenu } from "@/components/layout/Header/MobileMenu/CartMenu";
+import { Menu } from "@/components/layout/Header/MobileMenu/Menu";
+import { Search } from "@/components/layout/Header/MobileMenu/Search";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { storeLogin } from "@/lib/store/slices/authSlice";
 import {
     cartAnimateOff,
     cartAnimateOn,
     cartOff,
     cartOn,
+} from "@/lib/store/slices/cartSlice";
+import {
     menuAnimateOff,
     menuAnimateOn,
     menuOff,
     menuOn,
+} from "@/lib/store/slices/menuSlice";
+import {
     searchAnimateOff,
     searchAnimateOn,
     searchOff,
     searchOn,
-    storeLogin, 
+} from "@/lib/store/slices/searchSlice";
+import {
     turnModalOff,
-    turnModalOn,    
-    useAppDispatch, 
-    useAppSelector 
-} from "@/lib";
+    turnModalOn,
+} from "@/lib/store/storeHelpers/storeHelpers";
 
 import { Account } from "./Account";
-import { Cart } from "./Cart";
-import { CartMenu } from "./CartMenu";
-import { Menu } from "./Menu";
 import { MenuOpen } from "./MenuOpen";
-import { Search } from "./Search";
 import { SearchMenu } from "./SearchMenu";
 
 export const MobileMenu = () => {
-    
     const dispatch = useAppDispatch();
     const search = useAppSelector( ( state ) => state.search.active );
     const isLoggedIn = useAppSelector( ( state ) => state.auth.isLoggedIn );

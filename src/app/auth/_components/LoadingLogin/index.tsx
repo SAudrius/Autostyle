@@ -1,11 +1,8 @@
 import React from "react";
 
 import Socials from "@/app/auth/_components/Socials";
-import { 
-    Button, 
-    LoadingInputField, 
-    LoadingLabel 
-} from "@/components";
+import { Button } from "@/components/ui/button";
+import { LoadingInputField, LoadingLabel } from "@/components/ui/custom";
 
 export const LoadingLogin = () => {
     return (

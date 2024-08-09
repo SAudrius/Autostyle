@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-import { cn, montserrat, nunito  } from "@/config";
+import { montserrat, nunito } from "@/config/fonts";
+import { cn } from "@/config/utils";
 
 export const SectionResources = () => {
     return (

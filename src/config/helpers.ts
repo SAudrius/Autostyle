@@ -1,7 +1,4 @@
-import { 
-    updateUserEmailExpireLimitById,
-    updateUserEmailExpireTimeAndEmailLimitById
-} from "@/lib";
+import { updateUserEmailExpireLimitById, updateUserEmailExpireTimeAndEmailLimitById } from "@/lib/data/users";
 
 export const scrollToTop = () => {
     window.scrollTo( { top: 0, behavior: "smooth" } );
