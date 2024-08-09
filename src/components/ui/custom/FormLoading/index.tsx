@@ -1,6 +1,7 @@
-import { cn } from '@config/utils';
 import React from 'react'
 import PropagateLoader from "react-spinners/PropagateLoader";
+
+import { cn } from '@/config';
 
 interface FormLoadingProps {
     className?: string;

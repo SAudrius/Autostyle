@@ -1,12 +1,20 @@
 'use server'
 
-import { checkUserEmailLimit, createExpiryTime, generateRandomSixNumberCode } from "@config/helpers"
-import { tokenDataByToken } from "@lib/auth/auth"
-import { getUserById } from "@lib/data/users"
-import { createVerificationCodeByEmail, deleteVerificationCodesByUserId, getVerificationCodeByUserId } from "@lib/data/verificationCodes"
 import { cookies } from "next/headers"
 
-import { sendEmail } from "@/lib/mail/sendMail"
+import { 
+    checkUserEmailLimit, 
+    createExpiryTime, 
+    generateRandomSixNumberCode 
+} from "@/config"
+import { 
+    createVerificationCodeByEmail, 
+    deleteVerificationCodesByUserId, 
+    getUserById, 
+    getVerificationCodeByUserId, 
+    sendEmail, 
+    tokenDataByToken 
+} from "@/lib"
 
 export const sendOtp = async ( type: 'password' | 'email', templateId: string ) => {
 

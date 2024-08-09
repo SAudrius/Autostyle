@@ -1,21 +1,21 @@
-import { Button } from "@components/ui/button";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@components/ui/form";
-import { Input } from "@components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { detailsSchema } from "@lib/schemas";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import * as z from "zod";
 
 import { userInfo } from "@/app/(protected)/account/_components/AccountInfo/actions/userInfo";
+import { 
+    Button,
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+    Input,
+} from "@/components";
+import { detailsSchema } from "@/lib";
 
 import { changeUserDetails } from "../../actions/changeUserDetails";
 

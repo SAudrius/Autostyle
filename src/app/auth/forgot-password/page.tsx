@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 
 import { CardWrapper } from "@/app/auth/_components";
 import { ForgotPasswordForm } from "@/app/auth/forgot-password/_components";
-import { LoadingPulse } from "@/components/ui/custom";
+import { LoadingPulse } from "@/components";
 
 const ForgotPasswordPage = () => {
     return (

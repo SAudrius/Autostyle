@@ -1,14 +1,14 @@
 "use client";
-import { Button } from "@components/ui/button";
-import { authLogout } from "@lib/auth/auth";
-import { useAppDispatch } from "@lib/hooks";
-import { storeLogout } from "@lib/store/slices/authSlice";
-import {
-    globalLoadingOff,
-    globalLoadingOn,
-} from "@lib/store/slices/globalLoadingSlice";
 import { useRouter } from "next/navigation";
 import React from "react";
+
+import { Button } from "@/components";
+import {
+    authLogout, 
+    globalLoadingOff,
+    globalLoadingOn,
+    storeLogout, 
+    useAppDispatch  } from "@/lib";
 
 const scrollToTop = () => {
     window.scrollTo( { top: 0, behavior: "smooth" } );

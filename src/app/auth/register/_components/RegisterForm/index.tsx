@@ -1,24 +1,24 @@
 "use client";
 
-import { Button } from "@components/ui/button";
-import {
+import { zodResolver } from "@hookform/resolvers/zod";
+import React, { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+import { Socials } from "@/app/auth/_components";
+import { 
+    Button,
     Form,
     FormControl,
     FormDescription,
     FormField,
     FormItem,
     FormLabel,
+    FormLoading,
     FormMessage,
-} from "@components/ui/form";
-import { Input } from "@components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "@lib/schemas";
-import React, { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-
-import { Socials } from "@/app/auth/_components";
-import { FormLoading } from "@/components/ui/custom/FormLoading";
+    Input 
+} from "@/components";
+import { registerSchema } from "@/lib";
 
 import { register } from "../../_actions/register";
 

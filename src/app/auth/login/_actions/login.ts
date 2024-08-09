@@ -1,13 +1,15 @@
 "use server";
-import { authLogin } from "@lib/auth/auth";
-import { getUserByEmail } from "@lib/data/users";
-import { loginSchema } from "@lib/schemas";
 import bcrypt from "bcryptjs";
 import * as z from "zod";
 
-import { generateVerificationToken } from "@/lib/auth/tokens";
-import { deleteVerificationTokenByEmail, getVerificationTokenByEmail } from "@/lib/data/verificationTokens";
-import { sendEmail } from "@/lib/mail/sendMail";
+import { authLogin,
+    deleteVerificationTokenByEmail,
+    generateVerificationToken, 
+    getUserByEmail, 
+    getVerificationTokenByEmail, 
+    loginSchema, 
+    sendEmail 
+} from "@/lib";
 
 export const login = async ( values: z.infer<typeof loginSchema> ) => {
     const validValues = loginSchema.safeParse( values );

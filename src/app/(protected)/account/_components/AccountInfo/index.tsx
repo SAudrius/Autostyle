@@ -1,8 +1,10 @@
 import React from "react";
 
 import { UserInfoField } from "@/app/(protected)/account/_components/Ui/UserInfoField";
-import { Line } from "@/components/ui/custom/Line";
-import { SubLineHeading } from "@/components/ui/custom/SubLineHeading";
+import { 
+    Line, 
+    SubLineHeading 
+} from "@/components";
 
 import { userInfo } from "./actions/userInfo";
 

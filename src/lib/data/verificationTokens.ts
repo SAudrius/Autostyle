@@ -1,5 +1,6 @@
-import { dbQuery } from "@lib/database/app";
 import { ResultSetHeader } from "mysql2";
+
+import { dbQuery } from "@/lib";
 
 export const createVerificationTokenByEmail = async ( email: string, token: string, type: 'password' | 'email' ) => {
     try {

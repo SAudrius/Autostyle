@@ -1,11 +1,8 @@
-import { ChangePasswordPopup } from "@components/popups/ChangePasswordPopup";
-import { cn } from "@config/utils";
-import { useAppSelector } from "@lib/hooks";
 import React from "react";
 
-import { ChangeDetailsPopup } from "@/components/popups/ChangeDetailsPopup";
-import { ChangeEmailPopup } from "@/components/popups/ChangeEmailPopup";
-import { ErrorPopup } from "@/components/popups/ErrorPopup";
+import { ChangeDetailsPopup, ChangeEmailPopup, ChangePasswordPopup, ErrorPopup } from "@/components";
+import { cn } from "@/config";
+import { useAppSelector } from "@/lib";
 
 export const Popup = () => {
     const popupElementKey = useAppSelector(
