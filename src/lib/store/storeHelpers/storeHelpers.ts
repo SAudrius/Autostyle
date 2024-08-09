@@ -2,7 +2,7 @@
 
 import { Action } from '@reduxjs/toolkit';
 
-import { scrollToTop } from '@/config/helpers';
+import { scrollToTop } from '@/config';
 
 import { modalAnimateOff, modalAnimateOn, modalOff, modalOn } from "../slices/modalSlice";
 import { popupAnimateOff, popupAnimateOn, popupOff, popupOn, popupSetElementKey } from '../slices/popupSlice';

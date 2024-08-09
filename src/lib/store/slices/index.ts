@@ -1,5 +1,6 @@
 export * from './authSlice'
 export * from './cartSlice'
+export * from './globalLoadingSlice'
 export * from './menuSlice'
 export * from './modalSlice'
 export * from './popupSlice'

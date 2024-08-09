@@ -1,7 +1,11 @@
 
-import { useAppDispatch } from "@lib/hooks";
-import { turnPopupAndModalOff } from "@lib/store/storeHelpers/storeHelpers";
+'use client'
 import React, { useState } from "react";
+
+import {
+    turnPopupAndModalOff,
+    useAppDispatch 
+} from "@/lib";
 
 import { ChangeDetailsFormSection } from "./_components/ChangeDetailsFormSection";
 import { ChangeDetailsSuccessSection } from "./_components/ChangeDetailsSuccessSection";

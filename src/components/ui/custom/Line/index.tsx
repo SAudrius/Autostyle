@@ -1,6 +1,6 @@
 import React from "react";
 
-import { cn } from "@/config/utils";
+import { cn } from "@/config";
 
 interface LineProps {
   className?: string;
