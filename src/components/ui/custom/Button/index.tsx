@@ -20,6 +20,7 @@ const buttonVariants = cva(
                 ghost:
           "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
                 link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
+                outlineSecondary: "uppercase bg-primary text-neutral-900 hover:bg-transparent hover:text-neutral-100 border-primary border hover:border-white hover:font-medium"
             },
             size: {
                 icon: "h-10 w-10",
