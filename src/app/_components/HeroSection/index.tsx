@@ -64,8 +64,8 @@ export const HeroSection = () => {
             <HeroSlide featureMessage="NEW MOLDINGS" brand="Audi" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/audi-hero.png')]" />
             <HeroSlide featureMessage="NEW MOLDINGS" brand="Volkswagen" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/volkswagen-hero.png')]"/>
             <HeroSlide featureMessage="NEW MOLDINGS" brand="Mercedes-Benz" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/mercedes-hero.png')]"/>
-            <HeroSlide featureMessage="NEW MOLDINGS" brand="Volkswagen" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/audi-hero.png')]" />
-            <HeroSlide featureMessage="NEW MOLDINGS" brand="Audi" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/volkswagen-hero.png')]"/>
+            <HeroSlide featureMessage="NEW MOLDINGS" brand="Audi" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/audi-hero.png')]" />
+            <HeroSlide featureMessage="NEW MOLDINGS" brand="Volkswagen" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/volkswagen-hero.png')]"/>
         </Slider>
     );
 }
