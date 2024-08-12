@@ -11,43 +11,48 @@ export const HeroSection = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [ currentSlide, setCurrentSlide ] = useState<number>( 0 )
     const sliderRef = useRef<Slider | null>( null );
-
+    const intervalRef = useRef<NodeJS.Timeout | null>( null ); 
 
     const settings: Settings = {
         infinite: true,
-        speed: 750,
+        speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: true,
         afterChange: ( current: number ) => {
-
             setCurrentSlide( current );
-            console.log( `Current slide is ${current}` );
+            resetInterval();
         },
     };
 
     const changeSlide = () => {
         setCurrentSlide( ( prevSlide ) => {
             const nextIndex = ( prevSlide + 1 )
-            console.log( 'currentSlide ===', prevSlide );
-            console.log( 'nextIndex ===', nextIndex );
 
             sliderRef.current?.slickGoTo( nextIndex );
             return nextIndex;
         } );
     };
 
+    const resetInterval = () => {
+        if ( intervalRef.current ) {
+            clearInterval( intervalRef.current );
+        }
+        intervalRef.current = setInterval( () => {
+            changeSlide();
+        }, 15000 ); 
+    };
+
 
     useEffect( () => {
         if ( sliderRef.current ) {
-            console.log( 'interval created' )
-            const interval = 5000; 
+            resetInterval();
             
-            const intervalId = setInterval( () => {
-                changeSlide();
-            }, interval );
-
-            return () => clearInterval( intervalId );
+            return () => {
+                if ( intervalRef.current ) {
+                    clearInterval( intervalRef.current );
+                }
+            };
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ ] );
