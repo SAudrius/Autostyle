@@ -83,10 +83,10 @@ export const MobileMenu = () => {
                 <Search onClick={handleSearch} />
                 <SearchMenu onClose={handleSearchClose} />
             </div>
-            <div className="flex items-center justify-end gap-[6px] sm:gap-2 lg:w-[174px]">
+            <div className="flex items-center justify-end gap-[6px] sm:gap-2 lg:w-[174px] w-auto">
                 {isLoggedIn && <Account />}
                 {!isLoggedIn && (
-                    <span className="h-6 w-10 px-1 py-2 sm:px-2 lg:hidden"></span>
+                    <span className="h-6 w-10 px-1 py-2 sm:px-2 lg:hidden md:block hidden"></span>
                 )}
                 <CartMenu onClose={handleCartClose} />
                 {!isLoggedIn && (

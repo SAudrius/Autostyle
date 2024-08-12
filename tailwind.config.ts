@@ -46,6 +46,7 @@ const config = {
                 "wide-10": "0.10em",
                 "wide-12": "0.12em",
                 "wide-20": "0.2em",
+                "wide-24": "0.24em",
             },
             dropShadow: {
                 text: "0 1px 2px rgba(0, 0, 0, 0.25)",
