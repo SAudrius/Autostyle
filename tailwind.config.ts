@@ -71,6 +71,9 @@ const config = {
                 "accordion-up": "accordion-up 0.2s ease-out",
                 loading: "shine 0.75s linear infinite",
             },
+            backgroundImage: {
+                'discovery-gradient': 'linear-gradient(to bottom, rgba(125, 255, 255, 0.02), rgba(75, 204, 210, 0.3))',
+            },
         },
     },
     plugins: [ require( "tailwindcss-animate" ) ],
