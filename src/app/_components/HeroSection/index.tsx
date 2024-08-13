@@ -59,7 +59,7 @@ export const HeroSection = () => {
 
 
     return ( 
-        <Slider {...settings} ref={sliderRef} className="overflow-hidden">
+        <Slider {...settings} ref={sliderRef} className="overflow-hidden relative z-10">
             <HeroSlide featureMessage="NEW MOLDINGS" brand="Mercedes-Benz" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/mercedes-hero.png')]"/>
             <HeroSlide featureMessage="NEW MOLDINGS" brand="Audi" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/audi-hero.png')]" />
             <HeroSlide featureMessage="NEW MOLDINGS" brand="Volkswagen" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/volkswagen-hero.png')]"/>
