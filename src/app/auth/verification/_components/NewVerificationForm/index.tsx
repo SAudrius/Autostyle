@@ -1,14 +1,12 @@
 "use client";
 
-// import { useSearchParams } from "next/navigation";
-import { FormError, FormSuccess } from "@components/ui/custom";
 import { useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
-import { verifyToken } from "@/actions/verifyToken";
+import { verifyToken } from "@/actions";
+import { FormError, FormSuccess } from "@/components";
 
-// import { newVerification } from "@/actions/new-verification";
 
 export const NewVerificationForm = () => {
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars

@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-import { nunito } from "@/config/fonts";
-import { cn } from "@/config/utils";
+import { cn, nunito  } from "@/config";
 
 export const SectionExplore = () => {
     return (

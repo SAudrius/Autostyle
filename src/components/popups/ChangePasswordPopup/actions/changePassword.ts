@@ -1,19 +1,20 @@
 'use server'
-import { tokenDataByToken } from "@lib/auth/auth";
-import { getUserWithPasswordById, updateUserPasswordById } from "@lib/data/users";
-import { deleteVerificationCodesByUserId, getCountVerificationCodesByUserId } from "@lib/data/verificationCodes";
-import { resetPasswordSchema } from "@lib/schemas";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers"
 import * as z from "zod";
 
-import { checkUserEmailLimit } from "@/config/helpers";
-import { sendEmail } from "@/lib/mail/sendMail";
+import { checkUserEmailLimit } from "@/config";
+import { deleteVerificationCodesByUserId, 
+    getCountVerificationCodesByUserId, 
+    getUserWithPasswordById, 
+    resetPasswordSchema, 
+    sendEmail,    tokenDataByToken, 
+    updateUserPasswordById  }
+    from "@/lib";
 
 export const changePassword = async ( values: z.infer<typeof resetPasswordSchema> ) => {
 
     const authCookie = cookies().get( 'auth' )
-    
     if ( !authCookie ) {
         console.log( 'log out' )
         return
@@ -37,13 +38,11 @@ export const changePassword = async ( values: z.infer<typeof resetPasswordSchema
     }
 
     const userData = await getUserWithPasswordById( userId )
-
     if( !userData ) {
         return { error: 'Something went wrong 1' }
     }
 
     const hashedPassword = await bcrypt.hash( validValues.data.password, 10 );
-
     if ( hashedPassword !== userData.password ){
 
         const rows = await updateUserPasswordById( hashedPassword, userId )
