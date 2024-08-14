@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { Button } from '@/components'
 import { BackgroundIcon } from '@/components/ui/custom/BackgroundIcon'
@@ -27,8 +27,8 @@ export const DiscoverySection = ( { className }: DiscoverySectionProps ) => {
                 <DiscoveryCard className={cn( 'hidden md:flex lg:col-span-4 lg:col-start-3' )} brand='Nissan' description='Dynamic Innovation' imgClass="bg-[url('https://Autostyle.b-cdn.net/nissan-card.png')]" />
                 <DiscoveryCard className={cn( 'hidden md:flex lg:col-span-4 lg:col-start-7' )} brand='Honda' description='Engineering Excellence' imgClass="bg-[url('https://Autostyle.b-cdn.net/honda-card.png')]" />
                 <div className={cn( 'relative transition-height-visibility-css overflow-hidden h-0 md:hidden', 
-                { "h-[2073px] overflow-hidden" : displayMore },
-                { "h-0 visible" : !displayMore },  
+                    { "h-[2073px] overflow-hidden" : displayMore },
+                    { "h-0 visible" : !displayMore },  
                 )}>
                     <div className='h-auto grid gap-4 sm:gap-6 m-auto '>
                         <DiscoveryCard className="flex" brand='Volvo' description='Unmatched Safety' imgClass="bg-[url('https://Autostyle.b-cdn.net/volvo-card.png')]" />
@@ -38,7 +38,7 @@ export const DiscoverySection = ( { className }: DiscoverySectionProps ) => {
                     </div>
                 </div>
             </div>
-            <Button className='m-auto md:hidden block mt-6 relative z-10' variant='underline' onClick={() => setDisplayMore(prevState => !prevState)}>{displayMore ? "Show Less" : "Show More" }</Button>
+            <Button className='m-auto md:hidden block mt-6 relative z-10' variant='underline' onClick={() => setDisplayMore( prevState => !prevState )}>{displayMore ? "Show Less" : "Show More" }</Button>
             <BackgroundIcon className='absolute top-[-660px] rotate-[150deg] left-[-495px]'/>
             <BackgroundIcon className='absolute bottom-[-110px] rotate-[-22deg] right-[-430px]'/>
         </section>
