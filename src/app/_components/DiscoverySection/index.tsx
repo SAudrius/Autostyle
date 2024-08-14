@@ -1,8 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 
-import { Button } from '@/components'
-import { BackgroundIcon } from '@/components/ui/custom/BackgroundIcon'
+import { BackgroundIcon, Button  } from '@/components'
 import { cn, montserrat } from '@/config'
 
 import { DiscoveryCard } from '../DiscoveryCard'
