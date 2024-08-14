@@ -1,7 +1,7 @@
-import { dbQuery } from "@lib/database/app";
 import { ResultSetHeader } from "mysql2";
 
-import { convertToDbDate } from "@/config/helpers";
+import { convertToDbDate } from "@/config";
+import { dbQuery } from "@/lib";
 
 export const createVerificationCodeByEmail = async ( userId: number, email: string, code: number, type: 'password' | 'email', expiresAt: number ) => {
     try {

@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config = {
     darkMode: [ "class" ],
@@ -46,6 +46,7 @@ const config = {
                 "wide-10": "0.10em",
                 "wide-12": "0.12em",
                 "wide-20": "0.2em",
+                "wide-24": "0.24em",
             },
             dropShadow: {
                 text: "0 1px 2px rgba(0, 0, 0, 0.25)",
@@ -64,15 +65,43 @@ const config = {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: "0" },
                 },
+                'line-by-line': {
+                    '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
                 loading: "shine 0.75s linear infinite",
+                'line-by-line': 'line-by-line 0.35s ease-in-out',
+            },
+            transitionProperty: {
+                'height-visibility': 'height, visibility',
+            },
+            transitionDuration: {
+                '350': '350ms',
+            },
+            transitionDelay: {
+                '350': '350ms',
+            },
+            backgroundImage: {
+                'discovery-gradient': 'linear-gradient(to bottom, rgba(125, 255, 255, 0.02), rgba(75, 204, 210, 0.22))',
             },
         },
     },
-    plugins: [ require( "tailwindcss-animate" ) ],
+    plugins: [ require( "tailwindcss-animate" ),
+        function({ addUtilities }: any) {
+            addUtilities(
+              {
+                '.transition-height-visibility': {
+                  transition: 'height 0.35s ease-in-out, visibility 0s ease-in-out 0.35s',
+                },
+              },
+              ['responsive', 'hover']
+            );
+          },
+     ],
 } satisfies Config;
 
 export default config;

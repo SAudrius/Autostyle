@@ -3,12 +3,14 @@ import React, {
     useState,
 } from "react";
 
-import { sendOtp } from "@/actions/sendOtp";
-import { validateOtp } from "@/actions/validateOtp";
-import { cn } from "@/config/utils";
-import { useAppDispatch } from "@/lib/hooks";
-import { popupSetErrorMessage } from "@/lib/store/slices";
-import { turnPopupAndModalOff, turnPopupAndModalOn } from "@/lib/store/storeHelpers/storeHelpers";
+import { sendOtp, validateOtp } from "@/actions";
+import { cn } from "@/config";
+import { 
+    popupSetErrorMessage, 
+    turnPopupAndModalOff, 
+    turnPopupAndModalOn, 
+    useAppDispatch 
+} from "@/lib";
 
 import { ChangePasswordSection } from "./_components/ChangePasswordSection";
 import { ConfirmCodeSection } from "./_components/ConfirmCodeSection";

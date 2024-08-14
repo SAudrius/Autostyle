@@ -1,13 +1,16 @@
 'use server'
 
-import { getUserById, updateUserDetailsById } from "@lib/data/users";
-import { detailsSchema } from "@lib/schemas";
 import { cookies } from "next/headers";
 import * as z from "zod";
 
-import { checkUserEmailLimit } from "@/config/helpers";
-import { tokenDataByToken } from "@/lib/auth/auth";
-import { sendEmail } from "@/lib/mail/sendMail";
+import { checkUserEmailLimit } from "@/config";
+import { 
+    detailsSchema, 
+    getUserById, 
+    sendEmail, 
+    tokenDataByToken, 
+    updateUserDetailsById 
+} from "@/lib";
 
 export const changeUserDetails = async ( values: z.infer<typeof detailsSchema> ) => {
     const validValues = detailsSchema.safeParse( values );
