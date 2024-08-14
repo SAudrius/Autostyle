@@ -13,7 +13,7 @@ interface DiscoveryCardProps {
 export const DiscoveryCard = ( { brand, description, className, imgClass }: DiscoveryCardProps ) => {
     return (
         <div className={cn( 'flex w-full justify-center', className )}>
-            <div className={cn( 'flex flex-col justify-end h-[500px] bg-gray-400 p-12 max-w-[400px] w-full bg-cover bg-center rounded', imgClass )}>
+            <div className={cn( 'flex flex-col justify-end h-[500px] bg-neutral-800 p-12 w-full bg-cover bg-center rounded', imgClass )}>
                 <p className='text-[13px] uppercase text-neutral-000'>{description}</p>
                 <p className='mt-4 text-2xl tracking-wide-6 sm:tracking-wide-24 uppercase text-neutral-000'>{brand}</p>
                 <div>
