@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 
+
 const config = {
     darkMode: [ "class" ],
     content: [ "./components/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}" ],
@@ -17,13 +18,8 @@ const config = {
                 DEFAULT: "1rem",
                 sm: "2rem",
                 md: "4rem",
+                lg: "4rem",
                 xl: "7.5rem",
-            },
-            screens: {
-                sm: "768px",
-                md: "1000px",
-                lg: "1200px",
-                xl: "1440px",
             },
         },
         extend: {
@@ -38,6 +34,7 @@ const config = {
                 "neutral-500": "#9D9D9D",
                 "neutral-100": "#F1F9F9",
                 "neutral-000": "#ffffff",
+                "shade":"#F2F7F7"
             },
             letterSpacing: {
                 tight: "0.25em",
@@ -90,18 +87,61 @@ const config = {
             },
         },
     },
-    plugins: [ require( "tailwindcss-animate" ),
-        function({ addUtilities }: any) {
-            addUtilities(
-              {
-                '.transition-height-visibility': {
-                  transition: 'height 0.35s ease-in-out, visibility 0s ease-in-out 0.35s',
+    plugins: [
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        function ( { addComponents }: any ) {
+            addComponents( {
+                '.container-v2': {
+                    maxWidth: '100%',
+                    margin: "0 auto",
+                    padding: '0 1rem',
+                    '@screen sm': {
+                        margin: "0 auto",
+                        padding: '0 1.5rem',
+                    },
+                    '@screen md': {
+                        margin: "0 auto",
+                        padding: '0 2rem',
+                    },
+                    '@screen lg': {
+                        maxWidth: '1328px',
+                        margin: "0 auto",
+                        padding: '0 4rem',
+                    },
+                    '@screen xl': {
+                        maxWidth: '1440px',
+                        margin: "0 auto",
+                        padding: '0 7.5rem',
+                    },
                 },
-              },
-              ['responsive', 'hover']
-            );
-          },
-     ],
+                '.container-search': {
+                    maxWidth: '100%',
+                    margin: "0 auto",
+                    padding: '0 1rem',
+                    '@screen sm': {
+                        // maxWidth: '',
+                        margin: "0 auto",
+                        padding: '0 1.5rem',
+                    },
+                    '@screen md': {
+                        // maxWidth: '200px',
+                        margin: "0 auto",
+                        padding: '0 2rem',
+                    },
+                    '@screen lg': {
+                        maxWidth: '1200px',
+                        margin: "0 auto",
+                        padding: '0 2rem',
+                    },
+                    '@screen xl': {
+                        maxWidth: '1440px',
+                        margin: "0 auto",
+                        padding: '0 2rem',
+                    },
+                },
+            } );
+        },
+    ],
 } satisfies Config;
 
 export default config;
