@@ -13,10 +13,12 @@ interface SingleProductCardSmallProps {
     className?: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const SingleProductCardSmall = ( { productImgUrl, name, price, brand, model, year, discountPrice, className }: SingleProductCardSmallProps ) => {
     return (
         <div className={cn( 'grid sm:grid-cols-2 gap-4', className )}>
             <div className='h-28 w-full bg-neutral-300 rounded'>
+                {/* TODO: display image from cdn */}
                 {/* <img src="" alt="" /> */}
             </div>
             <div className='flex flex-col mt-1'>

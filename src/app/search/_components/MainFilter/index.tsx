@@ -98,6 +98,7 @@ export const MainFilter = ( { className, brands } : MainFilterProps ) => {
             return
         }
         brandOptionsResponse()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [] )
 
     useEffect( () => {

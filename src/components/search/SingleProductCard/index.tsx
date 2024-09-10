@@ -13,10 +13,12 @@ interface SingleProductCardProps {
     className?: string
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const SingleProductCard = ( { productImgUrl, name, price, brand, model, year, discountPrice, className }: SingleProductCardProps ) => {
     return (
         <div className={cn( '', className )}>
             <div className='h-60 w-full bg-neutral-300 rounded'>
+                {/* TODO: display image from cdn  */}
                 {/* <img src="" alt="" /> */}
             </div>
             <div className='flex mt-3 flex-wrap col gap-y-2 gap-x-3'>
