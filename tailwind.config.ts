@@ -136,7 +136,7 @@ const config = {
                     '@screen xl': {
                         maxWidth: '1440px',
                         margin: "0 auto",
-                        padding: '0 2rem',
+                        padding: '0 7.5rem',
                     },
                 },
             } );
