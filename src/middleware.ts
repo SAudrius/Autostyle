@@ -11,7 +11,12 @@ export const middleware = async ( req: NextRequest ) => {
 
     const isLoggedIn = await auth( authCookie?.value );
     // const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+    console.log( 'nextUrl.pathname ===', nextUrl.pathname );
     const isPublicRoute = publicRoutes.includes( nextUrl.pathname );
+    console.log( 'isPublicRoute ===', isPublicRoute );
+    if ( isPublicRoute ) {
+        return
+    }
 
     const isAuthRoute = authRoutes.includes( nextUrl.pathname );
     if ( isAuthRoute ) {

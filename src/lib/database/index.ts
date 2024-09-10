@@ -1,1 +1,1 @@
-export * from './app'
+export { dbQuery } from './app'

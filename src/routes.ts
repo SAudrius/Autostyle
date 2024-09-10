@@ -2,7 +2,7 @@
  * Routes that are public
  * @type {string}
  */
-export const publicRoutes = [ "/" ];
+export const publicRoutes = [ "/", "/search" ];
 
 /**
  * These routes are used for authentication

@@ -1,5 +1,3 @@
-"use client";
-
 import { DiscoverySection } from "./_components/DiscoverySection";
 import { HeroSection } from "./_components/HeroSection";
 

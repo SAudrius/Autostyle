@@ -30,7 +30,7 @@ export const Search = ( { onClick }: SearchProps ) => {
                 />
             </svg>
             <SearchInput
-                onFocus={onClick}
+                onClick={onClick}
                 className="hidden h-8 bg-neutral-800 text-white caret-white placeholder:text-[#878787] md:block "
             />
         </div>

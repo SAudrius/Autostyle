@@ -6,6 +6,7 @@ import { cn } from "@/config";
 import { useAppSelector } from "@/lib";
 
 import { SearchInput } from "../Search/SearchInput";
+import { SearchBarProducts } from "../SearchBarProducts";
 
 interface SearchMenuProps {
   onClose: () => void;
@@ -20,7 +21,7 @@ export const SearchMenu = ( { onClose }: SearchMenuProps ) => {
         <div
             aria-hidden={search ? "false" : "true"}
             className={cn(
-                "absolute left-0 right-0 top-[-460px] z-40 h-[460px] translate-x-0 bg-neutral-000 transition duration-300 md:-z-10",
+                "absolute left-0 right-0 top-[-460px] z-40 h-[700px] sm:h-[510px] md:h-[410px] translate-x-0 bg-shade transition duration-300 md:-z-10",
                 { "z-40 md:-z-10": search },
                 { "-z-20": !search },
                 { "translate-y-[0px]": !searchAnimation },
@@ -41,8 +42,8 @@ export const SearchMenu = ( { onClose }: SearchMenuProps ) => {
                     </div>
                     <Line className="absolute bottom-0" />
                 </div>
-                <div className="flex items-center justify-center">
-                    <h2 className="text-lg">Feature coming soon</h2>
+                <div className='container-v2 w-full'>
+                    <SearchBarProducts onClose={onClose}/>
                 </div>
             </div>
         </div>
