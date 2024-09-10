@@ -33,9 +33,7 @@ export const MenuOpen = ( { onClose }: MenuOpenProps ) => {
                 { "-z-20 ": !menu },
                 { "z-40 translate-x-[0px]": menuAnimation },
                 { "z-40 translate-x-[-350px] ": !menuAnimation },
-                {
-                    "z-40": menu,
-                },
+                { "z-40": menu, },
             )}
         >
             <div className="px-5 pt-7">

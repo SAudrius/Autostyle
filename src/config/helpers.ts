@@ -64,3 +64,11 @@ export const checkUserEmailLimit = async ( userData: User ) => {
 
     return { success: "Success" }
 }
+
+
+export const validatePaginationParams = ( value: number, defaultValue: number ): number => {
+    if ( Number.isInteger( value ) && value >= 0 ) {
+        return value;
+    }
+    return defaultValue; // fallback to a default value if invalid
+}
