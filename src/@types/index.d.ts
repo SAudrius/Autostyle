@@ -66,3 +66,58 @@ interface VerificationCode {
   expires: string;
   type: 'password' | 'email';
 }
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  brand_id: number;
+  stock: number;
+  discount_price?: number; 
+}
+
+type Products = Product[];
+
+interface SearchProductApi extends Product {
+  brand_name: string;
+  car_name: string
+  car_year : number
+}
+interface SearchProduct extends Product {
+  brandName: string;
+  carName: string
+  carYear: number
+}
+
+interface Brand {
+  id: number;
+  name: string;
+  description: string;
+  slogan: string;
+}
+
+type Brands = Brand[];
+
+interface Model {
+  id: number;
+  name: string;
+  description: string;
+  year: number; 
+}
+
+type Models = Model[];
+
+interface Modification {
+  id: number;
+  name: string;
+}
+
+type Modifications = Modifications[];
+
+interface filterOption {
+  id: number,
+  name: string
+  brand_id?: number,
+  model_id?: number
+}
