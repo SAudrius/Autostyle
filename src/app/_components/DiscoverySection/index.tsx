@@ -15,8 +15,8 @@ export const DiscoverySection = ( { className }: DiscoverySectionProps ) => {
 
     return (
         <section className={cn( 'bg-discovery-gradient relative overflow-hidden pt-20 pb-12 md:pt-[120px] md:pb-[120px] lg:pb-[180px]', className )}>
-            <h2 className={cn( 'relative container text-neutral-800 font-medium uppercase text-[20px] lg:text-[24px] tracking-wide-20 text-center z-10', montserrat.className )} >Discover Leading<br className='sm:hidden'/> Auto Brands</h2>
-            <div className='relative z-10 container mt-12 grid m-auto gap-4 sm:gap-6 md:gap-8 md:mt-20 md:grid-cols-2 lg:grid-cols-12'>
+            <h2 className={cn( 'relative container-v2 text-neutral-800 font-medium uppercase text-[20px] lg:text-[24px] tracking-wide-20 text-center z-10', montserrat.className )} >Discover Leading<br className='sm:hidden'/> Auto Brands</h2>
+            <div className='relative z-10 container-v2 mt-12 grid m-auto gap-4 sm:gap-6 md:gap-8 md:mt-20 md:grid-cols-2 lg:grid-cols-12'>
                 <DiscoveryCard className='lg:col-span-4' brand='Mercedes' description='Elegant Performance' imgClass="bg-[url('https://Autostyle.b-cdn.net/mercedes-card.png')]"/>
                 <DiscoveryCard className='lg:col-span-4' brand='AUDI' description='Art of Progress' imgClass="bg-[url('https://Autostyle.b-cdn.net/audi-card.png')]" />
                 <DiscoveryCard className='lg:col-span-4' brand='Volkswagen' description='Precision Engineering' imgClass="bg-[url('https://Autostyle.b-cdn.net/volkswagen-card.png')]"/>
