@@ -31,3 +31,52 @@
     height 0.35s ease-in-out,
     visibility 0s ease-in-out 0.35s;
 }
+
+.discount-price {
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(141, 225, 255, 1) 0%,
+    rgba(75, 204, 210, 1) 60%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  border: hsl(0, 0%, 30%);
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px #073665;
+  cursor: pointer;
+  height: 24px;
+  width: 12px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+.thumb::-moz-range-thumb {
+  background-color: #f1f5f7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 12px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide the arrows (spinner) in numeric input for Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

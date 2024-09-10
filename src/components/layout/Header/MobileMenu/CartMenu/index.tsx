@@ -19,11 +19,9 @@ export const CartMenu = ( { onClose }: CartMenuProps ) => {
             className={cn(
                 "absolute right-0 top-0 z-10 box-border h-screen w-[350px] translate-x-0 overflow-x-hidden bg-neutral-000 transition duration-300",
                 { "-z-20": !cart },
-                {
-                    "z-40": cart,
-                },
-                { "z-40 translate-x-0": cartAnimation },
-                { "z-40 translate-x-[350px]": !cartAnimation },
+                { "z-40": cart, },
+                { "translate-x-0": cartAnimation },
+                { "translate-x-[350px]": !cartAnimation },
             )}
         >
             <div className="grid h-full grid-rows-[80px,1fr,128px]">

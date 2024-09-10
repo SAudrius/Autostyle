@@ -2,6 +2,9 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import audiImg  from 'public/assets/home/hero-section/audi-hero.png'
+import mercedesImg  from 'public/assets/home/hero-section/mercedes-hero.png'
+import volkswagenImg  from 'public/assets/home/hero-section/volkswagen-hero.png'
 import React, { useEffect, useRef, useState } from "react";
 import Slider, { Settings } from "react-slick";
 
@@ -60,12 +63,12 @@ export const HeroSection = () => {
 
     return ( 
         <Slider {...settings} ref={sliderRef} className="overflow-hidden relative z-10">
-            <HeroSlide featureMessage="NEW MOLDINGS" brand="Mercedes-Benz" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/mercedes-hero.png')]"/>
-            <HeroSlide featureMessage="NEW MOLDINGS" brand="Audi" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/audi-hero.png')]" />
-            <HeroSlide featureMessage="NEW MOLDINGS" brand="Volkswagen" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/volkswagen-hero.png')]"/>
-            <HeroSlide featureMessage="NEW MOLDINGS" brand="Mercedes-Benz" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/mercedes-hero.png')]"/>
-            <HeroSlide featureMessage="NEW MOLDINGS" brand="Audi" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/audi-hero.png')]" />
-            <HeroSlide featureMessage="NEW MOLDINGS" brand="Volkswagen" hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/volkswagen-hero.png')]"/>
+            <HeroSlide featureMessage="NEW MOLDINGS" brand="Mercedes-Benz" imgPath={mercedesImg} hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/mercedes-hero.png')]"/>
+            <HeroSlide featureMessage="NEW MOLDINGS" brand="Audi" imgPath={audiImg} hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/audi-hero.png')]" />
+            <HeroSlide featureMessage="NEW MOLDINGS" brand="Volkswagen" imgPath={volkswagenImg} hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/volkswagen-hero.png')]"/>
+            <HeroSlide featureMessage="NEW MOLDINGS" brand="Mercedes-Benz" imgPath={mercedesImg} hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/mercedes-hero.png')]"/>
+            <HeroSlide featureMessage="NEW MOLDINGS" brand="Audi" imgPath={audiImg} hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/audi-hero.png')]" />
+            <HeroSlide featureMessage="NEW MOLDINGS" brand="Volkswagen" imgPath={volkswagenImg} hasButton imgClass="bg-[url('https://Autostyle.b-cdn.net/volkswagen-hero.png')]"/>
         </Slider>
     );
 }

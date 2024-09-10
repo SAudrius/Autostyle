@@ -18,8 +18,7 @@ export const Header = ( { transparent }: HeaderProps ) => {
 
     return (
         <header
-            className={cn(
-                "relative grid",
+            className={cn( "relative grid",
                 {
                     "bg-white": !transparent,
                 },
@@ -29,7 +28,7 @@ export const Header = ( { transparent }: HeaderProps ) => {
                 { "md:z-40": search },
             )}
         >
-            <Container className="flex items-center justify-between gap-4 bg-white py-5 md:gap-12 lg:gap-40">
+            <Container className="flex items-center justify-between gap-4 bg-white py-5 md:gap-12 lg:gap-40 w-full">
                 <Logo />
                 <MobileMenu />
             </Container>

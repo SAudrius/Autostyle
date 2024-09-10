@@ -10,7 +10,7 @@ export const SectionExplore = () => {
             </p>
             <ul className="col-span-2 grid grid-cols-2 justify-between gap-y-4 text-sm font-light tracking-wide">
                 <li>
-                    <Link href="#">Search</Link>
+                    <Link href="/search">Search</Link>
                 </li>
                 <li
                     className={cn(

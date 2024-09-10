@@ -12,7 +12,10 @@ import {
     popupAnimateOff,
     popupOff,
     searchAnimateOff,
+    searchFilterOff,
+    searchMobileFilterOff,
     searchOff,
+    searchSortOff,
     useAppDispatch, 
     useAppSelector 
 } from "@/lib";
@@ -34,6 +37,9 @@ export const Modal = () => {
             dispatch( cartOff() );
             dispatch( searchOff() );
             dispatch( popupOff() );
+            dispatch( searchSortOff() );
+            dispatch( searchFilterOff() );
+            dispatch( searchMobileFilterOff() );
         } );
     };
 
